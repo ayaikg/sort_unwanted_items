@@ -1,0 +1,7 @@
+ja:
+  defaults:
+    login: 'ログイン'
+    logout: 'ログアウト'
+  users:
+    new:
+      title: 'ユーザーと登録'
