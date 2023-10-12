@@ -72,3 +72,6 @@ gem "rails-i18n"
 #ログイン機能
 gem "sorcery"
 
+#LINEurlの管理
+gem "config"
+
