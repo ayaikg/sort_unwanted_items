@@ -1,0 +1,2 @@
+sorcery:
+  line_callback_url: 'https://hf235s9d-3000.asse.devtunnels.ms/oauth/callback?provider=line'

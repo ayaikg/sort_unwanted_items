@@ -1,0 +1,31 @@
+<div class="drawer drawer-end">
+  <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content">
+    <!-- Navbar -->
+    <div class="navbar bg-base-100">
+      <div class="flex-1">
+        <%= link_to "steteco", root_path, class: "btn btn-ghost normal-case text-xl" %>
+      </div>
+      <div class="flex-none">
+        <div class="navbar">
+          <%= link_to 'LINEログイン', auth_at_provider_path(provider: :line), class: "btn" %>
+        </div>
+        <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-square btn-ghost">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </label>
+      </div>
+    </div>
+  </div>
+  <!-- Sidebar content -->
+  <div class="drawer-side">
+    <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
+    <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+      <li><a>ホーム</a></li>
+      <li><a>投稿一覧</a></li>
+      <div class="divider"></div> 
+      <li><a>お問い合わせ</a></li>
+      <li><a>利用規約</a></li>
+      <li><a>プライバシーポリシー</a></li>
+    </ul>
+  </div>
+</div>

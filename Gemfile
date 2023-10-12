@@ -69,3 +69,9 @@ end
 #日本語化対応
 gem "rails-i18n"
 
+#ログイン機能
+gem "sorcery"
+
+#LINEurlの管理
+gem "config"
+
