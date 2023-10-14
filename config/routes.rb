@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root to: 'homes#top'
-  resources :users
+  resources :users, only: [:new, :create]
+  resources :categories, only: [:new, :create, :index, :destroy]
 
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
