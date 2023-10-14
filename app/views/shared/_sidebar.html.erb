@@ -1,0 +1,24 @@
+<!-- Sidebar content -->
+<div class="drawer-side">
+  <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
+    <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+    <% if logged_in? %>
+      <li><%= button_to 'ログアウト', logout_path, method: :delete %></li>
+      <li><a>マイページ</a></li>
+      <li><a>投稿一覧</a></li>
+      <li><a>グラフ</a></li>
+      <li><a>捨てたモノ履歴</a></li>
+      <div class="divider"></div> 
+      <li><a>お問い合わせ</a></li>
+      <li><a>利用規約</a></li>
+      <li><a>プライバシーポリシー</a></li>
+    <% else %>
+      <li><%= link_to 'ログイン', login_path %></li>
+      <li><a>投稿一覧</a></li>
+      <div class="divider"></div> 
+      <li><a>お問い合わせ</a></li>
+      <li><a>利用規約</a></li>
+      <li><a>プライバシーポリシー</a></li>
+    <% end %>
+  </ul>
+</div>

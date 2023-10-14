@@ -7,7 +7,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(category_params)
+    @category = current_user.categories.build(category_params)
     if @category.save
       redirect_to categories_path
     else
@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
   end
 
   def index
-    @categories = Category.all
+    @categories = Category.where(user_id: [nil, current_user.id])
   end
 
   def edit
