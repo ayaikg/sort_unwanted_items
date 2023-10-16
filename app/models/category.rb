@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
-  belongs_to :user, optional: true
+  belongs_to :user
 
-  validates :title, presence: true, uniqueness: { scope: :user_id }
+  validates :title, presence: true
 end

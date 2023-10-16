@@ -1,6 +1,5 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:edit, :update, :destroy]
-  before_action :check_user, only: [:edit, :update]
 
   def new
     @category = Category.new
@@ -16,7 +15,7 @@ class CategoriesController < ApplicationController
   end
 
   def index
-    @categories = Category.where(user_id: [nil, current_user.id])
+    @categories = Category.where(user_id: current_user.id)
   end
 
   def edit
@@ -42,11 +41,5 @@ class CategoriesController < ApplicationController
 
   def set_category
     @category = Category.find(params[:id])
-  end
-
-  def check_user
-    if @category.user.nil?
-      redirect_to edit_category_path(@category)
-    end
   end
 end

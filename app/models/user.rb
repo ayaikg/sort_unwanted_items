@@ -11,4 +11,16 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
 
   enum role: { general: 0, admin: 1 }
+
+  after_create :create_default_categories
+
+  private
+
+  def create_default_categories
+    default_categories = ['衣類', '書籍', 'コスメ', '文房具', 'ゲーム', '音楽']
+    
+    default_categories.each do |title|
+      categories.find_or_create_by(title: title)
+    end
+  end
 end
