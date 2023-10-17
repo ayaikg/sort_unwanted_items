@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="cupcake">
   <head>
     <title>SortUnwantedItems</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -10,13 +10,23 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body class="flex flex-col min-h-screen">
-    <%= render 'shared/header' %>
+  <body>
+    <div class="drawer drawer-end flex flex-col min-h-screen">
+      <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content">
+        <% if logged_in? %>
+          <%= render 'shared/header' %>
+        <% else %>
+          <%= render 'shared/before_login_header' %>
+        <% end %>
 
-    <div class="flex-grow">
-      <%= yield %>
+        <div class="flex-grow">
+          <%= yield %>
+        </div>
+      </div>
+      <%= render 'shared/bottom_nav' %>
+      <%= render 'shared/sidebar' %>
     </div>
-
     <%= render 'shared/footer' %>
   </body>
 </html>
