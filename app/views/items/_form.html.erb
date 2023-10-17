@@ -1,0 +1,11 @@
+<h1>アイテム作成</h1>
+<%= form_with model: item, local: true do |f| %>
+  <div class= "form-control">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "input input-bordered w-full max-w-xs" %>
+  </div>
+  <div class= "form-control">
+    <%= f.label :price %>
+    <%= f.text_field :price, class: "input input-bordered w-full max-w-xs" %>
+  </div>
+<% end %>

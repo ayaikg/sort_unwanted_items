@@ -75,3 +75,6 @@ gem "sorcery"
 #LINEurlの管理
 gem "config"
 
+#画像編集系
+gem "carrierwave"
+gem "mini_magick"
