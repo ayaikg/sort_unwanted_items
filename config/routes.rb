@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   resources :users, only: [:new, :create]
   resources :categories, except: :show
-  resource :mypage, only: [:show, :edit, :update]
 
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'

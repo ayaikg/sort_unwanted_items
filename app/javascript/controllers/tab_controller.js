@@ -9,19 +9,17 @@ export default class extends Controller {
     const current = event.currentTarget
     const currentIndex = status.indexOf(current)
     const contents = this.contentTargets
-
+  
     status.forEach((status, index) => {
-      if(current.classList.contains("not-active")) {
+      if(status == current) {
+        status.classList.remove("not-active")
+        status.classList.add("tab-active")
+        contents[index].classList.remove("hidden")
+      } else {
         status.classList.remove("tab-active")
         status.classList.add("not-active")
         contents[index].classList.add("hidden")
       }
     })
-
-    if(current.classList.contains("not-active")) {
-      current.classList.remove("not-active")
-      current.classList.add("tab-active")
-      contents[currentIndex].classList.remove("hidden")
-    }
   }
 }
