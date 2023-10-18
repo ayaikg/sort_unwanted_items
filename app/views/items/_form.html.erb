@@ -10,7 +10,7 @@
     <%= f.text_field :name, class: "appearance-none bg-transparent border-none w-full" %>
   </div>
   <div class= "form-control w-full mb-6">
-    <%= f.label :category_id, class: "mb-2" %>
+    <%= f.label :category_id, Category.human_attribute_name(:title), class: "mb-2" %>
     <%= f.collection_select :category_id, Category.where(user_id: current_user.id), :id, :title, include_blank: "選択して下さい", class: "w-full" %>
   </div>
   <div class= "form-control mb-6 items-center">
