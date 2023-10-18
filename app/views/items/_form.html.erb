@@ -1,11 +1,30 @@
-<h1>アイテム作成</h1>
 <%= form_with model: item, local: true do |f| %>
-  <div class= "form-control">
-    <%= f.label :name %>
-    <%= f.text_field :name, class: "input input-bordered w-full max-w-xs" %>
+<div class="flex flex-wrap">
+  <div class= "form-control w-full mb-6">
+    <%= f.label :image, class: "mb-2" %>
+    <%= f.file_field :image, accept: "image/*" %>
+    <%= f.hidden_field :image_cache %>
   </div>
-  <div class= "form-control">
-    <%= f.label :price %>
-    <%= f.text_field :price, class: "input input-bordered w-full max-w-xs" %>
+  <div class= "form-control w-full mb-6 border-b border-teal-500">
+    <%= f.label :name, class: "mb-2" %>
+    <%= f.text_field :name, class: "appearance-none bg-transparent border-none w-full" %>
   </div>
+  <div class= "form-control w-full mb-6">
+    <%= f.label :category_id, class: "mb-2" %>
+    <%= f.collection_select :category_id, Category.where(user_id: current_user.id), :id, :title, include_blank: "選択して下さい", class: "w-full" %>
+  </div>
+  <div class= "form-control mb-6 items-center">
+    <%= f.radio_button :listing_status, true %>
+    <%= f.label :listing_status, "出品中", value: true %>
+  </div>
+  <div class= "form-control mb-6 items-center">
+    <%= f.radio_button :listing_status, false %>
+    <%= f.label :listing_status, "未出品", value: false %>
+  </div>
+  <div class= "form-control w-full mb-6 border-b border-teal-500">
+    <%= f.label :price, class: "mb-2" %>
+    <%= f.number_field :price, class: "appearance-none bg-transparent border-none w-full" %>
+  </div>
+  <%= f.submit class: "btn btn-primary" %>
+</div>
 <% end %>
