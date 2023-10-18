@@ -4,6 +4,7 @@ ja:
       user: ユーザー
       category: カテゴリー
       item: アイテム
+      notification: 通知
     attributes:
       user:
         id: ID
@@ -18,4 +19,7 @@ ja:
         price: 出品価格
         listing_status: 出品状態
         disposal_method: 処分方法
+      notification:
+        id: ID
+        notify_date: 通知日
 

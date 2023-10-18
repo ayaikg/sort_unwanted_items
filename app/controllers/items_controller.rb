@@ -6,6 +6,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    @item.build_notification
   end
 
   def create
@@ -35,7 +36,8 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:items).permit(:name, :price, :image, :image_cache, :listing_status, :disposal_method)
+    params.require(:items).permit(:name, :price, :image, :image_cache, :listing_status, :disposal_method, :category_id,
+      notification_attributes: [:notify_date])
   end
 
   def set_item

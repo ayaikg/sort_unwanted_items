@@ -7,7 +7,7 @@
   </div>
   <div class= "form-control w-full mb-6 border-b border-teal-500">
     <%= f.label :name, class: "mb-2" %>
-    <%= f.text_field :name, class: "appearance-none bg-transparent border-none w-full" %>
+    <%= f.text_field :name, class: "input appearance-none bg-transparent border-none focus:outline-none w-full" %>
   </div>
   <div class= "form-control w-full mb-6">
     <%= f.label :category_id, Category.human_attribute_name(:title), class: "mb-2" %>
@@ -23,7 +23,13 @@
   </div>
   <div class= "form-control w-full mb-6 border-b border-teal-500">
     <%= f.label :price, class: "mb-2" %>
-    <%= f.number_field :price, class: "appearance-none bg-transparent border-none w-full" %>
+    <%= f.number_field :price, class: "input appearance-none bg-transparent border-none focus:outline-none w-full" %>
+  </div>
+  <div class= "form-control w-full mb-6">
+    <%= f.fields_for :notification do |n| %>
+      <%= n.label :notify_date, Notification.human_attribute_name(:notify_date), class: "mb-2" %>
+      <%= n.date_field :notify_date, class: "w-full" %>
+    <% end %>
   </div>
   <%= f.submit class: "btn btn-primary" %>
 </div>

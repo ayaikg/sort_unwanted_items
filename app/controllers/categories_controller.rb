@@ -16,8 +16,6 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.where(user_id: current_user.id)
-    @category = Category.find(user_id: current_user.id)
-    @items = @category.items.includes(:user)
   end
 
   def edit
