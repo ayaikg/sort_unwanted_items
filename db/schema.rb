@@ -47,13 +47,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_18_081758) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.bigint "item_id", null: false
     t.date "notify_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_notifications_on_item_id"
-    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -73,5 +71,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_18_081758) do
   add_foreign_key "items", "categories"
   add_foreign_key "items", "users"
   add_foreign_key "notifications", "items"
-  add_foreign_key "notifications", "users"
 end
