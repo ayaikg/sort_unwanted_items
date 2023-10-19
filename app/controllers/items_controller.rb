@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    @item.build_notification
+    @item.build_notification #has_oneのオプション、おそらくhas_oneだからnotification.buildがダメだった
   end
 
   def create
@@ -14,6 +14,7 @@ class ItemsController < ApplicationController
     if item.save
       redirect_to categories_path
     else
+      flash.now[:error] = item.errors.full_messages
       render :new
     end
   end
@@ -36,7 +37,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:items).permit(:name, :price, :image, :image_cache, :listing_status, :disposal_method, :category_id,
+    params.require(:item).permit(:name, :price, :image, :image_cache, :listing_status, :disposal_method, :category_id,
       notification_attributes: [:notify_date])
   end
 

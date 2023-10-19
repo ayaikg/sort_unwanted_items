@@ -1,10 +1,10 @@
 <%= @items.each do |item| %>
-  <table class="table">
-    <tbody>
-      <tr>
-        <td><%= item.image %></td>
-        <td><%= item.name %></td>
-      </tr>
-    </tbody>
-  </table>
+  <ul>
+    <li>
+      <a>
+        <%= image_tag item.no_image_url %>
+        <%= item.name %>
+      </a>
+    </li>
+  <ul>
 <% end %>

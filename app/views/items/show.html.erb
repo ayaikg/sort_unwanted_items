@@ -1,2 +1,24 @@
-<h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+<div class="overflow-x-auto">
+  <table class="table">
+    <tbody>
+      <tr>
+        <td><%= image_tag item.no_image_url %></td>
+      </tr>
+      <tr>
+        <td><%= item.name %></td>
+      </tr>
+      <tr>
+        <td><%= item.category.title %></td>
+      </tr>
+      <tr>
+        <td><%= item.listing_status ? '出品中' : '未出品' %></td>
+      </tr>
+      <tr>
+        <td><%= item.price %></td>
+      </tr>
+      <tr>
+        <td><%= item.notification.notify_date %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
