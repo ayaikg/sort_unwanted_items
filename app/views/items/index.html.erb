@@ -1,10 +1,9 @@
-<%= @items.each do |item| %>
-  <ul>
-    <li>
-      <a>
-        <%= image_tag item.no_image_url %>
-        <%= item.name %>
-      </a>
-    </li>
-  <ul>
-<% end %>
+<div>
+  <div class="overflow-x-auto">
+    <table class="table">
+      <% if @items.present? %>
+        <%= render @items %>
+      <% end %>
+    </table>
+  </div>
+</div>

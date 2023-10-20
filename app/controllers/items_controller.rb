@@ -4,6 +4,13 @@ class ItemsController < ApplicationController
   def show
   end
 
+  def index
+    if params[:category_id].present?
+      @category = Category.find(params[:category_id])
+      @items = @category.items.includes(:user)
+    end
+  end
+
   def new
     @item = Item.new
     @item.build_notification #has_oneのオプション、おそらくhas_oneだからnotification.buildがダメだった

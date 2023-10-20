@@ -4,9 +4,9 @@
     <a class="tab w-1/2 tab-bordered not-active" data-tab-target="status" data-action="tab#statusClick">未出品</a> 
   </div>
   <div data-tab-target="content">
-    <%= render partial: "category", collection: @categories %>
+    <%= render partial: "category", collection: @categories, locals: { item: @items } %>
   </div>
   <div class="hidden" data-tab-target="content">
-    <%= render partial: "category", collection: @categories %>
+    <%= render partial: "category", collection: @categories, locals: { item: @items } %>
   </div>
 </div>
