@@ -1,9 +1,24 @@
-<div>
-  <div class="overflow-x-auto">
-    <table class="table">
-      <% if @items.present? %>
-        <%= render @items %>
-      <% end %>
-    </table>
+<div data-controller="tab">
+  <div class="tabs">
+    <a class="tab w-1/2 tab-bordered tab-active" data-tab-target="status" data-action="tab#statusClick">出品中</a> 
+    <a class="tab w-1/2 tab-bordered not-active" data-tab-target="status" data-action="tab#statusClick">未出品</a> 
+  </div>
+  <div data-tab-target="content">
+    <div class="overflow-x-auto">
+      <table class="table">
+        <% if @listed_items.present? %>
+          <%= render partial: 'item', collection: @listed_items, locals: { item: @listed_items } %>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <div class="hidden" data-tab-target="content">
+    <div class="overflow-x-auto">
+      <table class="table">
+        <% if @unlisted_items.present? %>
+          <%= render partial: 'item', collection: @unlisted_items, locals: { item: @unlisted_items } %>
+        <% end %>
+      </table>
+    </div>
   </div>
 </div>

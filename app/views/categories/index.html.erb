@@ -1,12 +1,4 @@
-<div data-controller="tab">
-  <div class="tabs">
-    <a class="tab w-1/2 tab-bordered tab-active" data-tab-target="status" data-action="tab#statusClick">出品中</a> 
-    <a class="tab w-1/2 tab-bordered not-active" data-tab-target="status" data-action="tab#statusClick">未出品</a> 
-  </div>
-  <div data-tab-target="content">
-    <%= render partial: "category", collection: @categories, locals: { item: @items } %>
-  </div>
-  <div class="hidden" data-tab-target="content">
-    <%= render partial: "category", collection: @categories, locals: { item: @items } %>
-  </div>
+<div>
+  <%= render partial: "category", collection: @categories, locals: { item: @items } %>
 </div>
+  

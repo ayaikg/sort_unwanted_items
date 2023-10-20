@@ -7,7 +7,8 @@ class ItemsController < ApplicationController
   def index
     if params[:category_id].present?
       @category = Category.find(params[:category_id])
-      @items = @category.items.includes(:user)
+      @listed_items = @category.items.includes(:user).where(listing_status: true)
+      @unlisted_items = @category.items.includes(:user).where(listing_status: false)
     end
   end
 
