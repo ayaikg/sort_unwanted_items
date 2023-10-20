@@ -21,7 +21,7 @@ class ItemsController < ApplicationController
     if item.save
       redirect_to categories_path
     else
-      flash.now[:error] = item.errors.full_messages
+      flash.now[:notice] = "アイテムの作成に失敗しました"
       render :new
     end
   end

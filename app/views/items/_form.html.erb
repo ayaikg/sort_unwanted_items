@@ -1,4 +1,5 @@
 <%= form_with model: item, local: true do |f| %>
+  <%= render 'shared/error_message', object: f.object %>
 <div class="flex flex-wrap">
   <div class= "form-control w-full mb-6">
     <%= f.label :image, class: "mb-2" %>
