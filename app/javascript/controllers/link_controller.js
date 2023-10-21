@@ -8,6 +8,5 @@ export default class extends Controller {
     event.preventDefault()
     const href = this.toLinkTarget.dataset['href']
     window.location.href = href
-    console.log('Clicked!')
   }
 }

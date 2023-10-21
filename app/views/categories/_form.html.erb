@@ -1,0 +1,9 @@
+<%= form_with model: category, local: true do |f| %>
+  <div class="form-control">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "input input-bordered" %>
+  </div>
+  <div class="form-control mt-6">
+    <%= f.submit "作成", class: "btn btn-primary" %>
+  </div>
+<% end %>
