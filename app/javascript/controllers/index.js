@@ -6,3 +6,6 @@ import { application } from "./application"
 
 import TabController from "./tab_controller"
 application.register("tab", TabController)
+
+import LinkController from "./link_controller"
+application.register("link", LinkController)

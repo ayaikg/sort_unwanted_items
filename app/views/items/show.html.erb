@@ -1,23 +1,29 @@
-<div class="overflow-x-auto">
-  <table class="table">
+<div class="overflow-x-auto px-8">
+  <table class="table h-screen">
     <tbody>
       <tr>
-        <td><%= image_tag item.no_image_url %></td>
+        <th><%= Item.human_attribute_name(:image) %></th>
+        <td><%= image_tag @item.image.url, class: "w-40" %></td>
       </tr>
       <tr>
-        <td><%= item.name %></td>
+        <th><%= Item.human_attribute_name(:name) %></th>
+        <td><%= @item.name %></td>
       </tr>
       <tr>
-        <td><%= item.category.title %></td>
+        <th><%= Category.human_attribute_name(:title) %></th>
+        <td><%= @item.category.title %></td>
       </tr>
       <tr>
-        <td><%= item.listing_status ? '出品中' : '未出品' %></td>
+        <th><%= Item.human_attribute_name(:listing_status) %></th>
+        <td><%= @item.listing_status ? '出品中' : '未出品' %></td>
       </tr>
       <tr>
-        <td><%= item.price %></td>
+        <th><%= Item.human_attribute_name(:price) %></th>
+        <td><%= @item.price %></td>
       </tr>
       <tr>
-        <td><%= item.notification.notify_date %></td>
+        <th><%= Notification.human_attribute_name(:notify_date) %></th>
+        <td><%= @item.notification.notify_date %></td>
       </tr>
     </tbody>
   </table>

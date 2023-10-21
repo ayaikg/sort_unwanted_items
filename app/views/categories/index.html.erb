@@ -1,4 +1,8 @@
-<div>
-  <%= render partial: "category", collection: @categories, locals: { item: @items } %>
+<div class="px-8">
+  <div class="overflow-c-auto">
+    <table class="table text-xl font-medium">
+      <%= render partial: "category", collection: @categories, locals: { item: @items } %>
+    </table>
+  </div>
 </div>
   

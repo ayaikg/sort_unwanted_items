@@ -4,7 +4,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["status", "content"]
 
-  statusClick(event) {
+  status(event) {
     const status = this.statusTargets
     const current = event.currentTarget
     const currentIndex = status.indexOf(current)
