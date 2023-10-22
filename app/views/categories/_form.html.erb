@@ -1,6 +1,6 @@
-<%= form_with model: category, local: true do |f| %>
+<%= form_with model: category, local: true, class: "card-body" do |f| %>
   <div class="form-control">
-    <%= f.label :title %>
+    <%= f.label :title, class: "label-text" %>
     <%= f.text_field :title, class: "input input-bordered" %>
   </div>
   <div class="form-control mt-6">
