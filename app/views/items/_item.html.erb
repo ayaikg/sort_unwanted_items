@@ -1,0 +1,12 @@
+<tr data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= item_path(item) %>">
+  <td>
+    <%= image_tag item.image.url, class: "avatar w-20 rounded" %>
+  </td>
+  <td>
+    <h3><%= item.name %></h3>
+  </td>
+  <td>
+    <%= render 'shared/crud_icon', object: item %>
+  </td>
+</tr>
+  

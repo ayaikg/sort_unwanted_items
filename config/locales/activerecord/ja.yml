@@ -1,12 +1,25 @@
 ja:
   activerecord:
     models:
-      user: 'ユーザー'
-      category: 'カテゴリー'
+      user: ユーザー
+      category: カテゴリー
+      item: アイテム
+      notification: 通知
     attributes:
       user:
-        id: 'ID'
-        name: 'ニックネーム'
+        id: ID
+        name: ニックネーム
       category:
-        id: 'ID'
-        title: 'カテゴリー'
+        id: ID
+        title: カテゴリー
+      item:
+        id: ID
+        name: アイテム名
+        image: アイテム画像
+        price: 出品価格
+        listing_status: 出品状態
+        disposal_method: 処分方法
+      notification:
+        id: ID
+        notify_date: 通知日
+

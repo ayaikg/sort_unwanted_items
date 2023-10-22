@@ -21,10 +21,11 @@
         <% end %>
 
         <div class="flex-grow">
+          <%= render 'shared/flash_message' %>
           <%= yield %>
         </div>
       </div>
-      <%= render 'shared/bottom_nav' %>
+      <%= render 'shared/bottom_nav' unless current_page?(root_path) %>
       <%= render 'shared/sidebar' %>
     </div>
     <%= render 'shared/footer' %>

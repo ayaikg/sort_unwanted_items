@@ -2,6 +2,13 @@ ja:
   defaults:
     login: 'ログイン'
     logout: 'ログアウト'
+    create: '作成する'
   users:
     new:
-      title: 'ユーザーと登録'
+      title: 'ユーザー登録'
+  catagories:
+    new:
+      title: 'カテゴリー作成'
+  items:
+    new:
+      title: 'アイテム作成'
