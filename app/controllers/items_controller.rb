@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :update, :destroy, :show]
+  before_action :set_item, only: [:edit, :update, :destroy, :show, :edit_disposal_method, :update_disposal_method]
 
   def show
   end
@@ -15,6 +15,7 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.build_notification #has_oneのオプション、おそらくhas_oneだからnotification.buildがダメだった
+    @categories = Category.where(user_id: current_user.id)
   end
 
   def create
@@ -30,11 +31,27 @@ class ItemsController < ApplicationController
   def edit
   end
 
+  def edit_disposal_method
+  end
+
+  def history
+    @sold_items = Item.where(disposal_method: true)
+    @discard_items = Item.where(disposal_method: false)
+  end
+
   def update
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
       render :edit
+    end
+  end
+
+  def update_disposal_method
+    if @item.update(item_params)
+      redirect_to disposal_path
+    else
+      render :edit_disposal_method
     end
   end
 

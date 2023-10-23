@@ -15,7 +15,7 @@
     </div>
     <div class="form-control w-full mb-6">
       <%= f.label :category_id, Category.human_attribute_name(:title), class: "mb-2" %>
-      <%= f.collection_select :category_id, Category.where(user_id: current_user.id), :id, :title, include_blank: "選択して下さい" %>
+      <%= f.collection_select :category_id, category, :id, :title, include_blank: "選択して下さい" %>
     </div>
     <div class="mb-6 flex justify-center">
       <%= f.radio_button :listing_status, true %>

@@ -1,5 +1,8 @@
 <tr data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= item_path(item) %>">
   <td>
+    <%= link_to "完了", "#", class: "btn", data: { turbo_frame: 'modal' } %>
+  </td>
+  <td>
     <%= image_tag item.image.url, class: "avatar w-20 rounded" %>
   </td>
   <td>

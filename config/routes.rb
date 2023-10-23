@@ -3,7 +3,13 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   resources :users, only: [:new, :create]
   resources :categories, except: :show 
-  resources :items
+  resources :items do
+    member do
+      get 'edit_disposal_method'
+      patch 'update_disposal_method'
+    end
+    get 'history', on: :collection
+  end
 
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'

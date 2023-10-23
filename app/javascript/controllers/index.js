@@ -13,5 +13,8 @@ application.register("icon", IconController)
 import LinkController from "./link_controller"
 application.register("link", LinkController)
 
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)
+
 import TabController from "./tab_controller"
 application.register("tab", TabController)
