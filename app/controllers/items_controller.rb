@@ -7,8 +7,8 @@ class ItemsController < ApplicationController
   def index
     if params[:category_id].present?
       @category = Category.find(params[:category_id])
-      @listed_items = @category.items.includes(:user).where(listing_status: true)
-      @unlisted_items = @category.items.includes(:user).where(listing_status: false)
+      @listed_items = @category.items.includes(:user).where(listing_status: true, disposal_method: 0)
+      @unlisted_items = @category.items.includes(:user).where(listing_status: false, disposal_method: 0)
     end
   end
 
@@ -35,8 +35,7 @@ class ItemsController < ApplicationController
   end
 
   def history
-    @sold_items = Item.where(disposal_method: true)
-    @discard_items = Item.where(disposal_method: false)
+    @disposal_items = Item.where.not(disposal_method: 0)
   end
 
   def update

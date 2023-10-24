@@ -5,7 +5,7 @@ class CreateItems < ActiveRecord::Migration[7.0]
       t.string :name, null: false
       t.integer :price
       t.boolean :listing_status, null: false, default: false
-      t.boolean :disposal_method, null: false, default: false
+      t.integer :disposal_method, null: false, default: 0
       t.references :user, null: false, foreign_key: true
       t.references :category, null: false, foreign_key: true
 
