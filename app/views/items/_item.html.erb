@@ -2,11 +2,19 @@
   <td>
     <%= link_to "完了", edit_disposal_method_item_path(item), class: "btn", data: { turbo_frame: "modal" } %>
   </td>
-  <td data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= item_path(item) %>">
-    <%= image_tag item.image.url, class: "avatar w-20 rounded" %>
-  </td>
-  <td data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= item_path(item) %>">
-    <h3><%= item.name %></h3>
+  <td class="w-1/2">
+    <%= link_to item_path(item), class: "block py-2.5 px-4", data: { turbo_frame: "modal" } do %>
+      <div class="flex items-center space-x-5">
+        <div class="avatar">
+          <div class="mask mask-squircle w-12 h-12">
+            <%= image_tag item.image.url %>
+          </div>
+        </div>
+        <div>
+          <div class="font-bold"><%= item.name %></div>
+        </div>
+      </div>
+    <% end %>
   </td>
   <td>
     <%= render 'shared/crud_icon', object: item %>
