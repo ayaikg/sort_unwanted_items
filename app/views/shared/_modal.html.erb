@@ -1,0 +1,10 @@
+<%= turbo_frame_tag "modal" do %>
+  <div data-controller="modal">
+    <dialog class="modal" data-modal-target="modal">
+      <div class="modal-box">
+        <h3 class="font-bold text-lg">Hello!</h3>
+        <%= yield %>
+      </div>
+    </dialog>
+  </div>
+<% end %>

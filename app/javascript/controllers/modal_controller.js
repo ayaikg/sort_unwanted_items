@@ -1,16 +1,16 @@
 import { Controller } from "@hotwired/stimulus"
-import { Modal } from "daisyui"
 
 // Connects to data-controller="modal"
 export default class extends Controller {
+  static targets = [ "modal" ]
+
   connect() {
-    this.modal = new this.modal(this.element)
-    this.modal.show()
+    this.modalTarget.showModal()
   }
 
   close(event) {
     if (event.detail.success) {
-      this.modal.hide()
+      this.modalTarget.close()
     }
   }
 }

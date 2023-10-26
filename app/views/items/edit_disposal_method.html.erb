@@ -1,1 +1,14 @@
-<%= render "modal", item: @item %>
+<%= turbo_frame_tag "modal" do %>
+  <div data-controller="modal">
+    <dialog class="modal" data-modal-target="modal">
+      <div class="modal-box">
+        <h3 class="font-bold text-lg text-center">アイテムの処分方法をえらぼう!</h3>
+        <%= render "method", item: @item %>
+        <div class="modal-action">
+          <form method="dialog">
+          <button class="btn">キャンセル</button>
+        </form>
+      </div>
+    </dialog>
+  </div>
+<% end %>

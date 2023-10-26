@@ -29,6 +29,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @categories = Category.where(user_id: current_user.id)
   end
 
   def edit_disposal_method
@@ -48,7 +49,7 @@ class ItemsController < ApplicationController
 
   def update_disposal_method
     if @item.update(item_params)
-      redirect_to disposal_path
+      
     else
       render :edit_disposal_method
     end

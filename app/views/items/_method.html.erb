@@ -1,10 +1,13 @@
-<div class="mb-6 flex justify-center">
-  <%= turbo_frame_tag item do %>
-    <%= form_with model: item, data: { action: "turbo:submit-end->modal#close" }, local: true do |f| %>
-      <%= f.radio_button :disposal_method, true %>
-      <%= f.label :disposal_method, "売れた", value: true %>
-      <%= f.radio_button :disposal_method, false %>
-      <%= f.label :disposal_method, "捨てた", value: false %>
-    <% end %>
+<%= turbo_frame_tag item do %>
+  <%= form_with model: item, data: { "action" => "turbo:submit-end->modal#close" }, local: true do |f| %>
+    <div class="mb-6 flex justify-center">
+      <%= f.radio_button :disposal_method, :sold, id: "disposal_method_sold" %>
+      <%= f.label :disposal_method, "売れた" %>
+      <%= f.radio_button :disposal_method, :discard, id: "disposal_method_discard" %>
+      <%= f.label :disposal_method, "捨てた" %>
+    </div>
+    <div>
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
   <% end %>
-</div>
+<% end %>

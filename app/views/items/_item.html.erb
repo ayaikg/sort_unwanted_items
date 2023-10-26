@@ -1,11 +1,11 @@
-<tr data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= item_path(item) %>">
+<tr>
   <td>
-    <%= link_to "完了", "#", class: "btn", data: { turbo_frame: 'modal' } %>
+    <%= link_to "完了", edit_disposal_method_item_path(item), class: "btn", data: { turbo_frame: "modal" } %>
   </td>
-  <td>
+  <td data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= item_path(item) %>">
     <%= image_tag item.image.url, class: "avatar w-20 rounded" %>
   </td>
-  <td>
+  <td data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= item_path(item) %>">
     <h3><%= item.name %></h3>
   </td>
   <td>
