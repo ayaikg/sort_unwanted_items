@@ -4,11 +4,10 @@
       <div class="modal-box">
         <h3 class="font-bold text-lg text-center">アイテムの処分方法をえらぼう!</h3>
         <%= render "method", item: @item %>
-        <div class="modal-action">
-          <form method="dialog">
-          <button class="btn">キャンセル</button>
-        </form>
       </div>
+      <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+      </form>
     </dialog>
   </div>
 <% end %>

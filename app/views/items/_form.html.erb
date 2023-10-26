@@ -18,10 +18,14 @@
       <%= f.collection_select :category_id, category, :id, :title, include_blank: "選択して下さい" %>
     </div>
     <div class="mb-6 flex justify-center">
-      <%= f.radio_button :listing_status, true %>
-      <%= f.label :listing_status, "出品中", value: true %>
-      <%= f.radio_button :listing_status, false %>
-      <%= f.label :listing_status, "未出品", value: false %>
+      <div>
+        <%= f.radio_button :listing_status, true %>
+        <%= f.label :listing_status, "出品中", value: true %>
+      </div>
+      <div>
+        <%= f.radio_button :listing_status, false %>
+        <%= f.label :listing_status, "未出品", value: false %>
+      </div>
     </div>
     <div class="form-control w-full mb-6 border-b border-teal-500">
       <%= f.label :price, class: "mb-2" %>
