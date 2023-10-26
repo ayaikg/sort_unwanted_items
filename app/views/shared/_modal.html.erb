@@ -1,0 +1,12 @@
+<%= turbo_frame_tag "modal" do %>
+  <div data-controller="modal">
+    <dialog class="modal" data-modal-target="modal">
+      <div class="modal-box">
+        <%= yield %>
+      </div>
+      <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+      </form>
+    </dialog>
+  </div>
+<% end %>

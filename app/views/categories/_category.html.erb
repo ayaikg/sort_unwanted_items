@@ -1,5 +1,5 @@
-<tr class="flex" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= items_path(category_id: category.id) %>">
-  <td class="flex-1 text-center">
+<tr class="flex">
+  <td class="flex-1 text-center" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= items_path(category_id: category.id) %>">
     <%= category.title %>
   </td>
   <td class="flex-1 flex">
