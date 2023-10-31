@@ -68,6 +68,7 @@ end
 
 #日本語化対応
 gem "rails-i18n"
+gem "enum_help"
 
 #ログイン機能
 gem "sorcery"
@@ -78,3 +79,6 @@ gem "config"
 #画像編集系
 gem "carrierwave"
 gem "mini_magick"
+
+# 検索機能
+gem "ransack"

@@ -1,6 +1,8 @@
-<div class="min-h-screen">
-  <div class="text-center">
-    <h1>アイテム編集</h1>
+<div class="flex justify-center">
+  <div class="card w-2/3">
+    <div class="text-center">
+      <h1>アイテム編集</h1>
+    </div>
+    <%= render "form", { item: @item, category: @categories } %>
   </div>
-  <%= render "form", item: @item %>
 </div>

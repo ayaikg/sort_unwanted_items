@@ -37,7 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_18_081758) do
     t.string "name", null: false
     t.integer "price"
     t.boolean "listing_status", default: false, null: false
-    t.boolean "disposal_method", default: false, null: false
+    t.integer "disposal_method", default: 0, null: false
     t.bigint "user_id", null: false
     t.bigint "category_id", null: false
     t.datetime "created_at", null: false

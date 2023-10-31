@@ -1,28 +1,16 @@
-#仮メモ：ユーザーがカテゴリーを作成するときに、現在表示しているタブが何かを覚えておき、それに基づいて新規作成したカテゴリーをどのタブに表示するかを決める。
-#そのためには、セッションを利用して現在のタブ状態を保持する方法
-#まず、タブが切り替えられたときにその状態をセッションに保存するJavaScriptを書く
-
-=begin
-document.querySelectorAll('.tab-button').forEach(function(tabButton) {
-  tabButton.addEventListener('click', function() {
-    sessionStorage.setItem('currentTab', this.dataset.tab);
-  });
-});
-
-ここで、.tab-buttonはタブを切り替えるボタンのクラス名で、data-tab属性にはそのタブが出品中か未出品かを示す値が入っているとする
-
-そして、CategoriesControllerのnewとcreateアクションで、セッションに保存されたタブ状態に基づいてカテゴリーを作成する
-
-def new
-  @category = Category.new(tab_status: session[:currentTab])
-end
-
-def create
-  @category = current_user.categories.build(category_params.merge(tab_status: session[:currentTab]))
-  if @category.save
-    redirect_to categories_path
-  else
-    render :new
-  end
-end
-=end
+<div data-controller="modal">
+  <div data-modal-target="modal" class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex items-center justify-center absolute" style="z-index: 9999;">
+    <!-- Modal Inner Container -->
+    <div class="max-h-screen w-full max-w-lg relative">
+      <!-- Modal Card -->
+      <div class="my-1 bg-white rounded shadow w-80 mx-auto">
+        <div class="p-8">
+          <%= yield %>
+          <div class="flex items-center flex-wrap mt-6 w-80 mx-auto">
+            <button class="ml-5" data-action="click->modal#close">閉じるボタン</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

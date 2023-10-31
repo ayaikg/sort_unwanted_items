@@ -129,6 +129,8 @@ GEM
       dry-initializer (~> 3.0)
       dry-schema (>= 1.12, < 2)
       zeitwerk (~> 2.6)
+    enum_help (0.0.19)
+      activesupport (>= 3.0.0)
     erubi (1.12.0)
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
@@ -253,6 +255,10 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.0.6)
+    ransack (4.1.0)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
     rdoc (6.5.0)
       psych (>= 4.0.0)
     regexp_parser (2.8.1)
@@ -345,6 +351,7 @@ DEPENDENCIES
   config
   cssbundling-rails
   debug
+  enum_help
   factory_bot_rails
   faker
   jsbundling-rails
@@ -354,6 +361,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (= 7.0.6)
   rails-i18n
+  ransack
   rspec-rails
   rubocop
   rubocop-rails
