@@ -3,6 +3,7 @@ class Item < ApplicationRecord
 
   belongs_to :user
   belongs_to :category
+  has_one :post, dependent: :destroy
   has_one :notification, dependent: :destroy
   accepts_nested_attributes_for :notification, allow_destroy: true
 

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     end
     get 'history', on: :collection
   end
+  resources :posts
 
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
