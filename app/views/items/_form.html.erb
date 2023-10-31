@@ -20,11 +20,11 @@
     <div class="mb-6 flex justify-center">
       <div>
         <%= f.radio_button :listing_status, true %>
-        <%= f.label :listing_status, "出品中", value: true %>
+        <%= f.label :listing_status, "出品中", value: true, class: "custom-radio" %>
       </div>
       <div>
         <%= f.radio_button :listing_status, false %>
-        <%= f.label :listing_status, "未出品", value: false %>
+        <%= f.label :listing_status, "未出品", value: false, class: "custom-radio" %>
       </div>
     </div>
     <div class="form-control w-full mb-6 border-b border-teal-500">

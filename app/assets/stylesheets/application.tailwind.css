@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  input[type=radio] {
+    @apply hidden;
+  }
+}
+
+@layer components {
+  .custom-radio {
+    @apply border-2 m-5 px-4 py-2 w-28 h-12 text-center rounded-lg text-lg;
+  }
+
+  .custom-radio:hover {
+    @apply bg-green-200;
+  }
+}
+
+input[type=radio]:checked + label {
+  @apply bg-green-200; 
+}
