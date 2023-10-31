@@ -1,2 +1,8 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<div class="flex justify-center">
+  <div class="card w-2/3">
+    <div class="text-center">
+      <h1>投稿作成</h1>
+    </div>
+    <%= render "form", post: @post %>
+  </div>
+</div>
