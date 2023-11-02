@@ -17,6 +17,9 @@
     <% end %>
   </td>
   <td>
+    <%= link_to '投稿する', new_post_path(item_id: item.id), class: "btn" %>
+  </td>
+  <td>
     <%= render 'shared/crud_icon', object: item %>
   </td>
 </tr>

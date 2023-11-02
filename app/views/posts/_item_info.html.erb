@@ -1,0 +1,30 @@
+<div>
+  <table class="table">
+    <tbody>
+      <tr>
+        <th><%= Item.human_attribute_name(:image) %></th>
+        <td><%= image_tag item_info.image.url, class: "w-40" %></td>
+      </tr>
+      <tr>
+        <th><%= Item.human_attribute_name(:name) %></th>
+        <td><%= item_info.name %></td>
+      </tr>
+      <tr>
+        <th><%= Category.human_attribute_name(:title) %></th>
+        <td><%= item_info.category.title %></td>
+      </tr>
+      <tr>
+        <th><%= Item.human_attribute_name(:listing_status) %></th>
+        <td><%= item_info.listing_status ? '出品中' : '未出品' %></td>
+      </tr>
+      <tr>
+        <th><%= Item.human_attribute_name(:disposal_method) %></th>
+        <td><%= item_info.disposal_method %></td>
+      </tr>
+      <tr>
+        <th><%= Item.human_attribute_name(:price) %></th>
+        <td><%= item_info.price %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -10,6 +10,9 @@ application.register("hello", HelloController)
 import IconController from "./icon_controller"
 application.register("icon", IconController)
 
+import ItemSelectController from "./item_select_controller"
+application.register("item-select", ItemSelectController)
+
 import LinkController from "./link_controller"
 application.register("link", LinkController)
 

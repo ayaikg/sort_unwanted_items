@@ -10,6 +10,11 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @disposal_items = Item.where.not(disposal_method: 0)
+    if params[:item_id].present?
+      @item_info = Item.find(params[:item_id])
+      @post.item_id = params[:item_id]
+    end
   end
 
   def create
@@ -39,7 +44,7 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:content, :advice)
+    params.require(:post).permit(:content, :advice, :item_id)
   end
 
   def set_post

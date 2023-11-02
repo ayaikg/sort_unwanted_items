@@ -8,7 +8,6 @@ class CategoriesController < ApplicationController
   def create
     @category = current_user.categories.build(category_params)
     if @category.save
-
     else
       render :new
     end
@@ -23,7 +22,6 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      
     else
       render :edit
     end
