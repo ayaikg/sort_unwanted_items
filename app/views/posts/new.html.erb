@@ -3,9 +3,8 @@
     <div class="text-center">
       <h1>投稿作成</h1>
     </div>
-    <div id="info">
-      <%= render "item_info", item_info: @item_info %>
+    <div>
+      <%= render "form", { post: @post, disposal_item: @disposal_items } %>
     </div>
-    <%= render "form", { post: @post, disposal_item: @disposal_items } %>
   </div>
 </div>

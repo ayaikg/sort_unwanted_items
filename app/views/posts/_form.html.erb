@@ -1,7 +1,7 @@
 <%= form_with model: post, local: true do |f| %>
   <%= render 'shared/error_message', object: f.object %>
     <div class="form-control w-full mb-6">
-      <%= f.collection_select :item_id, disposal_item, :id, :name, include_blank: "選択して下さい", data: { "item-select-target": "select" } %>
+      <%= f.collection_select :item_id, disposal_item, :id, :name, { include_blank: "選択して下さい" } %>
     </div>
     <div class="form-control w-full">
       <%= f.label :content, class: "mb-2" %>

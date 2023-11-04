@@ -12,7 +12,6 @@ class PostsController < ApplicationController
     @post = Post.new
     @disposal_items = Item.where.not(disposal_method: 0)
     if params[:item_id].present?
-      @item_info = Item.find(params[:item_id])
       @post.item_id = params[:item_id]
     end
   end

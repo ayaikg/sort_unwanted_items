@@ -1,4 +1,5 @@
 <div>
+<% if item_info.present? %>
   <table class="table">
     <tbody>
       <tr>
@@ -19,7 +20,7 @@
       </tr>
       <tr>
         <th><%= Item.human_attribute_name(:disposal_method) %></th>
-        <td><%= item_info.disposal_method %></td>
+        <td><%= item_info.disposal_method_i18n %></td>
       </tr>
       <tr>
         <th><%= Item.human_attribute_name(:price) %></th>
@@ -27,4 +28,7 @@
       </tr>
     </tbody>
   </table>
+<% else %>
+  <p>アイテムを選択してください</p>
+<% end %>
 </div>
