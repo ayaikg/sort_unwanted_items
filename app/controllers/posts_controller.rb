@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_disposal, only: [:new, :create, :edit, :update]
 
   def index
-    @posts = Post.all
+    @posts = Post.all.includes(:user).order(created_at: :desc)
   end
 
   def show
@@ -10,18 +11,17 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @disposal_items = Item.where.not(disposal_method: 0)
     if params[:item_id].present?
       @post.item_id = params[:item_id]
     end
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
     if @post.save
       redirect_to posts_path
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
     if @post.update
       redirect_to post_path(@post)
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -48,5 +48,9 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def set_disposal
+    @disposal_items = Item.where.not(disposal_method: 0)
   end
 end

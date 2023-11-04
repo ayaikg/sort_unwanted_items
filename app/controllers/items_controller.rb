@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :update, :destroy, :show, :edit_disposal_method, :update_disposal_method]
+  before_action :set_categories, only: [:new, :create, :edit, :update]
 
   def show
   end
@@ -15,21 +16,19 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.build_notification #has_oneのオプション、おそらくhas_oneだからnotification.buildがダメだった
-    @categories = Category.where(user_id: current_user.id)
   end
 
   def create
-    item = current_user.items.build(item_params)
-    if item.save
+    @item = current_user.items.build(item_params)
+    if @item.save
       redirect_to categories_path
     else
       flash.now[:notice] = "アイテムの作成に失敗しました"
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
   def edit
-    @categories = Category.where(user_id: current_user.id)
   end
 
   def edit_disposal_method
@@ -43,7 +42,7 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -51,7 +50,7 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       
     else
-      render :edit_disposal_method
+      render :edit_disposal_method, status: :unprocessable_entity
     end
   end
 
@@ -68,5 +67,9 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def set_categories
+    @categories = Category.where(user_id: current_user.id)
   end
 end
