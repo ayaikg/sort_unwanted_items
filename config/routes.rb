@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   resources :items do
     member do
       get 'edit_disposal_method'
-      patch 'update_disposal_method'
     end
     get 'history', on: :collection
   end
