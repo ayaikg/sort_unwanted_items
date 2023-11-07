@@ -1,8 +1,10 @@
 <div class="container mx-auto w-full max-w-xl">
   <div class="card">
+  <%= turbo_frame_tag "category" do %>
     <div class="card-body" id="categories">
-      <%= render @categories, item: @items %>
+      <%= render @categories %>
     </div>
+  <% end %>
   </div>
 </div>
   

@@ -1,14 +1,12 @@
-<%= turbo_frame_tag category do %>
-  <div>
-    <h3 class="font-bold text-lg text-center">カテゴリー作成</h3>
-    <%= form_with model: category, data: { action: "turbo:submit-end->modal#close" }, local: true do |f| %>
-      <div class="form-control">
-        <%= f.label :title, class: "label-text" %>
-        <%= f.text_field :title, class: "input input-bordered" %>
-      </div>
-      <div class="form-control mt-6">
-        <%= f.submit "作成", class: "btn btn-primary" %>
-      </div>
-    <% end %>
-  </div>
-<% end %>
+<div>
+  <h3 class="font-bold text-lg text-center">カテゴリー<%= title %></h3>
+  <%= form_with model: category, data: { action: "turbo:submit-end->modal#close", turbo_frame: "category" }, local: true do |f| %>
+    <div class="form-control">
+      <%= f.label :title, class: "label-text" %>
+      <%= f.text_field :title, class: "input input-bordered" %>
+    </div>
+    <div class="form-control mt-6">
+      <%= f.submit "作成", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

@@ -1,6 +1,6 @@
 <div>
   <h3 class="font-bold text-lg text-center mb-6">アイテムの処分方法をえらぼう!</h3>
-  <%= form_with model: item, data: { action: "turbo:submit-end->modal#close", turbo_frame: "items_list"}, local: true do |f| %>
+  <%= form_with model: item, data: { action: "turbo:submit-end->modal#close", turbo_frame: "items_list" }, local: true do |f| %>
     <div class="mb-6 flex justify-center">
       <div>
         <%= f.radio_button :disposal_method, :sold %>
