@@ -3,6 +3,7 @@
     <a class="tab w-1/2 tab-bordered tab-active" data-tab-target="status" data-action="click->tab#status">出品中</a> 
     <a class="tab w-1/2 tab-bordered not-active" data-tab-target="status" data-action="click->tab#status">未出品</a> 
   </div>
+  <%= turbo_frame_tag "items_list" do %>
   <div data-tab-target="content">
     <div class="overflow-x-auto">
       <table class="table">
@@ -21,4 +22,5 @@
       </table>
     </div>
   </div>
+  <% end %>
 </div>
