@@ -1,5 +1,7 @@
 <div class="card w-96 bg-base-100 shadow-xl m-2">
-  <%= image_tag post.item.image.url %>
+  <%= link_to post_path(post) do %>
+    <%= image_tag post.item.image.url %>
+  <% end %>
   <div class="card-body">
     <h2 class="card-title">
       <%= post.item.name %>

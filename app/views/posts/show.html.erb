@@ -1,2 +1,21 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="container mx-auto w-full max-w-xl">
+  <h1 class="text-center mb-8">投稿詳細</h1>
+  <!-- 投稿内容 -->
+  <article class="card bg-base-100">
+    <div class="card-body px-0 pt-0">
+      <div>
+        <p class="bg-accent">断捨離したモノ</p>
+        <p class="card-title"><%= @post.item.name %></p>
+        <figure><%= image_tag @post.item.image.url %></figure>
+      </div>
+      <div>
+        <p class="bg-accent">お別れのことば</p>
+        <p><%= @post.content %></p>
+      </div>
+      <div>
+        <p class="bg-accent">みんなへのアドバイス</p>
+        <p><%= simple_format(@post.advice) %></p>
+      </div>
+    </div>
+  </article>
+</div>
