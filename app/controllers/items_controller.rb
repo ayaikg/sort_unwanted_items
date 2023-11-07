@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :update, :destroy, :show, :edit_disposal_method, :update_disposal_method]
+  before_action :set_item, only: [:edit, :update, :destroy, :show, :edit_disposal_method]
   before_action :set_categories, only: [:new, :create, :edit, :update]
 
   def show
@@ -40,17 +40,17 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to item_path(@item)
+      if @item.saved_change_to_disposal_method?
+        redirect_to items_path(category_id: @item.category_id)
+      else
+        redirect_to item_path(@item)
+      end
     else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
-  def update_disposal_method
-    if @item.update(item_params)
-      
-    else
-      render :edit_disposal_method, status: :unprocessable_entity
+      if params[:item][:disposal_method]
+        render :edit_disposal_method, status: :unprocessable_entity
+      else
+        render :edit, status: :unprocessable_entity
+      end
     end
   end
 
