@@ -41,6 +41,10 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def likes
+    @like_posts = current_user.like_posts.includes(:user).order(created_at: :desc)
+  end
+
   private
   def post_params
     params.require(:post).permit(:content, :advice, :item_id)
