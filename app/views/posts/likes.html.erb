@@ -1,0 +1,9 @@
+<div class="container px-4">
+  <div class="flex flex-col items-center md:flex-row">
+    <% if @like_posts.present? %>
+      <%= render @like_posts %>
+    <% else %>
+      <p>お気に入りしている投稿はありません</p>
+    <% end %>
+  </div>
+</div>
