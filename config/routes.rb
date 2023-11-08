@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get 'history', on: :collection
   end
   resources :posts
+  resources :likes, only: [:create, :destroy]
 
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
