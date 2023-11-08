@@ -8,7 +8,11 @@
     </h2>
     <p><%= post.content %></p>
     <div class="card-actions justify-end">
-      <%= render "shared/crud_icon", object: post %>
+      <% if current_user.own?(post) %>
+        <%= render "shared/crud_icon", object: post %>
+      <% else %>
+        <%= render "like_button", post: post %>
+      <% end %>
     </div>
   </div>
 </div>

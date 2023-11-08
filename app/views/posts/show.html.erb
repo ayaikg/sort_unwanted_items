@@ -1,7 +1,11 @@
 <div class="container mx-auto w-full max-w-xl">
   <h1 class="text-center mb-8">投稿詳細</h1>
   <div class="flex justify-end">
+  <% if current_user.own?(@post) %>
     <%= render "shared/crud_icon", object: @post %>
+  <% else %>
+    <%= render "like_button", post: @post %>
+  <% end %>
   </div>
   <!-- 投稿内容 -->
   <article class="card bg-base-100">
