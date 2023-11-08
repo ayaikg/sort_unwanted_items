@@ -20,8 +20,7 @@
     <%= link_to '投稿する', new_post_path(item_id: item.id), class: "btn" %>
   </td>
   <td>
-    <%= link_to "編集", edit_item_path(item), class: "btn" %>
-    <%= button_to "削除", item, method: :delete, class: "btn" %>
+    <%= render "shared/crud_icon", object: item %>
   </td>
 </tr>
   

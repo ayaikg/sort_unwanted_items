@@ -1,5 +1,8 @@
 <div class="container mx-auto w-full max-w-xl">
   <h1 class="text-center mb-8">投稿詳細</h1>
+  <div class="flex justify-end">
+    <%= render "shared/crud_icon", object: @post %>
+  </div>
   <!-- 投稿内容 -->
   <article class="card bg-base-100">
     <div class="card-body px-0 pt-0">
