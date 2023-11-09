@@ -1,12 +1,10 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:edit, :update]
 
   def new
     @user = User.new
   end
-
-  def show; end
 
   def create
     @user = User.new(user_params)
@@ -17,21 +15,25 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+    @user_posts = @user.posts.includes(:user).order(created_at: :desc)
+  end
+
   def edit; end
 
   def update
-    if current_user.update(user_params)
-      redirect_to user_path(current_user.name)
+    if @user.update(user_params)
+      redirect_to user_path(@user)
     else
-      redirect_to edit_user_path(current_user.name)
+      render :edit
     end
   end
 
   private
 
   def set_user
-    @user = User.find_by(name: params[:name])
-    redirect_to user_path(@user) unless current_user?(@user)
+    @user = User.find(current_user.id)
   end
 
   def user_params
