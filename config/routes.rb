@@ -22,9 +22,7 @@ Rails.application.routes.draw do
   get "oauth/callback", to: "oauths#callback"
   get "oauth/:provider", to: "oauths#oauth", as: :auth_at_provider
 
-  get '/:username', to: 'users#show'
-  get '/:username/edit', to: 'users#edit'
-  post '/:username', to: 'users#update'
+ resources :users, param: :name, path: '/', only: [:show, :edit, :update]
 
   # Defines the root path route ("/")
   # root "articles#index"
