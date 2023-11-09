@@ -5,6 +5,11 @@ module.exports = {
     './app/assets/stylesheets/**/*.css',
     './app/javascript/**/*.js'
   ],
+  theme: {
+    container: {
+      center: true
+    },
+  },
   plugins: [
     require('daisyui')
   ],
