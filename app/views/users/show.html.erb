@@ -16,6 +16,10 @@
   </div>
   <!-- ユーザーの投稿内容 -->
   <div>
-     
+    <% if @user_posts.present? %>
+      <%= render partial: 'posts/post', collection: @user_posts, locals: { post: @user_posts } %>
+    <% else %>
+      <p>投稿はありません</p>
+    <% end %>
   </div>
 </div>
