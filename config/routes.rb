@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root to: 'homes#top'
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :show, :edit, :update]
   resources :categories, except: :show
   resources :items do
     member do
@@ -21,8 +21,6 @@ Rails.application.routes.draw do
   post "oauth/callback", to: "oauths#callback"
   get "oauth/callback", to: "oauths#callback"
   get "oauth/:provider", to: "oauths#oauth", as: :auth_at_provider
-
- resources :users, param: :name, path: '/', only: [:show, :edit, :update]
 
   # Defines the root path route ("/")
   # root "articles#index"
