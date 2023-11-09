@@ -1,0 +1,7 @@
+<div class="flex flex-col items-center md:flex-row">
+  <% if @posts.present? %>
+    <%= render @posts %>
+  <% else %>
+    <p class="text-center">投稿はありません</p>
+  <% end %>
+</div>

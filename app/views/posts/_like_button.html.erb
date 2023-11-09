@@ -1,0 +1,7 @@
+<%= turbo_frame_tag "like_button" do %>
+  <% if current_user.like?(post) %>
+    <%= render 'posts/unlike', post: post %>
+  <% else %>
+    <%= render 'posts/like', post: post %>
+  <% end %>
+<% end %>

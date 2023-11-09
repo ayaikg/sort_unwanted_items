@@ -1,6 +1,6 @@
 <div>
   <div class="overflow-x-auto">
-    <table class="table" id="items">
+    <table class="table">
       <% if @disposal_items.present? %>
         <%= render partial: 'item', collection: @disposal_items, locals: { item: @disposal_items } %>
       <% end %>

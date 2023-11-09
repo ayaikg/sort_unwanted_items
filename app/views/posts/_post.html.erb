@@ -1,0 +1,18 @@
+<div class="card w-96 bg-base-100 shadow-xl m-2">
+  <%= link_to post_path(post) do %>
+    <figure><%= image_tag post.item.image.url %></figure>
+  <% end %>
+  <div class="card-body">
+    <h2 class="card-title">
+      <%= post.item.name %>
+    </h2>
+    <p><%= post.content %></p>
+    <div class="card-actions justify-end">
+      <% if current_user.own?(post) %>
+        <%= render "shared/crud_icon", object: post %>
+      <% else %>
+        <%= render "like_button", post: post %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -6,10 +6,13 @@ Rails.application.routes.draw do
   resources :items do
     member do
       get 'edit_disposal_method'
-      patch 'update_disposal_method'
     end
     get 'history', on: :collection
   end
+  resources :posts do
+    get 'likes', on: :collection
+  end
+  resources :likes, only: [:create, :destroy]
 
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'

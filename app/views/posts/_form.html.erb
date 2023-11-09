@@ -1,0 +1,17 @@
+<%= form_with model: post, local: true do |f| %>
+  <%= render 'shared/error_message', object: f.object %>
+    <div class="form-control w-full mb-6">
+      <%= f.collection_select :item_id, disposal_item, :id, :name, { include_blank: "選択して下さい" } %>
+    </div>
+    <div class="form-control w-full">
+      <%= f.label :content, class: "mb-2" %>
+      <%= f.text_field :content %>
+    </div>
+    <div class="form-control w-full mb-6">
+      <%= f.label :advice, class: "mb-2" %>
+      <%= f.text_area :advice %>
+    </div>
+    <div class="card-actions justify-end">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+<% end %>

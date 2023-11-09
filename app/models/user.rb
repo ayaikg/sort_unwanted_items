@@ -3,6 +3,9 @@ class User < ApplicationRecord
   has_many :categories, dependent: :destroy
   has_many :items, dependent: :destroy
   has_many :notifications, through: :items
+  has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :like_posts, through: :likes, source: :post
   has_many :authentications, dependent: :destroy
   accepts_nested_attributes_for :authentications
 
@@ -13,6 +16,22 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
 
   enum role: { general: 0, admin: 1 }
+
+  def own?(object)
+    id == object.user_id
+  end
+
+  def like(post)
+    like_posts << post
+  end
+
+  def unlike(post)
+    like_posts.destroy(post)
+  end
+
+  def like?(post)
+    like_posts.include?(post)
+  end
 
   after_create :create_default_categories
 

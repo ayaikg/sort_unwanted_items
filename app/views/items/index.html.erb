@@ -3,7 +3,8 @@
     <a class="tab w-1/2 tab-bordered tab-active" data-tab-target="status" data-action="click->tab#status">出品中</a> 
     <a class="tab w-1/2 tab-bordered not-active" data-tab-target="status" data-action="click->tab#status">未出品</a> 
   </div>
-  <div id="items" data-tab-target="content">
+  <%= turbo_frame_tag "items_list" do %>
+  <div data-tab-target="content">
     <div class="overflow-x-auto">
       <table class="table">
         <% if @listed_items.present? %>
@@ -12,7 +13,7 @@
       </table>
     </div>
   </div>
-  <div id="items" class="hidden" data-tab-target="content">
+  <div class="hidden" data-tab-target="content">
     <div class="overflow-x-auto">
       <table class="table">
         <% if @unlisted_items.present? %>
@@ -21,4 +22,5 @@
       </table>
     </div>
   </div>
+  <% end %>
 </div>
