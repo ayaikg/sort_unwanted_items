@@ -1,0 +1,21 @@
+<div class="container">
+  <div>
+    <div class="flex">
+      <div class="avatar">
+        <div class="w-24 rounded-full">
+          <%= image_tag @user.avatar.url %>
+        </div>
+      </div>
+      <div>
+        <span><%= @user.name %></span>
+      </div>
+    </div>
+    <div>
+      <%= simple_format(@user.introduction) %>
+    </div>
+  </div>
+  <!-- ユーザーの投稿内容 -->
+  <div>
+     
+  </div>
+</div>
