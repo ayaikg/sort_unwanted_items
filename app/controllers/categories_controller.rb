@@ -7,18 +7,16 @@ class CategoriesController < ApplicationController
 
   def create
     @category = current_user.categories.build(category_params)
-    if @category.save
-    else
-      render :new, status: :unprocessable_entity
-    end
+    return if @category.save
+
+    render :new, status: :unprocessable_entity
   end
 
   def index
     @categories = Category.where(user_id: current_user.id)
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @category.update(category_params)
@@ -34,6 +32,7 @@ class CategoriesController < ApplicationController
   end
 
   private
+
   def category_params
     params.require(:category).permit(:title)
   end

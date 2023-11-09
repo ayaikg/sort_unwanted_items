@@ -6,14 +6,13 @@ class PostsController < ApplicationController
     @posts = Post.all.includes(:user).order(created_at: :desc)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @post = Post.new
-    if params[:item_id].present?
-      @post.item_id = params[:item_id]
-    end
+    return unless params[:item_id].present?
+
+    @post.item_id = params[:item_id]
   end
 
   def create
@@ -25,8 +24,7 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @post.update
@@ -46,6 +44,7 @@ class PostsController < ApplicationController
   end
 
   private
+
   def post_params
     params.require(:post).permit(:content, :advice, :item_id)
   end

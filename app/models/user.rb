@@ -38,10 +38,10 @@ class User < ApplicationRecord
   private
 
   def create_default_categories
-    default_categories = ['衣類', '書籍', 'コスメ', '文房具', 'ゲーム', '音楽']
-    
+    default_categories = %w[衣類 書籍 コスメ 文房具 ゲーム 音楽]
+
     default_categories.each do |title|
-      categories.find_or_create_by(title: title)
+      categories.find_or_create_by(title:)
     end
   end
 end

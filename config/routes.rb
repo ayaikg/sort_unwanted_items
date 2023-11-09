@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root to: 'homes#top'
   resources :users, only: [:new, :create]
-  resources :categories, except: :show 
+  resources :categories, except: :show
   resources :items do
     member do
       get 'edit_disposal_method'

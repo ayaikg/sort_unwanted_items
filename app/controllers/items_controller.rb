@@ -2,20 +2,19 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :update, :destroy, :show, :edit_disposal_method]
   before_action :set_categories, only: [:new, :create, :edit, :update]
 
-  def show
-  end
+  def show; end
 
   def index
-    if params[:category_id].present?
-      @category = Category.find(params[:category_id])
-      @listed_items = @category.items.includes(:user).where(listing_status: true, disposal_method: 0)
-      @unlisted_items = @category.items.includes(:user).where(listing_status: false, disposal_method: 0)
-    end
+    return unless params[:category_id].present?
+
+    @category = Category.find(params[:category_id])
+    @listed_items = @category.items.includes(:user).where(listing_status: true, disposal_method: 0)
+    @unlisted_items = @category.items.includes(:user).where(listing_status: false, disposal_method: 0)
   end
 
   def new
     @item = Item.new
-    @item.build_notification #has_oneのオプション、おそらくhas_oneだからnotification.buildがダメだった
+    @item.build_notification # has_oneのオプション、おそらくhas_oneだからnotification.buildがダメだった
   end
 
   def create
@@ -28,11 +27,9 @@ class ItemsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
-  def edit_disposal_method
-  end
+  def edit_disposal_method; end
 
   def history
     @disposal_items = Item.where.not(disposal_method: 0)
@@ -45,12 +42,10 @@ class ItemsController < ApplicationController
       else
         redirect_to item_path(@item)
       end
+    elsif params[:item][:disposal_method]
+      render :edit_disposal_method, status: :unprocessable_entity
     else
-      if params[:item][:disposal_method]
-        render :edit_disposal_method, status: :unprocessable_entity
-      else
-        render :edit, status: :unprocessable_entity
-      end
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -60,9 +55,10 @@ class ItemsController < ApplicationController
   end
 
   private
+
   def item_params
     params.require(:item).permit(:name, :price, :image, :image_cache, :listing_status, :disposal_method, :category_id,
-      notification_attributes: [:notify_date])
+                                 notification_attributes: [:notify_date])
   end
 
   def set_item
