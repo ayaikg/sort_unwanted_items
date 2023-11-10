@@ -13,7 +13,7 @@
         <%= link_to '編集', edit_user_path(@user), class: "btn btn-sm btn-accent btn-outline" %>
       <% end %>
     </div>
-    <div>
+    <div class="m-8">
       <% if @user.introduction.present? %>
         <%= simple_format(@user.introduction) %>
       <% else %>
@@ -26,7 +26,7 @@
     <% if @user_posts.present? %>
       <%= render partial: 'posts/post', collection: @user_posts, locals: { post: @user_posts } %>
     <% else %>
-      <p class="text-center">投稿はありません</p>
+      <p class="text-center"><%= @user.name %>さんの投稿はありません</p>
     <% end %>
   </div>
 </div>
