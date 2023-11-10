@@ -14,7 +14,7 @@ module.exports = {
     require('daisyui')
   ],
   daisyui: {
-    themes: [
+    themes: ["wireframe",
       {
         mytheme: {
           "primary": "#7dd3fc",
