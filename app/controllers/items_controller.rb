@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
   def index
     return unless params[:category_id].present?
 
-    @category = Category.find(params[:category_id])
+    @category = current_user.categories.find(params[:category_id])
     @listed_items = @category.items.includes(:user).where(listing_status: true, disposal_method: 0)
     @unlisted_items = @category.items.includes(:user).where(listing_status: false, disposal_method: 0)
   end
@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
   def edit_disposal_method; end
 
   def history
-    @disposal_items = Item.where.not(disposal_method: 0)
+    @disposal_items = current_user.items.includes(:user).where.not(disposal_method: 0)
   end
 
   def update
@@ -50,7 +50,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item.destroy
+    @item.destroy!
     redirect_to categories_path
   end
 
@@ -62,7 +62,7 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-    @item = Item.find(params[:id])
+    @item = current_user.items.find(params[:id])
   end
 
   def set_categories

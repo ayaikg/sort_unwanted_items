@@ -27,7 +27,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category.destroy
+    @category.destroy!
     redirect_to categories_path
   end
 
@@ -38,6 +38,6 @@ class CategoriesController < ApplicationController
   end
 
   def set_category
-    @category = Category.find(params[:id])
+    @category = current_user.categories.find(params[:id])
   end
 end
