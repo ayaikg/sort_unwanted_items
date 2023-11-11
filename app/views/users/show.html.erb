@@ -1,6 +1,6 @@
-<div class="container px-2 w-full max-w-xl">
-  <div>
-    <div class="flex items-center justify-around">
+<div class="container px-2 w-full max-w-3xl">
+  <div class="mt-2">
+    <div class="flex items-center justify-around border-b-4">
       <div class="avatar">
         <div class="w-24 rounded-full">
           <%= image_tag @user.avatar.url %>
@@ -13,7 +13,7 @@
         <%= link_to '編集', edit_user_path(@user), class: "btn btn-sm btn-accent btn-outline" %>
       <% end %>
     </div>
-    <div class="m-8">
+    <div class="p-8 border-b-4">
       <% if @user.introduction.present? %>
         <%= simple_format(@user.introduction) %>
       <% else %>
@@ -22,7 +22,7 @@
     </div>
   </div>
   <!-- ユーザーの投稿内容 -->
-  <div>
+  <div class="flex items-center justify-center md:flex flex-wrap">
     <% if @user_posts.present? %>
       <%= render partial: 'posts/post', collection: @user_posts, locals: { post: @user_posts } %>
     <% else %>
