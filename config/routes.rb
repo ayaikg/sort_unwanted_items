@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get 'likes', on: :collection
   end
   resources :likes, only: [:create, :destroy]
+  resource :chart, only: :show
 
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
