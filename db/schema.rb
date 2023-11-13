@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_231_108_033_027) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_13_042226) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,7 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 20_231_108_033_027) do
     t.string "uid", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index %w[provider uid], name: "index_authentications_on_provider_and_uid"
+    t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
     t.index ["user_id"], name: "index_authentications_on_user_id"
   end
 
@@ -42,6 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 20_231_108_033_027) do
     t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "disposal_at"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
@@ -52,7 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 20_231_108_033_027) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_likes_on_post_id"
-    t.index %w[user_id post_id], name: "index_likes_on_user_id_and_post_id", unique: true
+    t.index ["user_id", "post_id"], name: "index_likes_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
