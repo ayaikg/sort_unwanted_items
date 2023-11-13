@@ -82,3 +82,6 @@ gem "mini_magick"
 
 # 検索機能
 gem "ransack"
+
+# 変数をjsに渡す
+gem "gon"
