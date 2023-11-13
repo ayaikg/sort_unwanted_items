@@ -42,7 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_13_042226) do
     t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "disposal_at"
+    t.date "disposed_at"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
