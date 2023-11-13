@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   mount_uploader :image, ImageUploader
+  before_save :set_disposed_at
 
   belongs_to :user
   belongs_to :category
@@ -15,4 +16,14 @@ class Item < ApplicationRecord
                             allow_nil: true }
 
   enum disposal_method: { before: 0, sold: 1, discard: 2 }
+
+  private
+
+  def set_disposed_at
+    if disposal_method_changed? && (disposal_method == 1 || disposal_method == 2)
+      self.disposed_at = Time.current if disposed_at.blank?
+    elsif disposal_method == 0
+      self.disposed_at = nil
+    end
+  end
 end
