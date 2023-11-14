@@ -7,13 +7,15 @@ Rails.application.routes.draw do
     member do
       get 'edit_disposal_method'
     end
-    get 'history', on: :collection
+    collection do
+      get 'history'
+      get 'chart'
+    end
   end
   resources :posts do
     get 'likes', on: :collection
   end
   resources :likes, only: [:create, :destroy]
-  resource :chart, only: :show
 
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'

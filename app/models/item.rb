@@ -20,9 +20,9 @@ class Item < ApplicationRecord
   private
 
   def set_disposed_at
-    if disposal_method_changed? && (disposal_method == 1 || disposal_method == 2)
-      self.disposed_at = Time.current if disposed_at.blank?
-    elsif disposal_method == 0
+    if disposal_method_changed? && (disposal_method == "sold" || disposal_method == "discard")
+      self.disposed_at = Date.current
+    elsif disposal_method == "before"
       self.disposed_at = nil
     end
   end

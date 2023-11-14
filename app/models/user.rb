@@ -35,6 +35,13 @@ class User < ApplicationRecord
     like_posts.include?(post)
   end
 
+  def disposal_data_for_past_week
+    items.where(disposed_at: 1.week.ago.to_date..Date.today)
+         .where(disposal_method: ["sold", "discard"])
+         .group("DATE(disposed_at)")
+         .count
+  end
+
   after_create :create_default_categories
 
   private
