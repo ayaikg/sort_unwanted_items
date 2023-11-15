@@ -1,19 +1,35 @@
 <div class="container px-2 w-full max-w-3xl">
-  <div class="mt-2">
-    <div class="flex items-center justify-around border-b-4">
+  <div class="mt-2 flex flex-col justify-center">
+    <div class="flex items-center justify-around">
       <div class="avatar">
         <div class="w-24 rounded-full">
           <%= image_tag @user.avatar.url %>
         </div>
       </div>
       <div>
-        <p><%= @user.name %></p>
+        <p class="font-bold"><%= @user.name %></p>
       </div>
       <% if current_user == @user %>
         <%= link_to '編集', edit_user_path(@user), class: "btn btn-sm btn-accent btn-outline" %>
       <% end %>
     </div>
+    <p>今月の目標断捨離数</p>
+    <div class="stats shadow">
+      <div class="stat place-items-center">
+        <div class="stat-title">目標</div>
+        <div class="stat-value">31<span class="text-sm">個</span></div>
+      </div>
+      <div class="stat place-items-center">
+        <div class="stat-title">最新</div>
+        <div class="stat-value">21<span class="text-sm">個</span></div>
+      </div>
+      <div class="stat place-items-center">
+        <div class="stat-title">目標との差</div>
+        <div class="stat-value"><span class="text-sm">あと</span>10<span class="text-sm">個</span></div>
+      </div>
+    </div>
     <div class="p-8 border-b-4">
+      <p>自己紹介</p>
       <% if @user.introduction.present? %>
         <%= simple_format(@user.introduction) %>
       <% else %>
