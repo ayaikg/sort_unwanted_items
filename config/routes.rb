@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get 'likes', on: :collection
   end
   resources :likes, only: [:create, :destroy]
+  resources :declutterings, only: [:new, :create, :edit, :update]
 
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
