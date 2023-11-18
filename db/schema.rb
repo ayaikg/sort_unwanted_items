@@ -33,7 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_16_121355) do
   end
 
   create_table "declutterings", force: :cascade do |t|
-    t.integer "goal_amount"
+    t.integer "goal_amount", default: 0, null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

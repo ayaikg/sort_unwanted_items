@@ -49,7 +49,7 @@ class User < ApplicationRecord
          .count
   end
 
-  after_create :create_default_categories
+  after_create :create_default_categories, :create_default_decluttering
 
   private
 
@@ -59,5 +59,8 @@ class User < ApplicationRecord
     default_categories.each do |title|
       categories.find_or_create_by(title:)
     end
+  end
+  def create_default_decluttering
+    create_decluttering(goal_amount: 0)
   end
 end

@@ -24,8 +24,8 @@ class DeclutteringsController < ApplicationController
   end
 
   def show
-    # decluttering がある場合は、goal_amountを取得し、ない場合は未設定をセット
-    @goal_amount = @decluttering&.goal_amount || "未設定"
+    # goal_amountが初期値の0の場合は未設定と表示し、それ以外の場合はその値をセット
+    @goal_amount = @decluttering.goal_amount.zero? ? "未設定" : @decluttering.goal_amount
     @total_disposed_items = current_user.total_disposed_items
     @difference = display_difference(@goal_amount, @total_disposed_items)
   end
