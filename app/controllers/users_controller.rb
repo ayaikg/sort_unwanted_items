@@ -17,6 +17,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    # decluttering がある場合は、goal_amountを取得し、ない場合は0をセット
+    @goal_amount = @user.decluttering&.goal_amount || 0
+    @total_disposed_items = @user.total_disposed_items
+    @difference = display_difference(@goal_amount, @total_disposed_items)
     @user_posts = @user.posts.includes(:item).order(created_at: :desc)
   end
 
@@ -38,5 +42,15 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation, :avatar, :introduction, :name)
+  end
+  
+  def display_difference(goal_amount, total_disposed_items)
+    if goal_amount == 0
+      0
+    elsif total_disposed_items >= goal_amount
+      "達成済み"
+    else
+      goal_amount - total_disposed_items
+    end
   end
 end

@@ -43,6 +43,12 @@ class User < ApplicationRecord
          .count
   end
 
+  def total_disposed_items
+    items.where(disposed_at: Date.today.beginning_of_month..Date.today)
+         .where(disposal_method: ["sold", "discard"])
+         .count
+  end
+
   after_create :create_default_categories
 
   private

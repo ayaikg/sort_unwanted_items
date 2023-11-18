@@ -5,7 +5,7 @@ class DeclutteringsController < ApplicationController
   end
 
   def create
-    @decluttering = Decluttering.new(decluttering_params)
+    @decluttering = current_user.build_decluttering(decluttering_params)
     if @decluttering.save
       redirect_to user_path(current_user)
     else
