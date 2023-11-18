@@ -6,7 +6,20 @@ Chart.register(...registerables)
 export default class extends Controller {
   static targets = ["canvas"]
 
-  connect() {
+  connect () {
+    this.renderChart()
+    document.addEventListener("turbo:load", this.renderChart.bind(this))
+  }
+
+  disconnect() {
+    document.removeEventListener("turbo:load", this.renderChart.bind(this))
+    this.destroyChart()
+  }
+
+  renderChart() {
+    if (this.mychart) {
+      this.destroyChart()
+    }
     const element = this.canvasTarget
     const disposalDates = gon.disposal_dates
     const disposalCounts = gon.disposal_counts
@@ -34,5 +47,12 @@ export default class extends Controller {
         },
       },
     })
+  }
+  
+  destroyChart() {
+    if (this.mychart) {
+      this.mychart.destroy()
+      this.mychart = null
+    }
   }
 }

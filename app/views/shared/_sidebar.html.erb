@@ -8,7 +8,7 @@
       <li><%= link_to 'カテゴリー一覧', categories_path %></li>
       <li><%= link_to '投稿一覧', posts_path %></li>
       <li><%= link_to 'お気に入り一覧', likes_posts_path %></a></li>
-      <li><%= link_to 'グラフ', chart_items_path %></li>
+      <li><%= link_to 'グラフ', chart_items_path, data: { "turbo" => false } %></li>
       <li><%= link_to '目標設定', decluttering_path(current_user) %></li>
       <li><%= link_to '捨てたモノ履歴', history_items_path %></li>
       <div class="divider"></div> 
