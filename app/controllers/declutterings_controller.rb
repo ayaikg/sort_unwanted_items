@@ -5,7 +5,7 @@ class DeclutteringsController < ApplicationController
 
   def update
     if @decluttering.update(decluttering_params)
-      redirect_to user_path(current_user)
+      redirect_to decluttering_path(current_user)
     else
       render :edit
     end
@@ -16,6 +16,11 @@ class DeclutteringsController < ApplicationController
     @goal_amount = @decluttering.goal_amount.zero? ? "未設定" : @decluttering.goal_amount
     @total_disposed_items = current_user.total_disposed_items
     @difference = display_difference(@goal_amount, @total_disposed_items)
+    if @decluttering.goal_amount.zero?
+      @rate = 0
+    else
+      @rate = @total_disposed_items.to_f/@decluttering.goal_amount*100
+    end
   end
 
   private

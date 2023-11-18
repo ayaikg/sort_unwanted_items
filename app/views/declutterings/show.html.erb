@@ -2,17 +2,21 @@
   <div class="card w-auto bg-base-100 shadow-xl m-5 md:max-w-md mx-auto">
     <div class="card-body items-center text-center">
       <h2 class="card-title">目標設定</h2>
-      <div class="radial-progress" style="--value:70; --size:8rem" role="progressbar">70%</div>
-
       <%= turbo_frame_tag "decluttering_amount" do %>
+        <div>
+          <div class="radial-progress" style="--value:<%= @rate %>; --size:8rem" role="progressbar">
+            <%= @rate %>%
+          </div>
+        </div>
+      
         <div class="stats">
           <div class="stat place-items-center">
             <div class="stat-title">現在</div>
-            <div class="stat-value"><%= @goal_amount %><span class="text-sm">個</span></div>
+            <div class="stat-value"><%= @total_disposed_items %><span class="text-sm">個</span></div>
           </div>
           <div class="stat place-items-center">
             <div class="stat-title">今月の目標</div>
-            <div class="stat-value"><%= @total_disposed_items %><span class="text-sm">個</span></div>
+            <div class="stat-value"><%= @goal_amount %><span class="text-sm">個</span></div>
           </div>
         </div>
 
@@ -43,6 +47,6 @@
   </div>
 
   <div class="flex justify-center">
-    <%= link_to "目標を設定する", new_decluttering_path, data: { turbo_frame: "modal" }, class: "btn btn-primary" %>
+    <%= link_to "目標を設定する", edit_decluttering_path(current_user), data: { turbo_frame: "modal" }, class: "btn btn-primary" %>
   </div>
 </div>
