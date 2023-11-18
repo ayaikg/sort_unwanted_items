@@ -1,17 +1,5 @@
 class DeclutteringsController < ApplicationController
   before_action :set_decluttering, only: [:edit, :update, :show]
-  def new
-    @decluttering = Decluttering.new
-  end
-
-  def create
-    @decluttering = current_user.build_decluttering(decluttering_params)
-    if @decluttering.save
-      redirect_to user_path(current_user)
-    else
-      render :new
-    end
-  end
 
   def edit; end
 
