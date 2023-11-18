@@ -13,25 +13,6 @@
         <%= link_to '編集', edit_user_path(@user), class: "btn btn-sm btn-accent btn-outline" %>
       <% end %>
     </div>
-    <div>
-    <%= turbo_frame_tag "decluttering_amount" do %>
-      <div class="stats shadow w-full">
-        <div class="stat place-items-center">
-          <div class="stat-title">今月の目標</div>
-          <div class="stat-value"><%= @goal_amount %><span class="text-sm">個</span></div>
-        </div>
-        <div class="stat place-items-center">
-          <div class="stat-title">最新</div>
-          <div class="stat-value"><%= @total_disposed_items %><span class="text-sm">個</span></div>
-        </div>
-        <div class="stat place-items-center">
-          <div class="stat-title">目標との差</div>
-          <div class="stat-value"><span class="text-sm">あと</span><%= @difference %><span class="text-sm">個</span></div>
-        </div>
-      </div>
-    <% end %>
-    <%= link_to "目標設定", new_decluttering_path, data: { turbo_frame: "modal" }, class: "btn btn-sm btn-accent btn-outline" %>
-    </div>
     <div class="p-8 border-b-4">
       <p>自己紹介</p>
       <% if @user.introduction.present? %>
