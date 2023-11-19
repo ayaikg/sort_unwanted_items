@@ -28,19 +28,10 @@
         </div>
       <% end %>
 
-      <div class="w-full flex">
-        <div class="stats mx-auto">
-          <div class="stat place-items-center bg-base-200 rounded-lg">
-            <div class="stat-title">先月</div>
-            <div class="stat-value">31<span class="text-sm">個</span></div>
-          </div>
-        </div>
-        <div class="stats mx-auto">
-          <div class="stat place-items-center bg-base-200 rounded-lg">
-            <div class="stat-title">先月比</div>
-            <div class="stat-value">-1.3<span class="text-sm">%</span></div>
-            <div class="stat-desc">↘︎ 90 (14%)</div>
-          </div>
+       <div class="stats shadow w-full">
+        <div class="stat">
+          <div class="stat-title">先月の断捨離数</div>
+          <div class="stat-value"><%= @last_month_items %><span class="text-sm">個</span></div>
         </div>
       </div>
     </div>

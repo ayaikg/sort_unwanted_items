@@ -16,11 +16,8 @@ class DeclutteringsController < ApplicationController
     @goal_amount = @decluttering.goal_amount.zero? ? "未設定" : @decluttering.goal_amount
     @total_disposed_items = current_user.total_disposed_items
     @difference = display_difference(@goal_amount, @total_disposed_items)
-    if @decluttering.goal_amount.zero?
-      @rate = 0
-    else
-      @rate = @total_disposed_items.to_f/@decluttering.goal_amount*100
-    end
+    @rate = goal_achievement_rate(@decluttering, @total_disposed_items)
+    @last_month_items = current_user.last_month_disposed_items
   end
 
   private
@@ -40,6 +37,14 @@ class DeclutteringsController < ApplicationController
       "達成済み"
     else
       goal_amount - total_disposed_items
+    end
+  end
+
+  def goal_achievement_rate(decluttering, total_disposed_items)
+    if decluttering.goal_amount.zero?
+      0
+    else
+      total_disposed_items.to_f/decluttering.goal_amount*100
     end
   end
 end

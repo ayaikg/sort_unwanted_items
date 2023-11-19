@@ -43,6 +43,12 @@ class User < ApplicationRecord
          .count
   end
 
+  def last_month_disposed_items
+    items.where(disposed_at: Date.today.last_month.beginning_of_month..Date.today.last_month.end_of_month)
+         .where(disposal_method: ["sold", "discard"])
+         .count
+  end
+
   def total_disposed_items
     items.where(disposed_at: Date.today.beginning_of_month..Date.today)
          .where(disposal_method: ["sold", "discard"])
