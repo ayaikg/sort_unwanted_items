@@ -4,9 +4,6 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show, :edit, :update]
   resources :categories, except: :show
   resources :items do
-    member do
-      get 'edit_disposal_method'
-    end
     collection do
       get 'history'
       get 'chart'
