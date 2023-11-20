@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_08_033027) do
+ActiveRecord::Schema[7.0].define(version: 20_231_116_121_355) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,7 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_033027) do
     t.string "uid", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
+    t.index %w[provider uid], name: "index_authentications_on_provider_and_uid"
     t.index ["user_id"], name: "index_authentications_on_user_id"
   end
 
@@ -30,6 +30,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_033027) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_categories_on_user_id"
+  end
+
+  create_table "declutterings", force: :cascade do |t|
+    t.integer "goal_amount", default: 0, null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_declutterings_on_user_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -42,6 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_033027) do
     t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "disposed_at"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
@@ -52,7 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_033027) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_likes_on_post_id"
-    t.index ["user_id", "post_id"], name: "index_likes_on_user_id_and_post_id", unique: true
+    t.index %w[user_id post_id], name: "index_likes_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
@@ -89,6 +98,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_08_033027) do
   end
 
   add_foreign_key "categories", "users"
+  add_foreign_key "declutterings", "users"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "users"
   add_foreign_key "likes", "posts"

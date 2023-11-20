@@ -1,23 +1,21 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:edit, :update, :destroy]
 
-  def new
-    @category = Category.new
-  end
-
-  def create
-    @category = current_user.categories.build(category_params)
-    if @category.save
-    else
-      render :new, status: :unprocessable_entity
-    end
-  end
-
   def index
     @categories = Category.where(user_id: current_user.id)
   end
 
-  def edit
+  def new
+    @category = Category.new
+  end
+
+  def edit; end
+
+  def create
+    @category = current_user.categories.build(category_params)
+    return if @category.save
+
+    render :new, status: :unprocessable_entity
   end
 
   def update
@@ -29,16 +27,17 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category.destroy
+    @category.destroy!
     redirect_to categories_path
   end
 
   private
+
   def category_params
     params.require(:category).permit(:title)
   end
 
   def set_category
-    @category = Category.find(params[:id])
+    @category = current_user.categories.find(params[:id])
   end
 end

@@ -1,0 +1,44 @@
+<div class="container w-full">
+  <div class="card w-auto bg-base-100 shadow-xl m-5 md:max-w-md mx-auto">
+    <div class="card-body items-center text-center">
+      <h2 class="card-title">目標設定</h2>
+      <%= link_to 'グラフを見る', chart_items_path, data: { "turbo" => false }, class: "btn btn-sm btn-accent btn-outline" %>
+      <%= turbo_frame_tag "decluttering_amount", class: "w-full" do %>
+        <div>
+          <div class="radial-progress bg-primary text-primary-content border-4 border-primary" style="--value:<%= @rate %>; --size:8rem" role="progressbar">
+            <%= @rate %>%
+          </div>
+        </div>
+      
+        <div class="stats w-full flex my-5">
+          <div class="stat place-items-center flex-1">
+            <div class="stat-title">現在</div>
+            <div class="stat-value"><%= @total_disposed_items %><span class="text-sm">個</span></div>
+          </div>
+          <div class="stat place-items-center flex-1">
+            <div class="stat-title">今月の目標</div>
+            <div class="stat-value"><%= @goal_amount %><span class="text-sm">個</span></div>
+          </div>
+        </div>
+
+        <div class="stats shadow w-full">
+          <div class="stat">
+            <div class="stat-title">目標との差</div>
+            <div class="stat-value"><span class="text-sm">あと</span><%= @difference %><span class="text-sm">個</span></div>
+          </div>
+        </div>
+      <% end %>
+
+       <div class="stats shadow w-full">
+        <div class="stat">
+          <div class="stat-title">先月の断捨離数</div>
+          <div class="stat-value"><%= @last_month_items %><span class="text-sm">個</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-center">
+    <%= link_to "目標を設定する", edit_decluttering_path(current_user), data: { turbo_frame: "modal" }, class: "btn btn-primary" %>
+  </div>
+</div>

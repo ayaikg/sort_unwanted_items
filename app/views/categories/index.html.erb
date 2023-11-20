@@ -1,4 +1,7 @@
 <div class="container mx-auto w-full max-w-xl">
+  <div data-controller="graph" class="relative h-32">
+    <canvas data-graph-target="bar"></canvas>
+  </div>
   <div class="card">
   <%= turbo_frame_tag "category" do %>
     <div class="card-body" id="categories">

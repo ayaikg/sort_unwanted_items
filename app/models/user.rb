@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
+  mount_uploader :avatar, AvatarUploader
+
+  has_one :decluttering, dependent: :destroy
   has_many :categories, dependent: :destroy
   has_many :items, dependent: :destroy
   has_many :notifications, through: :items
@@ -33,15 +36,38 @@ class User < ApplicationRecord
     like_posts.include?(post)
   end
 
-  after_create :create_default_categories
+  def disposal_data_for_past_week
+    items.where(disposed_at: 1.week.ago.to_date..Date.today)
+         .where(disposal_method: %w[sold discard])
+         .group("DATE(disposed_at)")
+         .count
+  end
+
+  def last_month_disposed_items
+    items.where(disposed_at: Date.today.last_month.all_month)
+         .where(disposal_method: %w[sold discard])
+         .count
+  end
+
+  def total_disposed_items
+    items.where(disposed_at: Date.today.beginning_of_month..Date.today)
+         .where(disposal_method: %w[sold discard])
+         .count
+  end
+
+  after_create :create_default_categories, :create_default_decluttering
 
   private
 
   def create_default_categories
-    default_categories = ['衣類', '書籍', 'コスメ', '文房具', 'ゲーム', '音楽']
-    
+    default_categories = %w[衣類 書籍 コスメ 文房具 ゲーム 音楽]
+
     default_categories.each do |title|
-      categories.find_or_create_by(title: title)
+      categories.find_or_create_by(title:)
     end
+  end
+
+  def create_default_decluttering
+    create_decluttering(goal_amount: 0)
   end
 end

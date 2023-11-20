@@ -1,18 +1,19 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root to: 'homes#top'
-  resources :users, only: [:new, :create]
-  resources :categories, except: :show 
+  resources :users, only: [:new, :create, :show, :edit, :update]
+  resources :categories, except: :show
   resources :items do
-    member do
-      get 'edit_disposal_method'
+    collection do
+      get 'history'
+      get 'chart'
     end
-    get 'history', on: :collection
   end
   resources :posts do
     get 'likes', on: :collection
   end
   resources :likes, only: [:create, :destroy]
+  resources :declutterings, only: [:edit, :update, :show]
 
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'

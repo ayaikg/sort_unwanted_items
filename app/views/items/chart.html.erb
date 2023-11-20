@@ -1,0 +1,11 @@
+<div class="container">
+  <h2 class="text-center text-bold text-2xl mt-5">1週間のデータ</h2>
+  <div class="flex justify-end">
+    <%= link_to "データを詳しく見る", decluttering_path(current_user), class: "btn" %>
+  </div>
+  <div class="w-full h-screen">
+    <div data-controller="chart" class="relative h-3/5">
+      <canvas data-chart-target="canvas"></canvas>
+    </div>
+  </div>
+</div>

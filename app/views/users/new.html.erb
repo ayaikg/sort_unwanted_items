@@ -1,28 +1,37 @@
 <div class="w-full flex flex-col items-center px-2">
   <h1 class="text-3xl font-bold mt-10">ユーザー登録</h1>
-  <%= form_with model: @user, local: true do |f| %>
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :introduction %>
-      <%= f.text_area :introduction, class: 'form-control' %>
-    </div>
-    <%= f.submit '登録', class: 'btn' %>
-  <% end %>
+    <%= form_with model: @user, local: true do |f| %>
+      <%= render 'shared/error_message', object: f.object %>
+      <div class="form-control">
+        <%= f.label :avatar, class: "mb-2" %>
+        <%= f.file_field :avatar, onchange: "previewFileWithId(preview)", accept: "image/*" %>
+        <%= f.hidden_field :image_cache %>
+      </div>
+      <div class="mt-3 flex justify-center">
+        <%= image_tag @user.avatar.url, id: "preview", class: "w-24 rounded-full" %>
+      </div>
+      <div class="form-control">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+      <div class="form-control">
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+      </div>
+      <div class="form-control">
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </div>
+      <div class="form-control">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+      </div>
+      <div class="form-control">
+        <%= f.label :introduction %>
+        <%= f.text_area :introduction %>
+      </div>
+      <%= f.submit '登録', class: 'btn' %>
+    <% end %>
   <div class='text-center'>
     <%= link_to 'ログインページへ', login_path %>
   </div>
