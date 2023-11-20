@@ -1,6 +1,15 @@
 class DeclutteringsController < ApplicationController
   before_action :set_decluttering, only: [:edit, :update, :show]
 
+  def show
+    # goal_amountが初期値の0の場合は未設定と表示し、それ以外の場合はその値をセット
+    @goal_amount = @decluttering.goal_amount.zero? ? "未設定" : @decluttering.goal_amount
+    @total_disposed_items = current_user.total_disposed_items
+    @difference = display_difference(@goal_amount, @total_disposed_items)
+    @rate = goal_achievement_rate(@decluttering, @total_disposed_items)
+    @last_month_items = current_user.last_month_disposed_items
+  end
+
   def edit; end
 
   def update
@@ -9,15 +18,6 @@ class DeclutteringsController < ApplicationController
     else
       render :edit
     end
-  end
-
-  def show
-    # goal_amountが初期値の0の場合は未設定と表示し、それ以外の場合はその値をセット
-    @goal_amount = @decluttering.goal_amount.zero? ? "未設定" : @decluttering.goal_amount
-    @total_disposed_items = current_user.total_disposed_items
-    @difference = display_difference(@goal_amount, @total_disposed_items)
-    @rate = goal_achievement_rate(@decluttering, @total_disposed_items)
-    @last_month_items = current_user.last_month_disposed_items
   end
 
   private

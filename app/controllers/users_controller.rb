@@ -2,9 +2,16 @@ class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
   before_action :set_user, only: [:edit, :update]
 
+  def show
+    @user = User.find(params[:id])
+    @user_posts = @user.posts.includes(:item).order(created_at: :desc)
+  end
+
   def new
     @user = User.new
   end
+
+  def edit; end
 
   def create
     @user = User.new(user_params)
@@ -14,13 +21,6 @@ class UsersController < ApplicationController
       render :new
     end
   end
-
-  def show
-    @user = User.find(params[:id])
-    @user_posts = @user.posts.includes(:item).order(created_at: :desc)
-  end
-
-  def edit; end
 
   def update
     if @user.update(user_params)

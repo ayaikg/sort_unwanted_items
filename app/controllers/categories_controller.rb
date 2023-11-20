@@ -1,9 +1,15 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:edit, :update, :destroy]
 
+  def index
+    @categories = Category.where(user_id: current_user.id)
+  end
+
   def new
     @category = Category.new
   end
+
+  def edit; end
 
   def create
     @category = current_user.categories.build(category_params)
@@ -11,12 +17,6 @@ class CategoriesController < ApplicationController
 
     render :new, status: :unprocessable_entity
   end
-
-  def index
-    @categories = Category.where(user_id: current_user.id)
-  end
-
-  def edit; end
 
   def update
     if @category.update(category_params)

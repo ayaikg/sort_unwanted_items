@@ -1,6 +1,28 @@
 inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-rails
+
 AllCops:
-  NewCops: enable
   SuggestExtensions: false
+  # 最新のルールを適用する
+  NewCops: enable
+  # 何のルールに引っかかったか表示する
+  DisplayCopNames: true
+  # rubocop対象外(リポジトリ毎で調節)
+  Exclude:
+    - "Gemfile"
+    - "bin/**/*"
+    - "db/**/*"
+    - "log/**/*"
+    - "tmp/**/*"
+    - "vendor/**/*"
+    - "lib/tasks/*"
+    - "config/environments/*"
+    - "config/puma.rb"
+    - "config/initializers/sorcery.rb"
+    - "node_modules/**/*"
+    - "spec/**/*"
+
 Style/Documentation:
   Enabled: false

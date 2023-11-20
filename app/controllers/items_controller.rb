@@ -2,8 +2,6 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :update, :destroy, :show]
   before_action :set_categories, only: [:new, :create, :edit, :update]
 
-  def show; end
-
   def index
     return unless params[:category_id].present?
 
@@ -12,22 +10,23 @@ class ItemsController < ApplicationController
     @unlisted_items = @category.items.includes(:user).where(listing_status: false, disposal_method: 0)
   end
 
+  def show; end
+
   def new
     @item = Item.new
     @item.build_notification # has_oneのオプション、おそらくhas_oneだからnotification.buildがダメだった
   end
+
+  def edit; end
 
   def create
     @item = current_user.items.build(item_params)
     if @item.save
       redirect_to categories_path
     else
-      flash.now[:notice] = "アイテムの作成に失敗しました"
       render :new, status: :unprocessable_entity
     end
   end
-
-  def edit; end
 
   def history
     @disposal_items = current_user.items.includes(:user).where.not(disposal_method: 0)
