@@ -35,16 +35,16 @@ ja:
       decluttering:
         id: ID
         goal_amount: 目標個数 
-    enums:
-      item:
-        disposal_method:
-          before: 処分前
-          sold: 売れた
-          discard: 捨てた
-      user:
-        role:
-          general: 一般
-          admin: 管理者
+  enums:
+    item:
+      disposal_method:
+        before: 処分前
+        sold: 売れた
+        discard: 捨てた
+    user:
+      role:
+        general: 一般
+        admin: 管理者
 
         
 
