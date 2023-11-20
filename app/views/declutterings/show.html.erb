@@ -2,6 +2,7 @@
   <div class="card w-auto bg-base-100 shadow-xl m-5 md:max-w-md mx-auto">
     <div class="card-body items-center text-center">
       <h2 class="card-title">目標設定</h2>
+      <%= link_to 'グラフを見る', chart_items_path, data: { "turbo" => false }, class: "btn btn-sm btn-accent btn-outline" %>
       <%= turbo_frame_tag "decluttering_amount", class: "w-full" do %>
         <div>
           <div class="radial-progress bg-primary text-primary-content border-4 border-primary" style="--value:<%= @rate %>; --size:8rem" role="progressbar">
