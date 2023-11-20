@@ -36,10 +36,10 @@ class ItemsController < ApplicationController
   end
 
   def chart
-    #過去１週間の断捨離アイテム数を取得
+    # 過去１週間の断捨離アイテム数を取得
     disposal_datas = current_user.disposal_data_for_past_week
     # 過去1週間の全日についてデータを保証する
-    dates = (1.week.ago.to_date..Date.today).map { |date| date.strftime('%Y-%m-%d' ) }
+    dates = (1.week.ago.to_date..Date.today).map { |date| date.strftime('%Y-%m-%d') }
     counts = dates.map { |date| disposal_datas[date.to_date].to_i }
 
     gon.disposal_dates = dates
@@ -48,15 +48,9 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      if @item.saved_change_to_disposal_method?
-        redirect_to items_path(category_id: @item.category_id)
-      else
-        redirect_to item_path(@item)
-      end
-    elsif params[:item][:disposal_method]
-      render :edit_disposal_method, status: :unprocessable_entity
+      redirect_to @item.saved_change_to_disposal_method? ? items_path(category_id: @item.category_id) : item_path(@item)
     else
-      render :edit, status: :unprocessable_entity
+      render params[:item][:disposal_method] ? :edit_disposal_method : :edit, status: :unprocessable_entity
     end
   end
 

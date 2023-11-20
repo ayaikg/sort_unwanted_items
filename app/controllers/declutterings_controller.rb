@@ -44,7 +44,7 @@ class DeclutteringsController < ApplicationController
     if decluttering.goal_amount.zero?
       0
     else
-      total_disposed_items.to_f/decluttering.goal_amount*100
+      total_disposed_items.to_f / decluttering.goal_amount * 100
     end
   end
 end

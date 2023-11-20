@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
   mount_uploader :avatar, AvatarUploader
-  
+
   has_one :decluttering, dependent: :destroy
   has_many :categories, dependent: :destroy
   has_many :items, dependent: :destroy
@@ -38,20 +38,20 @@ class User < ApplicationRecord
 
   def disposal_data_for_past_week
     items.where(disposed_at: 1.week.ago.to_date..Date.today)
-         .where(disposal_method: ["sold", "discard"])
+         .where(disposal_method: %w[sold discard])
          .group("DATE(disposed_at)")
          .count
   end
 
   def last_month_disposed_items
     items.where(disposed_at: Date.today.last_month.beginning_of_month..Date.today.last_month.end_of_month)
-         .where(disposal_method: ["sold", "discard"])
+         .where(disposal_method: %w[sold discard])
          .count
   end
 
   def total_disposed_items
     items.where(disposed_at: Date.today.beginning_of_month..Date.today)
-         .where(disposal_method: ["sold", "discard"])
+         .where(disposal_method: %w[sold discard])
          .count
   end
 
@@ -66,6 +66,7 @@ class User < ApplicationRecord
       categories.find_or_create_by(title:)
     end
   end
+
   def create_default_decluttering
     create_decluttering(goal_amount: 0)
   end
