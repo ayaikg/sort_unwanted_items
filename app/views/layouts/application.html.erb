@@ -14,21 +14,26 @@
   <body>
     <div class="drawer drawer-end flex flex-col min-h-screen">
       <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
-      <div class="drawer-content">
+      <header class="drawer-content">
         <% if logged_in? %>
           <%= render 'shared/header' %>
         <% else %>
           <%= render 'shared/before_login_header' %>
         <% end %>
+      </header>
 
-        <div class="flex-grow">
-          <%= turbo_frame_tag "modal" %>
-          <%= yield %>
-        </div>
-      </div>
-      <%= render 'shared/bottom_nav' unless current_page?(root_path) %>
+      <%= turbo_frame_tag "modal" %>
+      <main class="grow">
+        <%= yield %>
+      </main>
+      
+      <% if current_page?(root_path) %>
+        <%= render 'shared/footer' %>
+      <% else %>
+        <%= render 'shared/bottom_nav' %>
+      <% end %>
+
       <%= render 'shared/sidebar' %>
     </div>
-    <%= render 'shared/footer' %>
   </body>
 </html>
