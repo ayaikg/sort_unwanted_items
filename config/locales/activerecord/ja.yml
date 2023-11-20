@@ -6,6 +6,7 @@ ja:
       item: アイテム
       notification: 通知
       post: 投稿
+      decluttering: 断捨離
     attributes:
       user:
         id: ID
@@ -31,7 +32,9 @@ ja:
         id: ID
         content: お別れのことば
         advice: みんなにアドバイス
-        
+      decluttering:
+        id: ID
+        goal_amount: 目標個数 
     enums:
       item:
         disposal_method:
