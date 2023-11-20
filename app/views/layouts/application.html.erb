@@ -2,7 +2,7 @@
 <html data-theme="wireframe">
   <head>
     <title>SortUnwantedItems</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= Gon::Base.render_data %>
@@ -23,7 +23,7 @@
       </header>
 
       <%= turbo_frame_tag "modal" %>
-      <main class="grow">
+      <main class="grow mb-20">
         <%= yield %>
       </main>
       
