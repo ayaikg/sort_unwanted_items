@@ -1,7 +1,15 @@
 <%= search_form_for @q, url: url do |f| %>
-  <div class="join">
-    <%= f.search_field search_key, data: { autocomplete_target: 'input'}, class: "input input-bordered join-item md:w-96", placeholder: "入力して下さい" %>
-    <%= f.hidden_field key, data: { autocomplete_target: 'hidden' } %>
-    <%= f.submit "検索", class: "btn btn-primary join-item" %>
+  <div>
+    <div class="mb-5">
+      <%= f.date_field :"#{date_key}_gteq", class: "border" %>
+      <span>~</span>
+      <%= f.date_field :"#{date_key}_lteq_end_of_day", class: "border" %>
+    </div>
+    <div class="join">
+      <%= f.search_field search_key, data: { autocomplete_target: 'input'}, class: "input input-bordered md:w-96 join-items", placeholder: "キーワード検索" %>
+      <%= f.hidden_field key, data: { autocomplete_target: 'hidden' } %>
+
+      <%= f.submit "検索", class: "btn btn-primary join-items" %>
+    </div>
   </div>
 <% end %>
