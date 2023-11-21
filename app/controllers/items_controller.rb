@@ -10,7 +10,11 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = current_user.items.where.not(disposal_method: 0).where("name like ?", "%#{params[:q]}%")
+    if params[:view] == 'history'
+      @items = current_user.items.where.not(disposal_method: 0).where("name like ?", "%#{params[:q]}%")
+    elsif params[:view] == 'index'
+      @items = current_user.items.where(disposal_method: 0).where("name like ?", "%#{params[:q]}%")
+    end
     respond_to do |format|
       format.js
     end

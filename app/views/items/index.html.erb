@@ -1,7 +1,10 @@
 <div>
   <div class="flex justify-center my-5">
     <!-- 検索フォーム -->
-    <%= render "shared/search_form", url: category_items_path(@category), search_key: :name_cont, key: :name %>
+    <div data-controller="autocomplete" data-autocomplete-url-value="<%= search_items_path(view: 'index') %>" role="combobox">
+      <%= render "shared/search_form", url: category_items_path(@category), search_key: :name_cont, key: :name %>
+      <ul class="list-group bg-white absolute w-full md:text-sm max-w-max" data-autocomplete-target="results"></ul>
+    </div>
   </div>
   <div data-controller="tab">
     <div class="tabs">

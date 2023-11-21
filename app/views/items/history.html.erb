@@ -1,6 +1,6 @@
 <div>
   <div class="flex justify-center my-5">
-    <div data-controller="autocomplete" data-autocomplete-url-value="/items/search" role="combobox">
+    <div data-controller="autocomplete" data-autocomplete-url-value="<%= search_items_path(view: 'history') %>" role="combobox">
       <%= render "shared/search_form", url: history_items_path, search_key: :name_cont, key: :name %>
       <ul class="list-group bg-white absolute w-full md:text-sm max-w-max" data-autocomplete-target="results"></ul>
     </div>
