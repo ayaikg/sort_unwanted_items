@@ -1,4 +1,7 @@
 <div class="container mx-auto w-full max-w-xl">
+  <div class="flex justify-center my-5">
+    <%= render "shared/search_form", url: categories_path, search_key: :title_cont %>
+  </div>
   <div data-controller="graph" class="relative h-32">
     <canvas data-graph-target="bar"></canvas>
   </div>

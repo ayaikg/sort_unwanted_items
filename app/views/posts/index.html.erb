@@ -1,7 +1,12 @@
-<div class="flex items-center justify-center md:flex flex-wrap">
-  <% if @posts.present? %>
-    <%= render @posts %>
-  <% else %>
-    <p class="text-center">投稿はありません</p>
-  <% end %>
+<div>
+  <div class="flex justify-center my-5">
+    <%= render "shared/search_form", url: posts_path, search_key: :advice_cont %>
+  </div>
+  <div class="flex items-center justify-center md:flex flex-wrap">
+    <% if @posts.present? %>
+      <%= render @posts %>
+    <% else %>
+      <p class="text-center">投稿はありません</p>
+    <% end %>
+  </div>
 </div>

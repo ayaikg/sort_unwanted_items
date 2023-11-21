@@ -1,4 +1,7 @@
 <div>
+  <div class="flex justify-center my-5">
+    <%= render "shared/search_form", url: history_items_path, search_key: :name_cont %>
+  </div>
   <div class="overflow-x-auto">
     <table class="table">
       <% if @disposal_items.present? %>

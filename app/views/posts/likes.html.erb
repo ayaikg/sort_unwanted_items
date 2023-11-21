@@ -1,4 +1,7 @@
 <div class="container px-4">
+  <div class="flex justify-center my-5">
+    <%= render "shared/search_form", url: likes_posts_path, search_key: :advice_cont %>
+  </div>
   <div class="flex items-center justify-center md:flex flex-wrap">
     <% if @like_posts.present? %>
       <%= render @like_posts %>

@@ -1,6 +1,6 @@
 <%= search_form_for @q, url: url do |f| %>
-  <div class"join>
-    <%= f.search_field :name_or_price_cont, class: "input input-bordered join-item", placeholder: "入力して下さい" %>
+  <div class="join">
+    <%= f.search_field search_key, class: "input input-bordered join-item md:w-96", placeholder: "入力して下さい" %>
     <%= f.submit "検索", class: "btn btn-primary join-item" %>
   </div>
 <% end %>

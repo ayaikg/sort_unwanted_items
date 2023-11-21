@@ -1,24 +1,30 @@
-<div data-controller="tab">
-  <div class="tabs">
-    <a class="tab w-1/2 tab-bordered tab-active" data-tab-target="status" data-action="click->tab#status">出品中</a> 
-    <a class="tab w-1/2 tab-bordered not-active" data-tab-target="status" data-action="click->tab#status">未出品</a> 
+<div>
+  <div class="flex justify-center my-5">
+    <!-- 検索フォーム -->
+    <%= render "shared/search_form", url: items_path, search_key: :name_cont %>
   </div>
-  <div data-tab-target="content">
-    <div class="overflow-x-auto">
-      <table class="table">
-        <% if @listed_items.present? %>
-          <%= render partial: 'item', collection: @listed_items, locals: { item: @listed_items } %>
-        <% end %>
-      </table>
+  <div data-controller="tab">
+    <div class="tabs">
+      <a class="tab w-1/2 tab-bordered tab-active" data-tab-target="status" data-action="click->tab#status">出品中</a> 
+      <a class="tab w-1/2 tab-bordered not-active" data-tab-target="status" data-action="click->tab#status">未出品</a> 
     </div>
-  </div>
-  <div class="hidden" data-tab-target="content">
-    <div class="overflow-x-auto">
-      <table class="table">
-        <% if @unlisted_items.present? %>
-          <%= render partial: 'item', collection: @unlisted_items, locals: { item: @unlisted_items } %>
-        <% end %>
-      </table>
+    <div data-tab-target="content">
+      <div class="overflow-x-auto">
+        <table class="table">
+          <% if @listed_items.present? %>
+            <%= render partial: 'item', collection: @listed_items %>
+          <% end %>
+        </table>
+      </div>
+    </div>
+    <div class="hidden" data-tab-target="content">
+      <div class="overflow-x-auto">
+        <table class="table">
+          <% if @unlisted_items.present? %>
+            <%= render partial: 'item', collection: @unlisted_items %>
+          <% end %>
+        </table>
+      </div>
     </div>
   </div>
 </div>
