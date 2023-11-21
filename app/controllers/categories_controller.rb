@@ -6,6 +6,13 @@ class CategoriesController < ApplicationController
     @categories = @q.result(distinct: true)
   end
 
+  def search
+    @categories = current_user.categories.where("title like ?", "%#{params[:q]}%")
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def new
     @category = Category.new
   end

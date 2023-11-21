@@ -2,11 +2,14 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root to: 'homes#top'
   resources :users, only: [:new, :create, :show, :edit, :update]
-  resources :categories, except: :show
+  resources :categories, except: :show do
+    get 'search', on: :collection
+  end
   resources :items do
     collection do
       get 'history'
       get 'chart'
+      get 'search'
     end
   end
   resources :posts do

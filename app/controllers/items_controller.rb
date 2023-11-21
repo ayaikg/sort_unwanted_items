@@ -11,6 +11,13 @@ class ItemsController < ApplicationController
     @unlisted_items = @q.result(distinct: true).includes(:user).where(listing_status: false, disposal_method: 0)
   end
 
+  def search
+    @items = current_user.items.where.not(disposal_method: 0).where("name like ?", "%#{params[:q]}%")
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def show; end
 
   def new

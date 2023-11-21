@@ -1,6 +1,9 @@
 <div class="container mx-auto w-full max-w-xl">
-  <div class="flex justify-center my-5">
-    <%= render "shared/search_form", url: categories_path, search_key: :title_cont %>
+  <div class="flex justify-center mt-5 mb-10">
+    <div data-controller="autocomplete" data-autocomplete-url-value="/categories/search" role="combobox">
+      <%= render "shared/search_form", url: categories_path, search_key: :title_cont, key: :title %>
+      <ul class="list-group bg-white absolute w-full md:text-sm max-w-max" data-autocomplete-target="results"></ul>
+    </div>
   </div>
   <div data-controller="graph" class="relative h-32">
     <canvas data-graph-target="bar"></canvas>

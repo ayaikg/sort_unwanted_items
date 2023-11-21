@@ -1,6 +1,7 @@
 <%= search_form_for @q, url: url do |f| %>
   <div class="join">
-    <%= f.search_field search_key, class: "input input-bordered join-item md:w-96", placeholder: "入力して下さい" %>
+    <%= f.search_field search_key, data: { autocomplete_target: 'input'}, class: "input input-bordered join-item md:w-96", placeholder: "入力して下さい" %>
+    <%= f.hidden_field key, data: { autocomplete_target: 'hidden' } %>
     <%= f.submit "検索", class: "btn btn-primary join-item" %>
   </div>
 <% end %>

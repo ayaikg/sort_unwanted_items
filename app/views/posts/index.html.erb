@@ -1,6 +1,6 @@
 <div>
   <div class="flex justify-center my-5">
-    <%= render "shared/search_form", url: posts_path, search_key: :advice_cont %>
+    <%= render "shared/search_form", url: posts_path, search_key: :advice_cont, key: :advice %>
   </div>
   <div class="flex items-center justify-center md:flex flex-wrap">
     <% if @posts.present? %>
