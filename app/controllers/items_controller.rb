@@ -6,8 +6,9 @@ class ItemsController < ApplicationController
     return unless params[:category_id].present?
 
     @category = current_user.categories.find(params[:category_id])
-    @listed_items = @category.items.includes(:user).where(listing_status: true, disposal_method: 0)
-    @unlisted_items = @category.items.includes(:user).where(listing_status: false, disposal_method: 0)
+    @q = @category.items.ransack(params[:q])
+    @listed_items = @q.result(distinct: true).includes(:user).where(listing_status: true, disposal_method: 0)
+    @unlisted_items = @q.result(distinct: true).includes(:user).where(listing_status: false, disposal_method: 0)
   end
 
   def show; end
@@ -29,7 +30,8 @@ class ItemsController < ApplicationController
   end
 
   def history
-    @disposal_items = current_user.items.includes(:user).where.not(disposal_method: 0)
+    @q = current_user.items.ransack(params[:q])
+    @disposal_items = @q.result(distinct: true).includes(:user).where.not(disposal_method: 0)
   end
 
   def chart

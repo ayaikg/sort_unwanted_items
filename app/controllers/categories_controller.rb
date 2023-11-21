@@ -2,7 +2,8 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:edit, :update, :destroy]
 
   def index
-    @categories = Category.where(user_id: current_user.id)
+    @q = current_user.categories.ransack(params[:q])
+    @categories = @q.result(distinct: true)
   end
 
   def new
