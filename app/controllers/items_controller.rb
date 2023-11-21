@@ -3,8 +3,6 @@ class ItemsController < ApplicationController
   before_action :set_categories, only: [:new, :create, :edit, :update]
 
   def index
-    return unless params[:category_id].present?
-
     @category = current_user.categories.find(params[:category_id])
     @q = @category.items.ransack(params[:q])
     @listed_items = @q.result(distinct: true).includes(:user).where(listing_status: true, disposal_method: 0)

@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   resources :users, only: [:new, :create, :show, :edit, :update]
   resources :categories, except: :show do
+    resources :items, only: :index
     get 'search', on: :collection
   end
-  resources :items do
+  resources :items, except: :index do
     collection do
       get 'history'
       get 'chart'

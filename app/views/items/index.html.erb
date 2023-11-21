@@ -1,7 +1,7 @@
 <div>
   <div class="flex justify-center my-5">
     <!-- 検索フォーム -->
-    <%= render "shared/search_form", url: items_path, search_key: :name_cont %>
+    <%= render "shared/search_form", url: category_items_path(@category), search_key: :name_cont, key: :name %>
   </div>
   <div data-controller="tab">
     <div class="tabs">
