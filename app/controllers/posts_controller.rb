@@ -3,8 +3,7 @@ class PostsController < ApplicationController
   before_action :set_disposal, only: [:new, :create, :edit, :update]
 
   def index
-    @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).includes(:user).order(created_at: :desc)
+    @posts = @q_header.result(distinct: true).includes(:user).order(created_at: :desc) if @q_header
   end
 
   def show
@@ -43,8 +42,14 @@ class PostsController < ApplicationController
   end
 
   def likes
-    @q = current_user.like_posts.ransack(params[:q])
-    @like_posts = @q.result(distinct: true).includes(:user).order(created_at: :desc)
+    @like_posts = @q_header.result(distinct: true).includes(:user).order(created_at: :desc) if @q_header
+  end
+
+  def search
+    @posts = Post.where("advice like ?", "%#{params[:q]}%")
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

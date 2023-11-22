@@ -3,10 +3,9 @@ class ItemsController < ApplicationController
   before_action :set_categories, only: [:new, :create, :edit, :update]
 
   def index
-    @category = current_user.categories.find(params[:category_id])
-    @q = @category.items.ransack(params[:q])
-    @listed_items = @q.result(distinct: true).includes(:user).where(listing_status: true, disposal_method: 0)
-    @unlisted_items = @q.result(distinct: true).includes(:user).where(listing_status: false, disposal_method: 0)
+    before_items = @q_header.result(distinct: true).includes(:user).where(disposal_method: 0) if @q_header
+    @listed_items = before_items.where(listing_status: true)
+    @unlisted_items = before_items.where(listing_status: false)
   end
 
   def search
@@ -39,8 +38,7 @@ class ItemsController < ApplicationController
   end
 
   def history
-    @q = current_user.items.ransack(params[:q])
-    @disposal_items = @q.result(distinct: true).includes(:user).where.not(disposal_method: 0)
+    @disposal_items = @q_header.result(distinct: true).includes(:user).where.not(disposal_method: 0) if @q_header
   end
 
   def chart

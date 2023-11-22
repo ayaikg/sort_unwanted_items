@@ -2,8 +2,7 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:edit, :update, :destroy]
 
   def index
-    @q = current_user.categories.ransack(params[:q])
-    @categories = @q.result(distinct: true)
+    @categories = @q_header.result(distinct: true) if @q_header
   end
 
   def search

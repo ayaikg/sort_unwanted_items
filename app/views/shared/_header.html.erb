@@ -1,12 +1,25 @@
 <!-- Navbar -->
 <div class="navbar bg-base-200">
-  <div class="flex-1">
+  <div class="navbar-start">
     <%= link_to "steteco", root_path, class: "btn btn-ghost normal-case text-xl" %>
   </div>
-  <div class="flex-none">
+  <% if choice_page?(@category) %>
+  <div class="navbar-center" data-controller="autocomplete" data-autocomplete-url-value=<%= set_value(@category) %> role="combobox">
+    <%= search_form_for @q_header, url: set_url(@category) do |f| %>
+      <div class="join">
+        <%= f.search_field set_search_key(@category), data: { autocomplete_target: 'input'}, class: "input input-bordered md:w-96 join-items", placeholder: "キーワード検索" %>
+        <%= f.hidden_field set_key(@category), data: { autocomplete_target: 'hidden' } %>
+      
+        <%= f.submit "検索", class: "btn btn-primary join-items" %>
+      </div>
+    <% end %>
+    <ul class="list-group bg-white absolute w-full md:text-sm max-w-max" data-autocomplete-target="results"></ul>
+  </div>
+  <% end %>
+  <div class="navbar-end">
     <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-ghost btn-circle avatar">
       <div class="w-10 rounded-full">
-        <%= image_tag "no_image.png" %>
+        <%= image_tag current_user.avatar.url %>
       </div>
     </label>
   </div>
