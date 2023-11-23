@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_categories, only: [:new, :create, :edit, :update]
 
   def index
-    before_items = @q_header.result(distinct: true).includes(:user).where(disposal_method: 0) if @q_header
+    before_items = @q_header.result(distinct: true).select('items.*, notifications.notify_date').joins(:notification).where(disposal_method: 0) if @q_header
     @listed_items = before_items.where(listing_status: true)
     @unlisted_items = before_items.where(listing_status: false)
   end
@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
   end
 
   def history
-    @disposal_items = @q_header.result(distinct: true).includes(:user).where.not(disposal_method: 0) if @q_header
+    @disposal_items = @q_header.result(distinct: true).select('items.*, notifications.notify_date').joins(:notification).where.not(disposal_method: 0) if @q_header
   end
 
   def chart

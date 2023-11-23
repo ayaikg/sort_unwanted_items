@@ -3,7 +3,8 @@ class PostsController < ApplicationController
   before_action :set_disposal, only: [:new, :create, :edit, :update]
 
   def index
-    @posts = @q_header.result(distinct: true).includes(:user).order(created_at: :desc) if @q_header
+    # distinct: trueではsort_linkでエラーになるため
+    @posts = @q_header.result.group('posts.id').includes([:user, :likes, :item]).order(created_at: :desc) if @q_header
   end
 
   def show
