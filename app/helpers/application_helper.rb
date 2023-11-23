@@ -29,7 +29,7 @@ module ApplicationHelper
     if category && current_page?(category_items_path(category)) || current_page?(history_items_path)
       :name_cont
     elsif current_page?(categories_path)
-      :title_cont
+      :title_or_items_name_cont
     elsif current_page?(posts_path) || current_page?(likes_posts_path)
       :advice_cont
     end
