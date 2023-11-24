@@ -26,7 +26,7 @@ module ApplicationHelper
   end
 
   def set_search_key(category = nil)
-    if category && current_page?(category_items_path(category)) || current_page?(history_items_path)
+    if (category && current_page?(category_items_path(category))) || current_page?(history_items_path)
       :name_cont
     elsif current_page?(categories_path)
       :title_or_items_name_cont
@@ -36,7 +36,7 @@ module ApplicationHelper
   end
 
   def set_key(category = nil)
-    if category && current_page?(category_items_path(category)) || current_page?(history_items_path)
+    if (category && current_page?(category_items_path(category))) || current_page?(history_items_path)
       :name
     elsif current_page?(categories_path)
       :title
@@ -46,15 +46,15 @@ module ApplicationHelper
   end
 
   def choice_page?(category = nil)
-    category && current_page?(category_items_path(category)) ||
-    current_page?(history_items_path) ||
-    current_page?(categories_path) ||
-    current_page?(posts_path) ||
-    current_page?(likes_posts_path)
+    (category && current_page?(category_items_path(category))) ||
+      current_page?(history_items_path) ||
+      current_page?(categories_path) ||
+      current_page?(posts_path) ||
+      current_page?(likes_posts_path)
   end
 
   def set_diposal_key(category = nil)
-    if category && current_page?(category_items_path(category)) || current_page?(history_items_path)
+    if (category && current_page?(category_items_path(category))) || current_page?(history_items_path)
       :disposal_method_eq
     elsif current_page?(posts_path) || current_page?(likes_posts_path)
       :item_disposal_method_eq
@@ -62,7 +62,7 @@ module ApplicationHelper
   end
 
   def set_listing_key(category = nil)
-    if category && current_page?(category_items_path(category)) || current_page?(history_items_path)
+    if (category && current_page?(category_items_path(category))) || current_page?(history_items_path)
       :listing_status_eq
     elsif current_page?(posts_path) || current_page?(likes_posts_path)
       :item_listing_status_eq

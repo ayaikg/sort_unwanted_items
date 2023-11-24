@@ -21,7 +21,6 @@ class ApplicationController < ActionController::Base
       @q_header = Post.ransack(params[:q])
     when 'posts#likes'
       @q_header = current_user.like_posts.ransack(params[:q])
-    else
     end
   end
 end
