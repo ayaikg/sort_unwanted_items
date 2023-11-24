@@ -1,5 +1,5 @@
 <tr>
-  <td class="w-1/2">
+  <td>
     <%= link_to item_path(item), class: "block py-2.5 px-4" do %>
       <div class="flex items-center space-x-5">
         <div class="avatar">
@@ -14,6 +14,16 @@
     <% end %>
   </td>
   <% if current_page?(history_items_path) %>
+    <td>
+      <div class="border">
+        <%= item.listing_status ? '出品中' : '未出品' %>
+      </div>
+    </td>
+    <td>
+      <div class="border">
+        <%= item.disposal_method_i18n %>
+      </div>
+    </td>
     <td>
       <%= link_to '投稿する', new_post_path(item_id: item.id), class: "btn" %>
     </td>

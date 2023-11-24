@@ -3,11 +3,22 @@ class ItemsController < ApplicationController
   before_action :set_categories, only: [:new, :create, :edit, :update]
 
   def index
-    return unless params[:category_id].present?
+    if @q_header
+      before_items = @q_header.result(distinct: true).select('items.*, notifications.notify_date').joins(:notification).where(disposal_method: 0)
+    end
+    @listed_items = before_items.where(listing_status: true)
+    @unlisted_items = before_items.where(listing_status: false)
+  end
 
-    @category = current_user.categories.find(params[:category_id])
-    @listed_items = @category.items.includes(:user).where(listing_status: true, disposal_method: 0)
-    @unlisted_items = @category.items.includes(:user).where(listing_status: false, disposal_method: 0)
+  def search
+    if params[:view] == 'history'
+      @items = current_user.items.where.not(disposal_method: 0).where("name like ?", "%#{params[:q]}%")
+    elsif params[:view] == 'index'
+      @items = current_user.items.where(disposal_method: 0).where("name like ?", "%#{params[:q]}%")
+    end
+    respond_to do |format|
+      format.js
+    end
   end
 
   def show; end
@@ -29,7 +40,9 @@ class ItemsController < ApplicationController
   end
 
   def history
-    @disposal_items = current_user.items.includes(:user).where.not(disposal_method: 0)
+    return unless @q_header
+
+    @disposal_items = @q_header.result(distinct: true).select('items.*, notifications.notify_date').joins(:notification).where.not(disposal_method: 0)
   end
 
   def chart

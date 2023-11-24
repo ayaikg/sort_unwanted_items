@@ -2,7 +2,14 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:edit, :update, :destroy]
 
   def index
-    @categories = Category.where(user_id: current_user.id)
+    @categories = @q_header.result(distinct: true) if @q_header
+  end
+
+  def search
+    @categories = current_user.categories.where("title like ?", "%#{params[:q]}%")
+    respond_to do |format|
+      format.js
+    end
   end
 
   def new

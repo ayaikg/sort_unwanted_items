@@ -1,5 +1,5 @@
 <div class="container w-full max-w-xl">
-  <h1 class="text-center mb-8">投稿詳細</h1>
+  <h2 class="text-center mb-8">投稿詳細</h2>
   <div class="flex justify-end">
   <% if current_user.own?(@post) %>
     <%= render "shared/crud_icon", object: @post %>
@@ -11,16 +11,27 @@
   <article class="card bg-base-100">
     <div class="card-body px-0 pt-0">
       <div>
-        <p class="bg-accent">断捨離したモノ</p>
+        <h2 class="bg-accent">断捨離したモノ</h2>
         <p class="card-title"><%= @post.item.name %></p>
         <figure><%= image_tag @post.item.image.url %></figure>
+        <h3><%= Category.human_attribute_name(:title) %></h3>
+        <p><%= @post.item.category.title %></p>
+
+        <h3><%= Item.human_attribute_name(:price) %></h3>
+        <p><%= @post.item.price %></p>
+
+        <h3><%= Item.human_attribute_name(:listing_status) %></h3>
+        <p><%= @post.item.listing_status ? '出品中' : '未出品' %></p>
+
+        <h3><%= Item.human_attribute_name(:disposal_method) %></h3>
+        <p><%= @post.item.disposal_method_i18n %></p>
       </div>
       <div>
-        <p class="bg-accent">お別れのことば</p>
+        <h2 class="bg-accent">お別れのことば</h2>
         <p><%= @post.content %></p>
       </div>
       <div>
-        <p class="bg-accent">みんなへのアドバイス</p>
+        <h2 class="bg-accent">みんなへのアドバイス</h2>
         <p><%= simple_format(@post.advice) %></p>
       </div>
     </div>

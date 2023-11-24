@@ -81,7 +81,7 @@ gem "carrierwave"
 gem "mini_magick"
 
 # 検索機能
-gem "ransack"
+gem "ransack", "3.2.1"
 
 # 変数をjsに渡す
 gem "gon"
