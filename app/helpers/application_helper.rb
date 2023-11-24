@@ -52,4 +52,20 @@ module ApplicationHelper
     current_page?(posts_path) ||
     current_page?(likes_posts_path)
   end
+
+  def set_diposal_key(category = nil)
+    if category && current_page?(category_items_path(category)) || current_page?(history_items_path)
+      :disposal_method_eq
+    elsif current_page?(posts_path) || current_page?(likes_posts_path)
+      :item_disposal_method_eq
+    end
+  end
+
+  def set_listing_key(category = nil)
+    if category && current_page?(category_items_path(category)) || current_page?(history_items_path)
+      :listing_status_eq
+    elsif current_page?(posts_path) || current_page?(likes_posts_path)
+      :item_listing_status_eq
+    end
+  end
 end
