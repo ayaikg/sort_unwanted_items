@@ -46,13 +46,6 @@ class PostsController < ApplicationController
     @like_posts = @q_header.result(distinct: true).includes(:user).order(created_at: :desc) if @q_header
   end
 
-  def search
-    @posts = Post.where("advice like ?", "%#{params[:q]}%")
-    respond_to do |format|
-      format.js
-    end
-  end
-
   private
 
   def post_params
