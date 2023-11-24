@@ -20,8 +20,6 @@ module ApplicationHelper
       search_items_path(view: 'history')
     elsif current_page?(categories_path)
       search_categories_path
-    elsif current_page?(posts_path)
-      search_posts_path
     end
   end
 
