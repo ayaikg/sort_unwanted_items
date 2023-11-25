@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_231_116_121_355) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_16_121355) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,12 +20,14 @@ ActiveRecord::Schema[7.0].define(version: 20_231_116_121_355) do
     t.string "uid", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index %w[provider uid], name: "index_authentications_on_provider_and_uid"
+    t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
     t.index ["user_id"], name: "index_authentications_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
     t.string "title", null: false
+    t.string "icon"
+    t.integer "items_count", default: 0, null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -44,13 +46,13 @@ ActiveRecord::Schema[7.0].define(version: 20_231_116_121_355) do
     t.string "image"
     t.string "name", null: false
     t.integer "price"
+    t.date "disposed_at"
     t.boolean "listing_status", default: false, null: false
     t.integer "disposal_method", default: 0, null: false
     t.bigint "user_id", null: false
     t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "disposed_at"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
@@ -61,7 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 20_231_116_121_355) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_likes_on_post_id"
-    t.index %w[user_id post_id], name: "index_likes_on_user_id_and_post_id", unique: true
+    t.index ["user_id", "post_id"], name: "index_likes_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
@@ -74,8 +76,10 @@ ActiveRecord::Schema[7.0].define(version: 20_231_116_121_355) do
   end
 
   create_table "posts", force: :cascade do |t|
+    t.string "post_image"
     t.string "content"
     t.text "advice"
+    t.integer "likes_count", default: 0, null: false
     t.bigint "user_id", null: false
     t.bigint "item_id", null: false
     t.datetime "created_at", null: false
