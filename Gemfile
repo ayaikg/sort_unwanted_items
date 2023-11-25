@@ -85,3 +85,6 @@ gem "ransack", "3.2.1"
 
 # 変数をjsに渡す
 gem "gon"
+
+# N+1対策
+gem "counter_culture"
