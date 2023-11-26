@@ -1,6 +1,13 @@
 <div>
   <h3 class="font-bold text-lg text-center">カテゴリー<%= title %></h3>
   <%= form_with model: category, data: { action: "turbo:submit-end->modal#close", turbo_frame: "category" }, local: true do |f| %>
+    <div class="flex justify-center">
+      <%= f.label :icon do %>
+        <%= image_tag category.icon.url, id: "preview", class: "w-13" %>
+        <%= f.file_field :icon, onchange: "previewFileWithId('preview')", accept: "image/*", capture: "camera", class: "hidden" %>
+        <%= f.hidden_field :icon_cache %>
+      <% end %>
+    </div>
     <div class="form-control">
       <%= f.label :title, class: "label-text" %>
       <%= f.text_field :title, class: "input input-bordered" %>

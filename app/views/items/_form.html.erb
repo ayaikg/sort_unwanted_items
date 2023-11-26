@@ -3,13 +3,9 @@
   <span>アイテム画像</span>
     <div class="flex justify-center">
       <%= f.label :image do %>
-        <% if item.image.present? %>
-          <%= image_tag item.image.url, id: "preview", class: "w-40" %>
-        <% else %>
-          <%= image_tag 'item_new.png', class: "w-40" %>
-        <% end %>
-          <%= f.file_field :image, onchange: "previewFileWithId(preview)", accept: "image/*", capture: "camera", class:"hidden" %>
-          <%= f.hidden_field :image_cache %>
+        <%= image_tag item.image.url, id: "preview", class: "w-13" %>
+        <%= f.file_field :image, onchange: "previewFileWithId('preview')", accept: "image/*", capture: "camera", class: "hidden" %>
+        <%= f.hidden_field :image_cache %>
       <% end %>
     </div>
     <div class="form-control mb-6 border-b border-teal-500">

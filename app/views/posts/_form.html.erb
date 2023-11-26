@@ -3,6 +3,13 @@
     <div class="form-control w-full mb-6">
       <%= f.collection_select :item_id, disposal_item, :id, :name, { include_blank: "選択して下さい" } %>
     </div>
+    <div class="flex justify-center">
+      <%= f.label :post_image do %>
+        <%= image_tag post.post_image.url, id: "preview", class: "w-15" %>
+        <%= f.file_field :post_image, onchange: "previewFileWithId('preview')", accept: "image/*", capture: "camera", class: "hidden" %>
+        <%= f.hidden_field :post_image_cache %>
+      <% end %>
+    </div>
     <div class="form-control w-full">
       <%= f.label :content, class: "mb-2" %>
       <%= f.text_field :content %>
