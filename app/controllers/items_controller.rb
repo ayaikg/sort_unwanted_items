@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
 
   def index
     if @q_header
-      before_items = @q_header.result(distinct: true).select('items.*, notifications.notify_date').joins(:notification).where(disposal_method: 0)
+      before_items = @q_header.result(distinct: true).includes(:notification).select('items.*, notifications.notify_date').joins(:notification).where(disposal_method: 0)
     end
     @listed_items = before_items.where(listing_status: true)
     @unlisted_items = before_items.where(listing_status: false)
