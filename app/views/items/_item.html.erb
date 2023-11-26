@@ -9,27 +9,29 @@
         </div>
         <div>
           <div class="font-bold"><%= item.name %></div>
+          <% if current_page?(history_items_path) %>
+            <div>
+              <span class="badge badge-neutral"><%= item.listing_status ? '出品中' : '未出品' %></span>
+              <span class="badge badge-neutral"><%= item.disposal_method_i18n %></span>
+              <span>断捨離日: <%= item.disposed_at %></span>
+            </div>
+          <% elsif current_page?(category_items_path(category)) %>
+            <div>
+              <% if item.price.present? %>
+                <span><%= number_to_currency(item.price, unit: "¥", format: "%u %n") %></span>
+              <% end %>
+              <span>更新日: <%= item.updated_at.strftime("%Y-%m-%d") %></span>
+              <span>通知日: <%= item.notification.notify_date %></span>
+            </div>
+          <% end %>
         </div>
       </div>
     <% end %>
   </td>
   <% if current_page?(history_items_path) %>
     <td>
-      <div class="border">
-        <%= item.listing_status ? '出品中' : '未出品' %>
-      </div>
-    </td>
-    <td>
-      <div class="border">
-        <%= item.disposal_method_i18n %>
-      </div>
-    </td>
-    <td>
-      <%= link_to '投稿する', new_post_path(item_id: item.id), class: "btn" %>
+      <%= link_to '投稿する', new_post_path(item_id: item.id), class: "btn btn-ghost btn-xs" %>
     </td>
   <% end %>
-  <td>
-    <%= render "shared/crud_icon", object: item %>
-  </td>
 </tr>
   
