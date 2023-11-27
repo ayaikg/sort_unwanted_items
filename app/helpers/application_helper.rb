@@ -29,7 +29,7 @@ module ApplicationHelper
     elsif current_page?(categories_path)
       :title_or_items_name_cont
     elsif current_page?(posts_path) || current_page?(likes_posts_path)
-      :advice_cont
+      :advice_or_item_name_cont
     end
   end
 
@@ -69,5 +69,21 @@ module ApplicationHelper
 
   def default_categories
     %w[ファッション 書籍 コスメ ゲーム 音楽 ぬいぐるみ その他]
+  end
+
+  def set_category
+    if current_page?(history_items_path)
+      :category_title_eq
+    elsif current_page?(posts_path) || current_page?(likes_posts_path)
+      :item_category_title_eq
+    end
+  end
+
+  def set_categories_collection
+    if current_page?(history_items_path)
+      current_user.categories
+    elsif current_page?(posts_path) || current_page?(likes_posts_path)
+      Category.where(title: default_categories).select("title").distinct
+    end
   end
 end
