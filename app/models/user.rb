@@ -60,20 +60,9 @@ class User < ApplicationRecord
   private
 
   def create_default_categories
-    default_categories = [
-      { title: 'ファッション', icon: File.open(Rails.root.join('public', 'images', 'category_clothes.png')) },
-      { title: '書籍', icon: File.open(Rails.root.join('public', 'images', 'category_book.png')) },
-      { title: 'コスメ', icon: File.open(Rails.root.join('public', 'images', 'category_cosme.png')) },
-      { title: 'ゲーム', icon: File.open(Rails.root.join('public', 'images', 'category_game.png')) },
-      { title: '音楽', icon: File.open(Rails.root.join('public', 'images', 'category_music.png')) },
-      { title: 'ぬいぐるみ', icon: File.open(Rails.root.join('public', 'images', 'category_doll.png')) },
-      { title: 'その他' }
-    ]
-    default_categories.each do |category|
-      categories.find_or_create_by(title: category[:title]) do |c|
-        c.icon = category[:icon]
-        c.save!
-      end
+    default_categories = %w[ファッション 書籍 コスメ ゲーム 音楽 ぬいぐるみ その他]
+    default_categories.each do |title|
+      categories.find_or_create_by(title:)
     end
   end
 
