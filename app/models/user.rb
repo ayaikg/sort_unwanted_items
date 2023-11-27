@@ -66,7 +66,8 @@ class User < ApplicationRecord
       { title: 'コスメ', icon: File.open(Rails.root.join('public', 'images', 'category_cosme.png')) },
       { title: 'ゲーム', icon: File.open(Rails.root.join('public', 'images', 'category_game.png')) },
       { title: '音楽', icon: File.open(Rails.root.join('public', 'images', 'category_music.png')) },
-      { title: 'ぬいぐるみ', icon: File.open(Rails.root.join('public', 'images', 'category_doll.png')) }
+      { title: 'ぬいぐるみ', icon: File.open(Rails.root.join('public', 'images', 'category_doll.png')) },
+      { title: 'その他' }
     ]
     default_categories.each do |category|
       categories.find_or_create_by(title: category[:title]) do |c|
