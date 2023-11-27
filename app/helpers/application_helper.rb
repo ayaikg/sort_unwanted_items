@@ -66,4 +66,8 @@ module ApplicationHelper
       :item_listing_status_eq
     end
   end
+
+  def default_categories
+    %w[ファッション 書籍 コスメ ゲーム 音楽 ぬいぐるみ その他]
+  end
 end

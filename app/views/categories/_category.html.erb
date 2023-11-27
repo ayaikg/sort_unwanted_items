@@ -8,7 +8,9 @@
     </div>
     <div><%= category.title %></div>
     <div class="z-10">
+    <% unless default_categories.include?(category.title) %>
       <%= render 'shared/crud_icon', object: category %>
+    <% end %>
     </div>
   </div>
   <div class="collapse-content flex justify-between" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= category_items_path(category_id: category.id) %>"> 
