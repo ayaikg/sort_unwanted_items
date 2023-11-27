@@ -49,7 +49,7 @@ class ItemsController < ApplicationController
     # 過去１週間の断捨離アイテム数を取得
     disposal_datas = current_user.disposal_data_for_past_week
     # 過去1週間の全日についてデータを保証する
-    dates = (1.week.ago.to_date..Date.today).map { |date| date.strftime('%Y-%m-%d') }
+    dates = (1.week.ago.to_date..Time.zone.today).map { |date| date.strftime('%Y-%m-%d') }
     counts = dates.map { |date| disposal_datas[date.to_date].to_i }
 
     gon.disposal_dates = dates
