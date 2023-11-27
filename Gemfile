@@ -73,6 +73,9 @@ gem "enum_help"
 #ログイン機能
 gem "sorcery"
 
+# LINEBot用
+gem "line-bot-api"
+
 #LINEurlの管理
 gem "config"
 
