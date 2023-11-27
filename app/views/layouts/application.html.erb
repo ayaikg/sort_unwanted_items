@@ -24,6 +24,7 @@
 
       <%= turbo_frame_tag "modal" %>
       <main class="grow mb-20">
+        <%= render 'shared/flash_message' %>
         <%= yield %>
       </main>
       
