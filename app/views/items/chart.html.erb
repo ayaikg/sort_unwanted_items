@@ -1,6 +1,10 @@
 <div class="container">
-  <h2 class="text-center text-bold text-2xl mt-5">1週間のデータ</h2>
-  <div class="flex justify-end">
+  <h2 class="text-center text-bold text-2xl my-5">1週間のデータ</h2>
+  <div class="flex justify-around mb-5">
+    <div class="flex items-center">
+      <h3 class="mr-3">現在のアイテム数: <%= @before_items %></h3>
+      <h3>1週間の断捨離数: <%= @past_week_datas %></h3>
+    </div>
     <%= link_to "データを詳しく見る", decluttering_path(current_user), class: "btn" %>
   </div>
   <div class="w-full h-screen">

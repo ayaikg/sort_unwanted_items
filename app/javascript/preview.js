@@ -4,7 +4,7 @@ window.previewFileWithId = function() {
   const reader = new FileReader();
   reader.onloadend = function () {
     const preview = document.querySelector("#preview")
-    if(preview) {
+    if (preview) {
       preview.src = reader.result;
     }
   }

@@ -14,7 +14,7 @@
       <div class="overflow-x-auto">
         <table class="table">
           <% if @listed_items.present? %>
-            <%= render partial: 'item', collection: @listed_items %>
+            <%= render partial: 'item', collection: @listed_items, locals: { category: @category } %>
           <% end %>
         </table>
       </div>
@@ -23,7 +23,7 @@
       <div class="overflow-x-auto">
         <table class="table">
           <% if @unlisted_items.present? %>
-            <%= render partial: 'item', collection: @unlisted_items %>
+            <%= render partial: 'item', collection: @unlisted_items, locals: { category: @category } %>
           <% end %>
         </table>
       </div>

@@ -4,6 +4,11 @@ class Item < ApplicationRecord
 
   belongs_to :user
   belongs_to :category
+  counter_culture :category, column_name: proc { |model| model.disposal_method == "before" ? 'items_count' : nil },
+                             column_names: {
+                               ["items.disposal_method = ?", "before"] => 'items_count'
+                             }
+
   has_one :post, dependent: :destroy
   has_one :notification, dependent: :destroy
   accepts_nested_attributes_for :notification, allow_destroy: true

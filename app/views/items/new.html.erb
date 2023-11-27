@@ -1,4 +1,8 @@
-<div class="mx-12">
-  <h1 class="text-center">アイテム作成</h1>
-  <%= render "form", { item: @item, category: @categories } %>
+<div class="container w-full">
+  <div class="card w-auto bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title text-center">アイテム作成</h2>
+      <%= render "form", { item: @item, category: @categories } %>
+    </div>
+  </div>
 </div>
