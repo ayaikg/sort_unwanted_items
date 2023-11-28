@@ -7,16 +7,119 @@ namespace :push_line do
     }
     users = User.all
     users.each do |user|
-      limit_items = Item.joins(:notification).where(user_id: user.id).where(notification: { notify_date: Date.today })
-      unless limit_items.any?
-        names = limit_items.map { |item| item.name }
-        message = {
-          type: 'text',
-          text: "今日は#{names}の通知日です。アイテムの断捨離は済みましたか？"
-        }
+        message = item_list(user)
         response = client.push_message(user.authentications.uid, message)
         p response
+    end
+  end
+
+  def item_list(user)
+    limit_items = Item.joins(:notification).where(user_id: user.id).where(disposed_method: 0).where(notification: { notify_date: Date.today })
+    unless limit_items.empty?
+      names_with_links = limit_items.map do |item|
+        edit_url = Rails.application.routes.url_helpers.edit_item_url(item)
+          {
+            type: "box",
+            layout: "horizontal",
+            contents: [
+              {
+                type: "box",
+                layout: "vertical",
+                contents: [
+                  {
+                    type: "image",
+                    url: item.image.present? ? item.image.url : default_url,
+                    aspectMode: "cover",
+                    size: "full"
+                  }
+                ],
+                cornerRadius: "100px",
+                width: "72px",
+                height: "72px"
+              },
+              {
+                type: "box",
+                layout: "vertical",
+                contents: [
+                  {
+                    type: "text",
+                    contents: [
+                      {
+                        type: "span",
+                        text: item.name,
+                        weight: "bold"
+                      }
+                    ],
+                    size: "sm",
+                    wrap: true,
+                  },
+                  {
+                    type: "box",
+                    layout: "horizontal",
+                    contents: [
+                      {
+                        type: "button",
+                        action:{
+                          type: "uri",
+                          label: "編集ページにいく",
+                          uri: edit_url
+                        },
+                        style: "link",
+                        height: "sm"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            spacing: "xl",
+            paddingAll: "20px"
+          }
       end
     end
+    {
+      type: 'flex',
+      altText: '今日の断捨離アイテム',
+      contents: {
+        type: 'bubble',
+        header:{
+          type: 'box',
+          layout: 'horizontal',
+          contents:[
+            {
+              type: 'text',
+              text: '今日の断捨離アイテム',
+              wrap: true,
+              size: 'md',
+            }
+          ]
+        },
+        body: {
+          type: 'box',
+          layout: 'vertical',
+          contents: [
+            {
+              type: "box",
+              layout: "horizontal",
+              contents: [
+                {
+                  type: 'text',
+                  text: "今日は通知日設定をしたアイテムがあります。断捨離できたアイテムは、編集ページで処分方法を選択しましょう!",
+                  wrap: true,
+                  size: 'sm',
+                  margin: "lg"
+                }
+              ]
+            },
+            {
+              type: "box",
+              layout: "vertical",
+              contents: names_with_links
+            },
+          ],
+          paddingAll: "0px"
+        }
+      }
+    }
   end
 end
