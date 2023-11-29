@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-theme="wireframe">
+<html data-theme="lemonade">
   <head>
     <title>SortUnwantedItems</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -23,7 +23,7 @@
       </header>
 
       <%= turbo_frame_tag "modal" %>
-      <main class="grow mb-20">
+      <main class="grow bg-base-200">
         <%= render 'shared/flash_message' %>
         <%= yield %>
       </main>
@@ -31,6 +31,7 @@
       <% if current_page?(root_path) %>
         <%= render 'shared/footer' %>
       <% else %>
+        <div class="h-16 bg-base-200"></div>
         <%= render 'shared/bottom_nav' %>
       <% end %>
 
