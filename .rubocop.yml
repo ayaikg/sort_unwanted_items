@@ -21,6 +21,7 @@ AllCops:
     - "config/environments/*"
     - "config/puma.rb"
     - "config/initializers/sorcery.rb"
+    - "config/schedule.rb"
     - "node_modules/**/*"
     - "spec/**/*"
 

@@ -13,7 +13,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    return unless params[:item_id].present?
+    return if params[:item_id].blank?
 
     @post.item_id = params[:item_id]
   end
