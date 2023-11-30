@@ -1,8 +1,19 @@
 <div class="card w-72 bg-base-100 shadow-xl m-2">
-  <%= link_to post_path(post) do %>
-    <figure><%= image_tag post.item.image.url %></figure>
+  <% unless current_page?(user_path(post.user)) %>
+    <%= link_to user_path(post.user), class: "block py-2.5 px-4" do %>
+      <div class="border-b flex items-center p-2">
+        <div class="avatar mr-2">
+          <div class="w-12 rounded-full">
+            <%= image_tag post.user.avatar.url %>
+          </div>
+        </div>
+        <div>
+          <p class="font-bold"><%= post.user.name %></p>
+        </div> 
+      </div>
+    <% end %>
   <% end %>
-  <div class="card-body">
+  <div class="card-body pb-0 pt-2">
     <h2 class="card-title">
       <%= post.item.name %>
     </h2>
@@ -10,8 +21,23 @@
     <div class="card-actions justify-end">
       <% if current_user.own?(post) %>
         <%= render "shared/crud_icon", object: post %>
+        <%= link_to "https://twitter.com/share?url=#{ request.url }&text=#{ post.item.name }%0a%0a#{ post.content }", target: '_blank' do %>
+          <%= image_tag "logo-black.png", class: "w-3" %>  
+        <% end %>
       <% else %>
-        <%= render "like_button", post: post %>
+        <%= render "posts/like_button", post: post %>
+      <% end %>
+    </div>
+  </div>
+  <div class="carousel rounded-box">
+    <div class="carousel-item">
+      <%= link_to post_path(post) do %>
+        <figure><%= image_tag post.item.image.url %></figure>
+      <% end %>
+    </div>
+    <div class="carousel-item">
+      <%= link_to post_path(post) do %>
+        <figure><%= image_tag post.post_image.url %></figure>
       <% end %>
     </div>
   </div>

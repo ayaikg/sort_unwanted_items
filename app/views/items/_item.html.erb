@@ -31,6 +31,9 @@
   <% if current_page?(history_items_path) %>
     <td>
       <%= link_to '投稿する', new_post_path(item_id: item.id), class: "btn btn-ghost btn-xs" %>
+      <%= link_to "https://twitter.com/share?url=#{ request.url }&text=【断捨離アイテム】%0a%0a#{ item.name }%0a%0a【断捨離日】%0a%0a#{ item.disposed_at }", target: '_blank' do %>
+        <%= image_tag "logo-black.png", class:"w-3" %>シェア
+      <% end %>
     </td>
   <% end %>
 </tr>
