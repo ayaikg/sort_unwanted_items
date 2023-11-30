@@ -76,6 +76,9 @@ gem "sorcery"
 # LINEBot用
 gem "line-bot-api"
 
+# rakeタスク定期実行
+gem "whenever", require: false
+
 #LINEurlの管理
 gem "config"
 
