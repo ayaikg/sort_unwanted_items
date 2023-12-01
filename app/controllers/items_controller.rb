@@ -57,7 +57,6 @@ class ItemsController < ApplicationController
     gon.disposal_dates = dates
     gon.disposal_counts = counts
 
-    @past_week_datas = disposal_datas.values.sum
     @before_items = current_user.items.where(disposal_method: 0).count
   end
 
