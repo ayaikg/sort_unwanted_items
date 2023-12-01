@@ -7,17 +7,20 @@ namespace :push_line do
     }
     users = User.all
     users.each do |user|
+      unless user.authentications.empty?
         message = item_list(user)
-        response = client.push_message(user.authentications.uid, message)
+        response = client.push_message(user.authentications.first.uid, message)
         p response
+      end
     end
   end
 
   def item_list(user)
-    limit_items = Item.joins(:notification).where(user_id: user.id).where(disposed_method: 0).where(notification: { notify_date: Date.today })
+    limit_items = Item.joins(:notification).where(user_id: user.id).where(disposal_method: :before).where(notification: { notify_date: Date.today })
     unless limit_items.empty?
       names_with_links = limit_items.map do |item|
-        edit_url = Rails.application.routes.url_helpers.edit_item_url(item)
+        edit_url = "https://jjlfwz0d-3000.asse.devtunnels.ms/items/#{item.id}/edit"
+        default_url = "https://placehold.jp/80x80.png"
           {
             type: "box",
             layout: "horizontal",
