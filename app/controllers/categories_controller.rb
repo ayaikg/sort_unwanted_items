@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:edit, :update, :destroy]
 
   def index
-    @categories = @q_header.result(distinct: true) if @q_header
+    @categories = @q_header.result(distinct: true).order(created_at: :asc) if @q_header
   end
 
   def search
