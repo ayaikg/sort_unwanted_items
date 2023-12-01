@@ -83,6 +83,7 @@ GEM
       image_processing (~> 1.1)
       marcel (~> 1.0.0)
       ssrf_filter (~> 1.0)
+    chronic (0.10.2)
     coderay (1.1.3)
     concurrent-ruby (1.2.2)
     config (4.2.1)
@@ -135,6 +136,7 @@ GEM
     enum_help (0.0.19)
       activesupport (>= 3.0.0)
     erubi (1.12.0)
+    excon (0.105.0)
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.2.0)
@@ -148,6 +150,22 @@ GEM
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.2)
     ffi (1.16.3)
+    fog-aws (3.21.0)
+      fog-core (~> 2.1)
+      fog-json (~> 1.1)
+      fog-xml (~> 0.1)
+    fog-core (2.3.0)
+      builder
+      excon (~> 0.71)
+      formatador (>= 0.2, < 2.0)
+      mime-types
+    fog-json (1.2.0)
+      fog-core
+      multi_json (~> 1.10)
+    fog-xml (0.1.4)
+      fog-core
+      nokogiri (>= 1.5.11, < 2.0.0)
+    formatador (1.1.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     gon (6.4.0)
@@ -170,6 +188,7 @@ GEM
     json (2.6.3)
     jwt (2.7.1)
     language_server-protocol (3.17.0.3)
+    line-bot-api (1.28.0)
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -180,6 +199,9 @@ GEM
       net-smtp
     marcel (1.0.2)
     method_source (1.0.0)
+    mime-types (3.5.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2023.1003)
     mini_magick (4.12.0)
     mini_mime (1.1.5)
     minitest (5.20.0)
@@ -351,6 +373,8 @@ GEM
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    whenever (1.0.0)
+      chronic (>= 0.6.3)
     zeitwerk (2.6.12)
 
 PLATFORMS
@@ -366,8 +390,10 @@ DEPENDENCIES
   enum_help
   factory_bot_rails
   faker
+  fog-aws
   gon
   jsbundling-rails
+  line-bot-api
   mini_magick
   pg (~> 1.1)
   pry-byebug
@@ -384,6 +410,7 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   web-console
+  whenever
 
 RUBY VERSION
    ruby 3.2.2p53

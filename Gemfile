@@ -66,19 +66,28 @@ group :development do
   # gem "spring"
 end
 
-#日本語化対応
+# 日本語化対応
 gem "rails-i18n"
 gem "enum_help"
 
-#ログイン機能
+# ログイン機能
 gem "sorcery"
 
-#LINEurlの管理
+# LINEBot用
+gem "line-bot-api"
+
+# rakeタスク定期実行
+gem "whenever", require: false
+
+# LINEurlの管理
 gem "config"
 
-#画像編集系
+# 画像編集系
 gem "carrierwave"
 gem "mini_magick"
+
+# 画像アップロード先
+gem "fog-aws"
 
 # 検索機能
 gem "ransack", "3.2.1"

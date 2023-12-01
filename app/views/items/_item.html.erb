@@ -1,5 +1,5 @@
-<tr>
-  <td>
+<tr class="bg-base-100">
+  <td class="pr-0">
     <%= link_to item_path(item), class: "block py-2.5 px-4" do %>
       <div class="flex items-center space-x-5">
         <div class="avatar">
@@ -8,12 +8,12 @@
           </div>
         </div>
         <div>
-          <div class="font-bold"><%= item.name %></div>
+          <div class="font-bold truncate w-56"><%= item.name %></div>
           <% if current_page?(history_items_path) %>
             <div>
-              <span class="badge badge-neutral"><%= item.listing_status ? '出品中' : '未出品' %></span>
-              <span class="badge badge-neutral"><%= item.disposal_method_i18n %></span>
-              <span>断捨離日: <%= item.disposed_at %></span>
+              <span class="badge badge-info"><%= item.listing_status ? '出品中' : '未出品' %></span>
+              <span class="badge badge-info"><%= item.disposal_method_i18n %></span>
+              <div>断捨離日: <%= item.disposed_at %></div>
             </div>
           <% elsif current_page?(category_items_path(category)) %>
             <div>
@@ -29,8 +29,11 @@
     <% end %>
   </td>
   <% if current_page?(history_items_path) %>
-    <td>
-      <%= link_to '投稿する', new_post_path(item_id: item.id), class: "btn btn-ghost btn-xs" %>
+    <td class="pl-0">
+      <%= link_to '投稿する', new_post_path(item_id: item.id), class: "btn btn-outline btn-info btn-xs" %>
+      <%= link_to "https://twitter.com/share?url=#{ request.url }&text=【断捨離アイテム】%0a%0a#{ item.name }%0a%0a【断捨離日】%0a%0a#{ item.disposed_at }", target: '_blank' do %>
+        <%= image_tag "logo-black.png", class:"w-3" %>シェア
+      <% end %>
     </td>
   <% end %>
 </tr>

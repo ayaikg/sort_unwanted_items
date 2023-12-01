@@ -1,23 +1,25 @@
-<div class="collapse bg-neutral">
-  <input type="checkbox" /> 
-  <div class="collapse-title text-xl font-medium flex justify-between">
+<div class="carousel carousel-end bg-base-100 p-4 rounded-box h-20">
+  <div class="flex justify-between carousel-item w-full items-center" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= category_items_path(category_id: category.id) %>">
     <div class="avatar">
       <div class="w-10">
         <%= image_tag category.icon.url %>
       </div>
     </div>
-    <div><%= category.title %></div>
-    <div class="z-10">
-    <% unless default_categories.include?(category.title) %>
-      <%= render 'shared/crud_icon', object: category %>
-    <% end %>
+    <div class="font-bold truncate w-48">
+      <%= category.title %>
+    </div>
+    <div>
+      <p>アイテム数: <%= category.items_count %></p>
     </div>
   </div>
-  <div class="collapse-content flex justify-between" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= category_items_path(category_id: category.id) %>"> 
-    <p>アイテム数: <%= category.items_count %></p>
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 15l3-3m0 0l-3-3m3 3h-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-     </svg>
-  </div>
+  <% unless default_categories.include?(category.title) %>
+    <div class="carousel-item ml-4">
+      <div>
+        <%= link_to "編集", edit_category_path(category), data: { turbo_frame: "modal" }, class: "btn btn-info" %>
+      </div>
+      <div>
+        <%= button_to "削除", category, method: :delete, class: "btn btn-error" %>
+      </div>
+    </div>
+  <% end %>
 </div>
-  

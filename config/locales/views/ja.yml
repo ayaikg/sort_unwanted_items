@@ -1,5 +1,6 @@
 ja:
   defaults:
+    require_login: 'ログインしてください'
     login: 'ログイン'
     logout: 'ログアウト'
     create: '作成する'

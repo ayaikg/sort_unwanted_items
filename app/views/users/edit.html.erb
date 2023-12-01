@@ -5,7 +5,7 @@
     <div class="form-control">
       <%= f.label :avatar, class: "mb-2" %>
       <%= f.file_field :avatar, onchange: "previewFileWithId(preview)", accept: "image/*" %>
-      <%= f.hidden_field :image_cache %>
+      <%= f.hidden_field :avatar_cache %>
     </div>
     <div class="mt-3 flex justify-center">
       <%= image_tag @user.avatar.url, id: "preview", class: "w-24 rounded-full" %>
