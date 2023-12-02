@@ -1,15 +1,16 @@
 ja:
   defaults:
-    require_login: 'ログインしてください'
-    login: 'ログイン'
-    logout: 'ログアウト'
-    create: '作成する'
+    login: ログイン
+    logout: ログアウト
+    create: 作成する
+    message:
+      require_login: ログインしてください
   users:
     new:
-      title: 'ユーザー登録'
+      title: ユーザー登録
   catagories:
     new:
-      title: 'カテゴリー作成'
+      title: カテゴリー作成
   items:
     new:
-      title: 'アイテム作成'
+      title: アイテム作成

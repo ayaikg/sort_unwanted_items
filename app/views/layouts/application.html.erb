@@ -23,8 +23,8 @@
       </header>
 
       <%= turbo_frame_tag "modal" %>
+      <%= render 'shared/flash_message' %>
       <main class="grow bg-base-200">
-        <%= render 'shared/flash_message' %>
         <%= yield %>
       </main>
       
