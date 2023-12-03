@@ -46,6 +46,6 @@ class CategoriesController < ApplicationController
 
   def set_category
     @category = current_user.categories.find_by(id: params[:id])
-    redirect_to(root_path, alert: 'Forbidden access.') unless @pcategory
+    redirect_to(root_path, alert: 'Forbidden access.') unless @category
   end
 end
