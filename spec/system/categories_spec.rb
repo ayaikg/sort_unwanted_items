@@ -24,7 +24,7 @@ RSpec.describe 'Categories', type: :system do
 
       context 'カテゴリーの一覧ページにアクセス' do
         it '一覧ページへのアクセスが失敗する' do
-          visit edit_categories_path
+          visit categories_path
           expect(page).to have_content('ログインしてください')
           expect(current_path).to eq login_path
         end
@@ -37,19 +37,21 @@ RSpec.describe 'Categories', type: :system do
 
     describe 'カテゴリー新規登録' do
       context 'フォームの入力値が正常' do
-        it 'カテゴリーの新規作成が成功する' do
-          visit new_category_path
-          fill_in 'Title', with: 'test_title'
+        fit 'カテゴリーの新規作成が成功する' do
+          visit categories_path
+          click_link 'カテゴリー作成'
+          fill_in 'カテゴリー', with: 'test_title'
           click_button '作成'
-          expect(page).to have_content 'Title: test_title'
+          expect(page).to have_content 'test_title'
           expect(current_path).to eq categories_path
         end
       end
 
       context 'タイトルが未入力' do
         it 'カテゴリーの新規作成が失敗する' do
-          visit new_category_path
-          fill_in 'Title', with: ''
+          visit categories_path
+          click_link 'カテゴリー作成'
+          fill_in 'カテゴリー', with: ''
           click_button '作成'
           expect(page).to have_content "カテゴリーを入力してください"
           expect(current_path).to eq categories_path
@@ -57,12 +59,13 @@ RSpec.describe 'Categories', type: :system do
       end
 
       context '登録済のタイトルを入力' do
-        it 'カテゴリーの新規作成が失敗する' do
-          visit new_category_path
+        fit 'カテゴリーの新規作成が失敗する' do
+          visit categories_path
           other_category = create(:category)
-          fill_in 'Title', with: other_category.title
+          click_link 'カテゴリー作成'
+          fill_in 'カテゴリー', with: other_category.title
           click_button '作成'
-          expect(page).to have_content 'Title has already been taken'
+          expect(page).to have_content 'カテゴリーはすでに存在します'
           expect(current_path).to eq categories_path
         end
       end
@@ -71,20 +74,22 @@ RSpec.describe 'Categories', type: :system do
     describe 'カテゴリー編集' do
       let!(:category) { create(:category, user: user) }
       let(:other_category) { create(:category, user: user) }
-      before { visit edit_category_path(category) }
+      before { visit categories_path }
 
       context 'フォームの入力値が正常' do
-        it 'カテゴリーの編集が成功する' do
-          fill_in 'Title', with: 'updated_title'
+        fit 'カテゴリーの編集が成功する' do
+          find('.btn-info', text: '編集').click
+          fill_in 'カテゴリー', with: 'updated_title'
           click_button '作成'
-          expect(page).to have_content 'Title: updated_title'
+          expect(page).to have_content 'updated_title'
           expect(current_path).to eq categories_path
         end
       end
 
       context 'タイトルが未入力' do
-        it 'カテゴリーの編集が失敗する' do
-          fill_in 'Title', with: nil
+        fit 'カテゴリーの編集が失敗する' do
+          find('.btn-info', text: '編集').click
+          fill_in 'カテゴリー', with: nil
           click_button '作成'
           expect(page).to have_content "カテゴリーを入力してください"
           expect(current_path).to eq categories_path
@@ -92,10 +97,11 @@ RSpec.describe 'Categories', type: :system do
       end
 
       context '登録済のタイトルを入力' do
-        it 'カテゴリーの編集が失敗する' do
-          fill_in 'Title', with: other_category.title
+        fit 'カテゴリーの編集が失敗する' do
+          find('.btn-info', text: '編集').click
+          fill_in 'カテゴリー', with: other_category.title
           click_button '作成'
-          expect(page).to have_content "Title has already been taken"
+          expect(page).to have_content "カテゴリーはすでに存在します"
           expect(current_path).to eq categories_path
         end
       end

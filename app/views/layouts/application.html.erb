@@ -28,7 +28,7 @@
         <%= yield %>
       </main>
       
-      <% if current_page?(root_path) %>
+      <% if current_page?(root_path) || current_page?(login_path) %>
         <%= render 'shared/footer' %>
       <% else %>
         <div class="h-16 bg-base-200"></div>

@@ -1,4 +1,14 @@
 <div class="carousel carousel-end bg-base-100 p-4 rounded-box h-20">
+<% unless default_categories.include?(category.title) %>
+<div class="carousel-item ml-4">
+  <div>
+    <%= link_to "編集", edit_category_path(category), data: { turbo_frame: "modal" }, class: "btn btn-info" %>
+  </div>
+  <div>
+    <%= button_to "削除", category, method: :delete, class: "btn btn-error" %>
+  </div>
+</div>
+<% end %>
   <div class="flex justify-between carousel-item w-full items-center" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= category_items_path(category_id: category.id) %>">
     <div class="avatar">
       <div class="w-10">
@@ -12,14 +22,4 @@
       <p>アイテム数: <%= category.items_count %></p>
     </div>
   </div>
-  <% unless default_categories.include?(category.title) %>
-    <div class="carousel-item ml-4">
-      <div>
-        <%= link_to "編集", edit_category_path(category), data: { turbo_frame: "modal" }, class: "btn btn-info" %>
-      </div>
-      <div>
-        <%= button_to "削除", category, method: :delete, class: "btn btn-error" %>
-      </div>
-    </div>
-  <% end %>
 </div>
