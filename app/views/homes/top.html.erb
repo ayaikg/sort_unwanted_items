@@ -1,39 +1,65 @@
-<div class="hero min-h-screen">
-  <div class="hero-content flex-col max-w-md bg-base-100">
-    <div><%= image_tag 'top_page.jpg' %></div>
-    <div class="text-center">
-      <h1 class="mb-5 text-2xl font-bold">売れると思うと捨てられない</h1>
-        <p class="mb-5">そんな経験、ありませんか？</p>
-        <p class="mb-5">ここは、そんな悩みを解決する場所です。<p>
-
-      <h2 class="mb-5 text-2xl">How To Use</h2>
-      <div class="divide-y divide-slate-200 text-left flex flex-col space-y-4">
-        <div>
-          <h3 class="text-lg">STEP1.アイテム登録</h3>
-            <p class="indent-2">まずは溜まっている不用品をどんどん登録しましょう!</p>
-            <p>アイテムは、カテゴリー別や出品中・未出品別に分けて管理できます。</p>
-          </div>
-        <div>
-          <h3 class="text-lg">STEP2.LINE通知</h3>
-            <p class="indent-2">アイテム登録時には、通知日を指定します。</p>
-            <p>通知日が来たらLINEメッセージで断捨離の後押しをします!</p>
-        </div>
-        <div>
-          <h3 class="text-lg">STEP3.履歴ページで確認</h3>
-            <p class="indent-2">どんなものを断捨離したのか履歴ページで確認することで、次回の購入の参考にしましょう!</p>
-        </div>
-        <div>
-          <h3 class="text-lg">STEP4.グラフ</h3>
-            <p class="indent-2">断捨離した数をグラフで確認できます。</p>
-            <p>皆さんの成果をわかりやすい形で可視化することでモチベーションも上がります!</p>
-        </div>
-        <div>
-          <h3 class="text-lg">STEP5.捨てたモノをみんなでシェア</h3>
-            <p class="indent-2">アイテムを断捨離できたら投稿してみましょう！</p>
-            <p>あなたの投稿が誰かの助けになります。</p>
+<div>
+  <div class="hero h-auto" style="background-image: url(<%= asset_path 'top.jpg' %>);">
+    <div class="hero-overlay bg-opacity-60"></div>
+      <div class="hero-content text-center text-neutral-content">
+        <div class="max-w-md">
+          <h1 class="mb-5 text-2xl font-bold md:text-3xl">売れると思うと捨てられない</h1>
+          <p class="mb-5">そんな経験、ありませんか？</p>
+          <p class="mb-5">ここは、そんな悩みを解決する場所です。<p>
         </div>
       </div>
     </div>
-    <div>まずは友達追加から↓</div>
+  <div class="w-full p-5">
+    <h2 class="mb-5 text-center text-2xl">How To Use</h2>
+    <div class="space-y-4">
+      <div>
+        <h3 class="text-lg text-center">STEP1.アイテム登録</h3>
+        <div class="md:flex items-center">
+          <%= image_tag "no_image.png", class: "mx-auto" %>
+          <div class="md:w-2/5">
+            <p>まずは溜まっている不用品をどんどん登録しましょう!</p>
+            <p>アイテムは、カテゴリー別や出品中・未出品別に分けて管理できます。</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-lg text-center">STEP2.LINE通知</h3>
+        <div class="md:flex items-center">
+          <div class="md:w-2/5">
+            <p>アイテム登録時には、通知日を指定します。</p>
+            <p>通知日が来たらLINEメッセージで断捨離の後押しをします!</p>
+          </div>
+          <%= image_tag "no_image.png", class: "mx-auto" %>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-lg text-center">STEP3.履歴ページで確認</h3>
+        <div class="md:flex items-center">
+          <%= image_tag "no_image.png", class: "mx-auto" %>
+          <p class="md:w-2/5">どんなものを断捨離したのか履歴ページで確認することで、次回の購入の参考にしましょう!</p>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-lg text-center">STEP4.グラフ</h3>
+        <div class="md:flex items-center">
+          <div class="md:w-2/5">
+            <p>断捨離した数をグラフで確認できます。</p>
+            <p>皆さんの成果をわかりやすい形で可視化することでモチベーションも上がります!</p>
+          </div>
+          <%= image_tag "no_image.png", class: "mx-auto" %>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-lg text-center">STEP5.捨てたモノをみんなでシェア</h3>
+        <div class="md:flex items-center">
+          <%= image_tag "no_image.png", class: "mx-auto" %>
+          <div class="md:w-2/5">
+            <p>アイテムを断捨離できたら投稿してみましょう！</p>
+            <p>あなたの投稿が誰かの助けになります。</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  <div class="text-center">まずは友達追加から↓</div>
 </div>
