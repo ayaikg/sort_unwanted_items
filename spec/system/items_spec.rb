@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Items', type: :system do
+  let(:user) { create(:user) }
+  let(:category) { create(:category) }
+  let(:item) { create(:item, category: category, user: user) }
+
   describe 'ログイン前' do
     describe 'ページ遷移確認' do
       context 'アイテムの新規登録ページにアクセス' do
@@ -30,15 +34,13 @@ RSpec.describe 'Items', type: :system do
   end
 
   describe 'ログイン後' do
-    let(:user) { create(:user) }
     before { login_as(user) }
-    let(:category) { create(:category) }
-    let(:item) { create(:item, category: category, user: user) }
 
     describe 'アイテム新規登録' do
+      #一回だとログインできないため
       before { login_as(user) }
       context 'フォームの入力値が正常' do
-        fit 'アイテムの新規作成が成功する' do
+        it 'アイテムの新規作成が成功する' do
           visit new_item_path
           fill_in 'アイテム名', with: 'test_name'
           select 'ファッション', from: 'カテゴリー'

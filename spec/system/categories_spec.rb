@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Categories', type: :system do
+  let(:user) { create(:user) }
+  let(:category) { create(:category) }
 
   describe 'ログイン前' do
     describe 'ページ遷移確認' do
@@ -31,7 +33,6 @@ RSpec.describe 'Categories', type: :system do
   end
 
   describe 'ログイン後' do
-    let(:user) { create(:user) }
     before { login_as(user) }
 
     describe 'カテゴリー新規登録' do
@@ -61,11 +62,10 @@ RSpec.describe 'Categories', type: :system do
       end
 
       context '登録済のタイトルを入力' do
-        fit 'カテゴリーの新規作成が失敗する' do
+        it 'カテゴリーの新規作成が失敗する' do
           visit categories_path
-          other_category = create(:category)
           click_on 'カテゴリー作成'
-          fill_in 'カテゴリー', with: other_category.title
+          fill_in 'カテゴリー', with: 'ファッション'
           click_button '作成'
           expect(page).to have_content 'カテゴリーはすでに存在します'
           expect(current_path).to eq categories_path
@@ -74,12 +74,13 @@ RSpec.describe 'Categories', type: :system do
     end
 
     describe 'カテゴリー編集' do
+      before { login_as(user) }
       let!(:category) { create(:category, user: user) }
       let(:other_category) { create(:category, user: user) }
       before { visit categories_path }
 
       context 'フォームの入力値が正常' do
-        fit 'カテゴリーの編集が成功する' do
+        it 'カテゴリーの編集が成功する' do
           click_on '編集'
           fill_in 'カテゴリー', with: 'updated_title'
           click_button '作成'
@@ -89,7 +90,7 @@ RSpec.describe 'Categories', type: :system do
       end
 
       context 'タイトルが未入力' do
-        fit 'カテゴリーの編集が失敗する' do
+        it 'カテゴリーの編集が失敗する' do
           click_on '編集'
           fill_in 'カテゴリー', with: ''
           click_button '作成'
@@ -99,7 +100,7 @@ RSpec.describe 'Categories', type: :system do
       end
 
       context '登録済のタイトルを入力' do
-        fit 'カテゴリーの編集が失敗する' do
+        it 'カテゴリーの編集が失敗する' do
           click_on '編集'
           fill_in 'カテゴリー', with: other_category.title
           click_button '作成'
@@ -121,6 +122,7 @@ RSpec.describe 'Categories', type: :system do
     end
 
     describe 'カテゴリー削除' do
+      before { login_as(user) }
       let!(:category) { create(:category, user: user) }
 
       it 'カテゴリーの削除が成功する' do
