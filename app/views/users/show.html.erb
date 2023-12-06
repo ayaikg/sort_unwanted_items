@@ -1,34 +1,35 @@
-<div class="container px-2 w-full max-w-3xl">
-  <div class="px-10">
-    <div class="grid grid-cols-3 gap-4 items-center my-10">
-      <div class="avatar">
-        <div class="w-24 rounded-full">
-          <%= image_tag @user.avatar.url %>
+<main class="md:mx-auto">
+  <div class="md:w-[700px]">
+    <div class="m-5 md:mx-0">
+      <div class="flex justify-between items-center">
+        <div class="avatar">
+          <div class="w-24 rounded-full">
+            <%= image_tag @user.avatar.url %>
+          </div>
         </div>
+        <div>
+          <p class="font-bold"><%= @user.name %></p>
+          <p class="text-sm text-neutral-400">更新日: <%= @user.updated_at.strftime("%Y-%m-%d")%></p>
+        </div>
+        <% if current_user == @user %>
+          <%= link_to '編集', edit_user_path(@user), class: "btn btn-sm btn-info btn-outline" %>
+        <% end %>
       </div>
-      <div>
-        <p class="font-bold"><%= @user.name %></p>
-        <p class="text-sm text-neutral-400">更新日: <%= @user.updated_at.strftime("%Y-%m-%d")%></p>
+      <div class="py-5 border-b-2">
+        <% if @user.introduction.present? %>
+          <%= simple_format(@user.introduction) %>
+        <% else %>
+          <p class="text-center">自己紹介をかいてみよう!</p>
+        <% end %>
       </div>
-      <% if current_user == @user %>
-        <%= link_to '編集', edit_user_path(@user), class: "btn btn-sm btn-accent btn-outline" %>
-      <% end %>
     </div>
-    <div class="border-b-4">
-      <h2>自己紹介</h2>
-      <% if @user.introduction.present? %>
-        <%= simple_format(@user.introduction) %>
+    <!-- ユーザーの投稿内容 -->
+    <div class="flex items-center justify-center md:flex flex-wrap">
+      <% if @user_posts.present? %>
+        <%= render partial: 'posts/post', collection: @user_posts %>
       <% else %>
-        <p class="text-center">自己紹介をかいてみよう!</p>
+        <p class="text-center"><%= @user.name %>さんの投稿はありません</p>
       <% end %>
     </div>
   </div>
-  <!-- ユーザーの投稿内容 -->
-  <div class="flex items-center justify-center md:flex flex-wrap">
-    <% if @user_posts.present? %>
-      <%= render partial: 'posts/post', collection: @user_posts %>
-    <% else %>
-      <p class="text-center"><%= @user.name %>さんの投稿はありません</p>
-    <% end %>
-  </div>
-</div>
+</main>
