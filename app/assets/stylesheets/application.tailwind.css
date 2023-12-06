@@ -6,18 +6,22 @@
   input[type=radio] {
     @apply hidden;
   }
+
+  .field_with_errors {
+    @apply contents;
+  }
 }
 
 @layer components {
   .custom-radio {
-    @apply border-2 px-4 py-2 w-28 h-12 text-center rounded-lg text-base md:m-5 md:text-lg;
+    @apply border-2 px-4 py-2 w-28 h-12 text-center rounded-full text-sm md:m-5 md:text-lg;
   }
 
   .custom-radio:hover {
-    @apply bg-green-200;
+    @apply bg-info;
   }
 }
 
 input[type=radio]:checked + label {
-  @apply bg-green-200; 
+  @apply bg-info; 
 }

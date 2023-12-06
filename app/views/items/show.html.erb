@@ -1,37 +1,48 @@
-<div class="overflow-x-auto px-8">
-  <table class="table">
-    <tbody>
-      <tr>
-        <th><%= Item.human_attribute_name(:image) %></th>
-        <td><%= image_tag @item.image.url, class: "w-40" %></td>
-      </tr>
-      <tr>
-        <th><%= Item.human_attribute_name(:name) %></th>
-        <td><%= @item.name %></td>
-      </tr>
-      <tr>
-        <th><%= Category.human_attribute_name(:title) %></th>
-        <td><%= @item.category.title %></td>
-      </tr>
-      <tr>
-        <th><%= Item.human_attribute_name(:listing_status) %></th>
-        <td><%= @item.listing_status ? '出品中' : '未出品' %></td>
-      </tr>
-      <tr>
-        <th><%= Item.human_attribute_name(:price) %></th>
-        <td><%= @item.price %></td>
-      </tr>
-      <tr>
-        <th><%= Notification.human_attribute_name(:notify_date) %></th>
-        <td><%= @item.notification.notify_date %></td>
-      </tr>
-      <tr>
-        <th><%= Item.human_attribute_name(:disposal_method) %></th>
-        <td><%= @item.disposal_method_i18n %></td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="flex justify-center">
-    <%= render "shared/crud_icon", object: @item %>
+<main class="m-auto">
+  <div class="overflow-x-auto md:w-[700px]">
+    <table class="table">
+      <tbody>
+        <tr>
+          <th><%= Item.human_attribute_name(:image) %></th>
+          <td><%= image_tag @item.image.url, class: "w-40 md:w-48" %></td>
+        </tr>
+        <tr>
+          <th><%= Item.human_attribute_name(:name) %></th>
+          <td><%= @item.name %></td>
+        </tr>
+        <tr>
+          <th><%= Category.human_attribute_name(:title) %></th>
+          <td><%= @item.category.title %></td>
+        </tr>
+        <tr>
+          <th><%= Item.human_attribute_name(:listing_status) %></th>
+          <td><%= @item.listing_status ? '出品中' : '未出品' %></td>
+        </tr>
+        <tr>
+          <th><%= Item.human_attribute_name(:price) %></th>
+          <td><%= @item.price %></td>
+        </tr>
+        <tr>
+          <th><%= Notification.human_attribute_name(:notify_date) %></th>
+          <td><%= @item.notification.notify_date %></td>
+        </tr>
+        <tr>
+          <th><%= Item.human_attribute_name(:disposal_method) %></th>
+          <td><%= @item.disposal_method_i18n %></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="mt-5 flex justify-center">
+      <ul>
+        <li class="inline-block">
+          <%= link_to '編集', edit_item_path(@item), class: "btn btn-info" %>
+        </li>
+        <% if @item.disposal_method_i18n == "処分前" %>
+          <li class="inline-block">
+            <%= button_to '削除', @item, method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: "btn btn-error" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-</div>
+</main>

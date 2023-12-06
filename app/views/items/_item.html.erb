@@ -10,18 +10,18 @@
         <div>
           <div class="font-bold truncate w-56"><%= item.name %></div>
           <% if current_page?(history_items_path) %>
-            <div>
+            <div class="md:flex md:space-x-5">
               <span class="badge badge-info"><%= item.listing_status ? '出品中' : '未出品' %></span>
               <span class="badge badge-info"><%= item.disposal_method_i18n %></span>
               <div>断捨離日: <%= item.disposed_at %></div>
             </div>
           <% elsif current_page?(category_items_path(category)) %>
-            <div>
+            <div class="md:flex md:space-x-5">
               <% if item.price.present? %>
-                <span><%= number_to_currency(item.price, unit: "¥", format: "%u %n") %></span>
+                <div><%= number_to_currency(item.price, unit: "¥", format: "%u %n") %></div>
               <% end %>
-              <span>更新日: <%= item.updated_at.strftime("%Y-%m-%d") %></span>
-              <span>通知日: <%= item.notification.notify_date %></span>
+              <div>更新日: <%= item.updated_at.strftime("%Y-%m-%d") %></div>
+              <div>通知日: <%= item.notification.notify_date %></div>
             </div>
           <% end %>
         </div>
@@ -31,8 +31,11 @@
   <% if current_page?(history_items_path) %>
     <td class="pl-0">
       <%= link_to '投稿する', new_post_path(item_id: item.id), class: "btn btn-outline btn-info btn-xs" %>
-      <%= link_to "https://twitter.com/share?url=#{ request.url }&text=【断捨離アイテム】%0a%0a#{ item.name }%0a%0a【断捨離日】%0a%0a#{ item.disposed_at }", target: '_blank' do %>
-        <%= image_tag "logo-black.png", class:"w-3" %>シェア
+      <%= link_to "https://twitter.com/share?url=#{ request.url }&text=【断捨離アイテム】%0a%0a#{ item.name }%0a%0a【断捨離日】%0a%0a#{ item.disposed_at }", target: '_blank', class:"btn btn-xs" do %>
+        <svg width="20" height="20" viewBox="0 0 1200 1227" fill="none" xmlns="http://www.w3.org/2000/svg", class="bg-neutral">
+          <path d="M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z" fill="white"/>
+        </svg>
+        <span>シェア</span>
       <% end %>
     </td>
   <% end %>
