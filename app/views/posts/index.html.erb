@@ -6,7 +6,7 @@
       <%= sort_link(@q_header, :created_at, '作成日順', default_order: :desc, class: "tab", role: "tab") %>
     </div>
   
-    <div class="flex items-center justify-center md:flex flex-wrap">
+    <div class="flex flex-wrap items-center justify-center">
       <% if @posts.present? %>
         <%= render @posts %>
       <% else %>
