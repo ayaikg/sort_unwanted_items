@@ -1,9 +1,11 @@
-<div class="container px-4">
-  <div class="flex items-center justify-center md:flex flex-wrap">
-    <% if @like_posts.present? %>
-      <%= render @like_posts %>
-    <% else %>
-      <p>お気に入りしている投稿はありません</p>
-    <% end %>
+<main class="md:mx-auto">
+  <div class="md:w-[700px]">
+    <div class="flex items-center justify-center md:flex flex-wrap">
+      <% if @like_posts.present? %>
+        <%= render @like_posts %>
+      <% else %>
+        <p>お気に入りしている投稿はありません</p>
+      <% end %>
+    </div>
   </div>
-</div>
+</main>
