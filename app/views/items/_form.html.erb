@@ -11,7 +11,7 @@
       <%= f.label :name, class: "mb-2" do %>
         アイテム名<span class="text-xs text-error">*必須</span>
       <% end %>
-      <%= f.text_field :name, placeholder: "必須", class: "input input-bordered" %>
+      <%= f.text_field :name, placeholder: "必須(40文字まで)", class: "input input-bordered" %>
     </div>
     <div class="form-control">
       <%= f.collection_select :category_id, category, :id, :title, { include_blank: "カテゴリーを選択(必須)" }, { class: "select select-bordered" } %>

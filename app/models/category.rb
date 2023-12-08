@@ -6,6 +6,7 @@ class Category < ApplicationRecord
   has_many :items, dependent: :destroy
 
   validates :title, presence: true, uniqueness: { scope: :user_id }
+  validates :title, length: { maximum: 20 }
 
   private
 
