@@ -78,8 +78,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_27_132754) do
 
   create_table "posts", force: :cascade do |t|
     t.string "post_image"
-    t.string "content"
-    t.text "advice"
+    t.text "content"
+    t.integer "likes_count", default: 0, null: false
     t.bigint "user_id", null: false
     t.bigint "item_id", null: false
     t.datetime "created_at", null: false

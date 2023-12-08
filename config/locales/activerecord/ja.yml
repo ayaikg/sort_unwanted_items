@@ -30,8 +30,7 @@ ja:
         notify_date: 通知日
       post:
         id: ID
-        content: お別れのことば
-        advice: みんなにアドバイス
+        content: 投稿内容
       decluttering:
         id: ID
         goal_amount: 目標個数 

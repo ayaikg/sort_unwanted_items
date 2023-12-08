@@ -6,20 +6,16 @@
     </div>
     <div class="flex justify-center">
       <%= f.label :post_image do %>
-        <%= image_tag post.post_image.url, id: "preview", class: "w-40 md:w-60" %>
+        <%= image_tag post.post_image.url, id: "preview", class: "w-[250px] md:w-80" %>
         <%= f.file_field :post_image, onchange: "previewFileWithId('preview')", accept: "image/*", capture: "camera", class: "hidden" %>
         <%= f.hidden_field :post_image_cache %>
       <% end %>
     </div>
     <div class="form-control">
       <%= f.label :content, class: "mb-2" %>
-      <%= f.text_field :content, class: "input input-bordered" %>
+      <%= f.text_area :content, class: "textarea textarea-bordered" %>
     </div>
-    <div class="form-control">
-      <%= f.label :advice, class: "mb-2" %>
-      <%= f.text_area :advice, class: "textarea textarea-bordered" %>
-    </div>
-    <div class="flex justify-center">
-      <%= f.submit class: "btn btn-info px-10" %>
-    </div>
+  <div class="flex justify-center">
+    <%= f.submit class: "btn btn-info px-10" %>
+  </div>
 <% end %>

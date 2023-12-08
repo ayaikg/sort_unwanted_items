@@ -3,7 +3,7 @@
     <%= link_to user_path(@post.user), class: "block py-2.5 px-4" do %>
       <div class="border-b flex items-center p-2">
         <div class="avatar mr-2">
-          <div class="w-12 rounded-full">
+          <div class="w-12 rounded-full border border-2">
             <%= image_tag @post.user.avatar.url %>
           </div>
         </div>
@@ -34,7 +34,7 @@
 
     <!-- 投稿内容 -->
     <article class="space-y-4">
-      <p><%= simple_format(@post.advice) %></p>
+      <p><%= simple_format(@post.content) %></p>
       <% if @post.post_image.present? %>
         <div class="flex justify-center"><%= image_tag @post.post_image.url, class: "w-[150px] md:w-[300px]" %></div>
       <% end %>

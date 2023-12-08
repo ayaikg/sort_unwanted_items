@@ -3,7 +3,7 @@
     <%= link_to user_path(post.user), class: "block py-2.5 px-4" do %>
       <div class="border-b flex items-center p-2">
         <div class="avatar mr-2">
-          <div class="w-12 rounded-full">
+          <div class="w-12 rounded-full border border-2">
             <%= image_tag post.user.avatar.url %>
           </div>
         </div>
@@ -13,22 +13,20 @@
       </div>
     <% end %>
   <% end %>
-  <div class="card-body pb-0 pt-2">
-    <h2 class="card-title truncate w-64"><%= post.item.name %></h2>
-    <p class="truncate w-64"><%= post.advice %></p>
-  </div>
-  <div class="flex justify-center">
-    <% if post.item.image.present? %>
-      <%= link_to post_path(post) do %>
-        <%= image_tag post.item.image.url %>
+  <%= link_to post_path(post), class: "block py-2.5 px-4" do %>
+    <div class="card-body pb-0 pt-2">
+      <h2 class="card-title truncate w-64"><%= post.item.name %></h2>
+      <p class="truncate w-64"><%= post.content %></p>
+    </div>
+    <div class="flex justify-center">
+      <% if post.item.image.present? %>
+        <div><%= image_tag post.item.image.url %></div>
       <% end %>
-    <% end %>
-    <% if post.post_image.present? %>
-      <%= link_to post_path(post) do %>
-        <%= image_tag post.post_image.url %>
+      <% if post.post_image.present? %>
+        <div><%= image_tag post.post_image.url %></div>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
   <div class="flex items-center justify-around h-[50px]">
     <p class="text-sm text-neutral-400">更新日: <%= post.updated_at.strftime("%Y-%m-%d") %></p>
     <% if current_user.own?(post) %>

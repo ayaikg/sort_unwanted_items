@@ -16,7 +16,7 @@
       
       <div class="navbar-end">
         <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-ghost btn-circle avatar">
-          <div class="w-10 rounded-full">
+          <div class="w-10 rounded-full border border-2">
             <%= image_tag current_user.avatar.url %>
           </div>
         </label>
@@ -26,11 +26,13 @@
   <% if choice_page?(@category) %>
     <div class="p-2" data-controller="autocomplete" data-autocomplete-url-value=<%= set_value(@category) %> role="combobox">
       <%= search_form_for @q_header, url: set_url(@category), class: "space-y-4" do |f| %>
-        <div class="flex justify-center">
+        <div class="flex flex-col items-center">
           <%= f.search_field set_search_key(@category), data: { autocomplete_target: 'input'}, class: "input input-bordered md:w-96", placeholder: "キーワード検索" %>
           <%= f.hidden_field set_key(@category), data: { autocomplete_target: 'hidden' } %>
+          <div class="flex justify-center">
+            <ul class="list-group bg-white absolute md:text-sm max-w-max" data-autocomplete-target="results"></ul>
+          </div>
         </div>
-        <ul class="list-group bg-white absolute w-full md:text-sm max-w-max" data-autocomplete-target="results"></ul>
 
       <% if @category.present? && current_page?(category_items_path(@category)) || current_page?(history_items_path) %>
         <div>
