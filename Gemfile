@@ -102,3 +102,8 @@ gem "gon"
 
 # N+1対策
 gem "counter_culture"
+gem "dockerfile-rails", ">= 1.5", :group => :development
+
+gem "sentry-ruby", "~> 5.15"
+
+gem "sentry-rails", "~> 5.15"
