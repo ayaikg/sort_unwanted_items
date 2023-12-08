@@ -1,10 +1,5 @@
-<div class="flex justify-center">
-  <div class="card w-2/3">
-    <div class="text-center">
-      <h1>投稿編集</h1>
-    </div>
-    <div>
-      <%= render "form", { post: @post, disposal_item: @disposal_items } %>
-    </div>
+<main class="my-auto md:m-auto">
+  <div class="p-5 md:p-0 md:w-[700px]">
+    <%= render "form", { post: @post, disposal_item: @disposal_items } %>
   </div>
-</div>
+</main>

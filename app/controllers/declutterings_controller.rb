@@ -16,7 +16,7 @@ class DeclutteringsController < ApplicationController
     if @decluttering.update(decluttering_params)
       redirect_to decluttering_path(current_user)
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

@@ -1,8 +1,0 @@
-<ul>
-  <li class="inline-block">
-    <%= link_to '編集', edit_polymorphic_path(object), class: "btn btn-info", **(current_page?(categories_path) ? { data: { turbo_frame: "modal" } } : {}) %>
-  </li>
-  <li class="inline-block">
-    <%= button_to '削除', object, method: :delete, class: "btn btn-error" %>
-  </li>
-</ul>

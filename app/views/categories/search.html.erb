@@ -1,5 +1,5 @@
 <% @categories.each do |category| %>
-  <li class="w-80 flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-blue-200 focus:ring-2 focus:ring-blue-500 md:w-96" role="option" data-autocomplete-value="<%= category.id %>" data-autocomplete-label="<%= category.title %>">
+  <li class="w-[200px] md:w-[380px] flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-blue-200 focus:ring-2 focus:ring-blue-500 md:w-96" role="option" data-autocomplete-value="<%= category.id %>" data-autocomplete-label="<%= category.title %>">
     <%= category.title %>
   </li>
 <% end %>

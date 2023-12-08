@@ -15,7 +15,7 @@ class Item < ApplicationRecord
 
   validates :listing_status, inclusion: [true, false]
   validates :disposal_method, presence: true
-  validates :name, presence: true
+  validates :name, presence: true, length: { maximum: 40 }
   validates :price,
             numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 9_999_999,
                             allow_nil: true }

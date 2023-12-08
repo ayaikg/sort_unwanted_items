@@ -1,25 +1,26 @@
-<div class="carousel carousel-end bg-base-100 p-4 rounded-box h-20">
-  <div class="flex justify-between carousel-item w-full items-center" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= category_items_path(category_id: category.id) %>">
-    <div class="avatar">
+<div class="bg-base-100 p-4 h-20 w-[350px] md:w-[500px]">
+  <div class="flex justify-between w-full items-center">
+    <div class="avatar border-2 rounded-lg">
       <div class="w-10">
         <%= image_tag category.icon.url %>
       </div>
     </div>
-    <div class="font-bold truncate w-48">
+    <div class="font-bold truncate w-48" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= category_items_path(category_id: category.id) %>">
       <%= category.title %>
     </div>
-    <div>
-      <p>アイテム数: <%= category.items_count %></p>
-    </div>
+    <details class="dropdown dropdown-left dropdown-end">
+      <summary class="btn btn-square btn-ghost">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+      </summary>
+      <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+        <li class="menu-title">登録されたアイテム数: <%= category.items_count %></li>
+        <% if default_categories.include?(category.title) %>
+          <li class="menu-title">デフォルトカテゴリーは編集・削除ができません</li>
+        <% else %>
+          <li><%= link_to "カテゴリーを編集", edit_category_path(category), data: { turbo_frame: "modal" } %></li>
+          <li><%= button_to "カテゴリーを削除", category, method: :delete, data: { turbo_confirm: "本当に削除しますか？" } %></li>
+        <% end %>
+      </ul>
+    </details>
   </div>
-  <% unless default_categories.include?(category.title) %>
-    <div class="carousel-item ml-4">
-      <div>
-        <%= link_to "編集", edit_category_path(category), data: { turbo_frame: "modal" }, class: "btn btn-info" %>
-      </div>
-      <div>
-        <%= button_to "削除", category, method: :delete, class: "btn btn-error" %>
-      </div>
-    </div>
-  <% end %>
 </div>

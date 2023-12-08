@@ -1,14 +1,14 @@
-<div class="container">
-  <h2 class="text-center text-bold text-2xl my-5">1週間のデータ</h2>
-  <div class="flex justify-around mb-5">
-    <div class="flex items-center">
-      <h3 class="mr-3">現在のアイテム数: <%= @before_items %></h3>
+<main class="m-auto">
+  <div class="space-y-8 h-[700px] md:h-[900px] md:w-[700px]">
+    <h2 class="text-center text-bold text-2xl">1週間のデータ</h2>
+    <div class="flex justify-around mb-5">
+      <div class="flex items-center">
+        <h3 class="mr-3">現在のアイテム数: <%= @before_items %></h3>
+      </div>
+      <%= link_to "データを詳しく見る", decluttering_path(current_user), class: "btn" %>
     </div>
-    <%= link_to "データを詳しく見る", decluttering_path(current_user), class: "btn" %>
-  </div>
-  <div class="w-full h-screen">
-    <div data-controller="chart" class="relative h-3/5">
+    <div data-controller="chart" class="relative h-[500px] md:h-[700px]">
       <canvas data-chart-target="canvas"></canvas>
     </div>
   </div>
-</div>
+</main>

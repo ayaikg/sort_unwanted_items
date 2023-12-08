@@ -1,32 +1,34 @@
-<div class="w-full max-w-md mx-auto">
-  <div role="tablist" class="tabs tabs-boxed justify-around" data-controller="tab">
-    <%= sort_link(@q_header, :name, '名前順', default_order: :desc, class: "tab", role: "tab") %>
-    <%= sort_link(@q_header, :updated_at, '新着順', default_order: :desc, class: "tab", role: "tab") %>
-    <%= sort_link(@q_header, :created_at, '作成日順', { class: "tab", role: "tab"}) %>
-    <%= sort_link(@q_header, :notification_notify_date, '通知日順', default_order: :desc, class: "tab", role: "tab") %>
-  </div>
-  <div data-controller="tab">
-    <div class="tabs">
-      <a class="tab w-1/2 tab-bordered tab-active" data-tab-target="status" data-action="click->tab#status">出品中</a> 
-      <a class="tab w-1/2 tab-bordered not-active" data-tab-target="status" data-action="click->tab#status">未出品</a> 
+<main class="md:mx-auto">
+  <div class="md:w-[700px]">
+    <div role="tablist" class="tabs tabs-boxed justify-around">
+      <%= sort_link(@q_header, :name, '名前順', default_order: :desc, class: "tab", role: "tab") %>
+      <%= sort_link(@q_header, :updated_at, '新着順', default_order: :desc, class: "tab", role: "tab") %>
+      <%= sort_link(@q_header, :created_at, '作成日順', { class: "tab", role: "tab"}) %>
+      <%= sort_link(@q_header, :notification_notify_date, '通知日順', default_order: :desc, class: "tab", role: "tab") %>
     </div>
-    <div data-tab-target="content">
-      <div class="overflow-x-auto">
-        <table class="table">
-          <% if @listed_items.present? %>
-            <%= render partial: 'item', collection: @listed_items, locals: { category: @category } %>
-          <% end %>
-        </table>
+    <div data-controller="tab">
+      <div class="tabs">
+        <a class="tab w-1/2 tab-bordered tab-active" data-tab-target="status" data-action="click->tab#status">出品中</a> 
+        <a class="tab w-1/2 tab-bordered not-active" data-tab-target="status" data-action="click->tab#status">未出品</a> 
+      </div>
+      <div data-tab-target="content">
+        <div class="overflow-x-auto">
+          <table class="table">
+            <% if @listed_items.present? %>
+              <%= render partial: 'item', collection: @listed_items, locals: { category: @category } %>
+            <% end %>
+          </table>
+        </div>
+      </div>
+      <div class="hidden" data-tab-target="content">
+        <div class="overflow-x-auto">
+          <table class="table">
+            <% if @unlisted_items.present? %>
+              <%= render partial: 'item', collection: @unlisted_items, locals: { category: @category } %>
+            <% end %>
+          </table>
+        </div>
       </div>
     </div>
-    <div class="hidden" data-tab-target="content">
-      <div class="overflow-x-auto">
-        <table class="table">
-          <% if @unlisted_items.present? %>
-            <%= render partial: 'item', collection: @unlisted_items, locals: { category: @category } %>
-          <% end %>
-        </table>
-      </div>
-    </div>
   </div>
-</div>
+</main>

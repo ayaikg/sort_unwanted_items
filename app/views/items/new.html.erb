@@ -1,8 +1,5 @@
-<div class="container w-full">
-  <div class="card w-auto bg-base-100 shadow-xl">
-    <div class="card-body">
-      <h2 class="card-title text-center">アイテム作成</h2>
-      <%= render "form", { item: @item, category: @categories } %>
-    </div>
+<main class="my-auto md:m-auto">
+  <div class="p-5 md:w-[700px]">
+    <%= render "form", { item: @item, category: @categories } %>
   </div>
-</div>
+</main>

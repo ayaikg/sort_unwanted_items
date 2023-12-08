@@ -1,8 +1,5 @@
-<div class="flex justify-center">
-  <div class="card w-2/3 bg-base-100 shadow-xl">
-    <div class="card-body items-center">
-      <h2 class="card-title">アイテム編集</h2>
-      <%= render "form", { item: @item, category: @categories } %>
-    </div>
+<main class="my-auto md:m-auto">
+  <div class="p-5 md:w-[700px]">
+    <%= render "form", { item: @item, category: @categories } %>
   </div>
-</div>
+</main>

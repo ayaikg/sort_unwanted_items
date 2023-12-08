@@ -24,14 +24,12 @@
 
       <%= turbo_frame_tag "modal" %>
       <%= render 'shared/flash_message' %>
-      <main class="grow bg-base-200">
-        <%= yield %>
-      </main>
+      <%= yield %>
       
       <% if current_page?(root_path) || current_page?(login_path) %>
         <%= render 'shared/footer' %>
       <% else %>
-        <div class="h-16 bg-base-200"></div>
+        <div class="h-16"></div>
         <%= render 'shared/bottom_nav' %>
       <% end %>
 

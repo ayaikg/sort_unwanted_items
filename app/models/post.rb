@@ -4,8 +4,5 @@ class Post < ApplicationRecord
   belongs_to :item
   has_many :likes, dependent: :destroy
 
-  ransacker :likes_count do
-    query = '(SELECT COUNT(*) FROM likes WHERE likes.post_id = posts.id)'
-    Arel.sql(query)
-  end
+  validates :content, length: { maximum: 1000 }
 end

@@ -29,7 +29,7 @@ module ApplicationHelper
     elsif current_page?(categories_path)
       :title_or_items_name_cont
     elsif current_page?(posts_path) || current_page?(likes_posts_path)
-      :advice_or_item_name_cont
+      :content_or_item_name_cont
     end
   end
 
@@ -39,7 +39,7 @@ module ApplicationHelper
     elsif current_page?(categories_path)
       :title
     elsif current_page?(posts_path) || current_page?(likes_posts_path)
-      :advice
+      :content
     end
   end
 

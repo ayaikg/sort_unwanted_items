@@ -33,8 +33,10 @@ class IconUploader < CarrierWave::Uploader::Base
       'category_music.png'
     when 'ぬいぐるみ'
       'category_doll.png'
+    when 'その他'
+      'category_others.png'
     else
-      'item_new.png'
+      'no_image.png'
     end
     #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   end

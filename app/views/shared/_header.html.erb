@@ -16,7 +16,7 @@
       
       <div class="navbar-end">
         <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-ghost btn-circle avatar">
-          <div class="w-10 rounded-full">
+          <div class="w-10 rounded-full border border-2">
             <%= image_tag current_user.avatar.url %>
           </div>
         </label>
@@ -24,32 +24,36 @@
     </div>
   </summary>
   <% if choice_page?(@category) %>
-    <div class="flex justify-center bg-info" data-controller="autocomplete" data-autocomplete-url-value=<%= set_value(@category) %> role="combobox">
-      <%= search_form_for @q_header, url: set_url(@category) do |f| %>
-        <div>
-          <%= f.search_field set_search_key(@category), data: { autocomplete_target: 'input'}, class: "input input-bordered md:w-96 join-items", placeholder: "キーワード検索" %>
+    <div class="p-2" data-controller="autocomplete" data-autocomplete-url-value=<%= set_value(@category) %> role="combobox">
+      <%= search_form_for @q_header, url: set_url(@category), class: "space-y-4" do |f| %>
+        <div class="flex flex-col items-center">
+          <%= f.search_field set_search_key(@category), data: { autocomplete_target: 'input'}, class: "input input-bordered md:w-96", placeholder: "キーワード検索" %>
           <%= f.hidden_field set_key(@category), data: { autocomplete_target: 'hidden' } %>
+          <div class="flex justify-center">
+            <ul class="list-group bg-white absolute md:text-sm max-w-max" data-autocomplete-target="results"></ul>
+          </div>
         </div>
-        <ul class="list-group bg-white absolute w-full md:text-sm max-w-max" data-autocomplete-target="results"></ul>
 
       <% if @category.present? && current_page?(category_items_path(@category)) || current_page?(history_items_path) %>
-        <div class="my-2">
-          <span class="text-sm">通知日で検索</span>
-          <%= f.date_field :notification_notify_date_gteq, class: "border" %>
-            <span>~</span>
-          <%= f.date_field :notification_notify_date_lteq_end_of_day, class: "border" %>
+        <div>
+          <label class="label flex justify-center"><span class="label-text">通知日で検索</span></label>
+          <div class="flex justify-center items-center">
+            <%= f.date_field :notification_notify_date_gteq, class: "p-2.5 border" %>
+              <span>~</span>
+            <%= f.date_field :notification_notify_date_lteq_end_of_day, class: "p-2.5 border" %>
+          </div>
         </div>
       <% end %>
       
       <% if current_page?(posts_path) || current_page?(likes_posts_path) || current_page?(history_items_path) %>
-        <div class="my-2">
-          <span><%= f.select set_listing_key, [['出品中', true], ['未出品', false]], include_blank: '出品状態で検索' %></span>
-          <span><%= f.select set_diposal_key, Item.disposal_methods_i18n.except(:before).invert.map { |key, value| [key, Item.disposal_methods[value]] }, { include_blank: "処分方法で検索" } %></span>
-          <span><%= f.collection_select set_category, set_categories_collection, :title, :title, { include_blank: 'カテゴリーで検索' } %></span>
+        <div class="flex items-center justify-center flex-wrap">
+          <div class="m-1"><%= f.select set_listing_key, [['出品中', true], ['未出品', false]], { include_blank: '出品状態で検索' }, class: "select select-bordered" %></div>
+          <div class="m-1"><%= f.select set_diposal_key, Item.disposal_methods_i18n.except(:before).invert.map { |key, value| [key, Item.disposal_methods[value]] }, { include_blank: "処分方法で検索" }, class: "select select-bordered" %></div>
+          <div class="m-1"><%= f.collection_select set_category, set_categories_collection, :title, :title, { include_blank: 'カテゴリーで検索' }, class: "select select-bordered" %></div>
         </div>
       <% end %>
-        <div class="flex justify-center mt-2">
-          <%= f.submit "検索する", class: "btn btn-primary px-16" %>
+        <div class="flex justify-center">
+          <%= f.submit "検索する", class: "btn btn-info px-10" %>
         </div>
       <% end %>
     </div>
