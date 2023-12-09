@@ -1,0 +1,1 @@
+0 7 * * * budle exec rake /rails/lib/tasks/push_line.rake push_line_message_notify_date
