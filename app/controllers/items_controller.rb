@@ -1,12 +1,12 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :update, :destroy, :show]
-  before_action :set_categories, only: [:new, :create, :edit, :update]
+  before_action :set_categories, only: [:new, :create, :edit]
 
   def index
     if @q_header
       before_items = @q_header.result(distinct: true).includes(:notification)
                               .select('items.*, notifications.notify_date').joins(:notification)
-                              .where(disposal_method: 0)
+                              .where(disposal_method: 0).where(user_id: current_user.id)
     end
     @listed_items = before_items.where(listing_status: true)
     @unlisted_items = before_items.where(listing_status: false)
@@ -30,7 +30,10 @@ class ItemsController < ApplicationController
     @item.build_notification # has_oneのオプション、おそらくhas_oneだからnotification.buildがダメだった
   end
 
-  def edit; end
+  def edit
+    @parent_category = @item.category.parent_id if @item.category.present?
+    @child_categories = @item.category.siblings.order('id ASC')
+  end
 
   def create
     @item = current_user.items.build(item_params)
@@ -60,6 +63,10 @@ class ItemsController < ApplicationController
     @before_items = current_user.items.where(disposal_method: 0).count
   end
 
+  def get_category_children
+    @category_children = Category.find("#{params[:parent_id]}").children
+  end
+
   def update
     if @item.update(item_params)
       redirect_to item_path(@item)
@@ -76,7 +83,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :price, :image, :image_cache, :listing_status, :disposal_method, :category_id,
+    params.require(:item).permit(:name, :price, :image, :image_cache, :listing_status, :disposal_method, :category_id, :color,
                                  notification_attributes: [:notify_date])
   end
 
@@ -86,6 +93,6 @@ class ItemsController < ApplicationController
   end
 
   def set_categories
-    @categories = Category.where(user_id: current_user.id)
+    @categories = Category.where(ancestry: nil)
   end
 end

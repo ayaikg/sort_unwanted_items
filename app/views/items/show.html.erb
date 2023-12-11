@@ -12,7 +12,7 @@
         </tr>
         <tr>
           <th><%= Category.human_attribute_name(:title) %></th>
-          <td><%= @item.category.title %></td>
+          <td><%= @item.category.parent.title %> / <%= @item.category.title %></td>
         </tr>
         <tr>
           <th><%= Item.human_attribute_name(:listing_status) %></th>

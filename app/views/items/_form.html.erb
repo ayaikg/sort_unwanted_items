@@ -14,8 +14,14 @@
       <%= f.text_field :name, placeholder: "必須(40文字まで)", class: "input input-bordered" %>
     </div>
     <div class="form-control">
-      <%= f.collection_select :category_id, category, :id, :title, { include_blank: "カテゴリーを選択(必須)" }, { class: "select select-bordered" } %>
+      <%= f.collection_select :category_id, category, :id, :title, { include_blank: "カテゴリーを選択(必須)", selected: parent_category }, { class: "select select-bordered", id: "item_category_id" } %>
     </div>
+    <div class="append__category"></div>
+    <% unless current_page?(new_item_path) %>
+      <div class="form-control" id="children_wrapper2">
+        <%= f.collection_select :category_id, child_category, :id, :title, { include_blank: "カテゴリーを選択(必須)" }, { class: "select select-bordered", id: "child_category" } %>
+      </div>
+    <% end %>
     <div>アイテムの状態<span class="text-xs text-error">*必須</span></div>
     <div class="flex justify-center">
       <div>

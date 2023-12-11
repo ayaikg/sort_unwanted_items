@@ -3,7 +3,6 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   has_one :decluttering, dependent: :destroy
-  has_many :categories, dependent: :destroy
   has_many :items, dependent: :destroy
   has_many :notifications, through: :items
   has_many :posts, dependent: :destroy
@@ -56,16 +55,9 @@ class User < ApplicationRecord
          .count
   end
 
-  after_create :create_default_categories, :create_default_decluttering
+  after_create :create_default_decluttering
 
   private
-
-  def create_default_categories
-    default_categories = %w[ファッション 書籍 コスメ ゲーム 音楽 ぬいぐるみ その他]
-    default_categories.each do |title|
-      categories.find_or_create_by(title:)
-    end
-  end
 
   def create_default_decluttering
     create_decluttering(goal_amount: 0)

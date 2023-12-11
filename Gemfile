@@ -23,6 +23,9 @@ gem "stimulus-rails"
 
 gem "cssbundling-rails"
 gem "jsbundling-rails"
+
+# jbuilder
+gem 'jbuilder', '~> 2.11', '>= 2.11.5'
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -96,6 +99,9 @@ gem "ransack", "3.2.1"
 
 # 変数をjsに渡す
 gem "gon"
+
+# 多階層のデータを扱う
+gem "ancestry"
 
 # N+1対策
 gem "counter_culture"

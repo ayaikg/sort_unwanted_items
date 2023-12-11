@@ -86,4 +86,25 @@ module ApplicationHelper
       Category.where(title: default_categories).select("title").distinct
     end
   end
+
+  def category_icon(category)
+    case category.title
+    when 'ファッション'
+      'category_clothes.png'
+    when '書籍'
+      'category_book.png'
+    when 'コスメ'
+      'category_cosme.png'
+    when 'ゲーム'
+      'category_game.png'
+    when '音楽'
+      'category_music.png'
+    when 'おもちゃ・ぬいぐるみ'
+      'category_doll.png'
+    when 'その他'
+      'category_others.png'
+    else
+      'no_image.png'
+    end
+  end
 end
