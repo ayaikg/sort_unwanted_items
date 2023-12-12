@@ -1,29 +1,23 @@
 <!-- Navbar -->
-<details>
-  <summary class="list-none">
-    <div class="navbar bg-base-100 border-b">
-      <div class="navbar-start">
-        <%= link_to "steteco", root_path, class: "btn btn-ghost normal-case text-xl" %>
+<div class="navbar bg-base-100 border-b">
+  <div class="navbar-start">
+    <%= link_to "steteco", root_path, class: "btn btn-ghost normal-case text-xl" %>
+  </div>
+  
+  <div class="navbar-end">
+    <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-ghost btn-circle avatar">
+      <div class="w-10 rounded-full border border-2">
+        <%= image_tag current_user.avatar.url %>
       </div>
+    </label>
+  </div>
+</div>
 
-      <% if choice_page?(@category) %>
-        <div class="navbar-center">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-          </svg>
-        </div>
-      <% end %>
-      
-      <div class="navbar-end">
-        <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-ghost btn-circle avatar">
-          <div class="w-10 rounded-full border border-2">
-            <%= image_tag current_user.avatar.url %>
-          </div>
-        </label>
-      </div>
-    </div>
-  </summary>
-  <% if choice_page?(@category) %>
+<% if choice_page?(@category) %>
+  <details>
+    <summary class="btn">
+      検索する
+    </summary>
     <div class="p-2" data-controller="autocomplete" data-autocomplete-url-value=<%= set_value(@category) %> role="combobox">
       <%= search_form_for @q_header, url: set_url(@category), class: "space-y-4" do |f| %>
         <div class="flex flex-col items-center">
@@ -57,5 +51,5 @@
         </div>
       <% end %>
     </div>
-  <% end %>
-</details>
+  </details>
+<% end %>
