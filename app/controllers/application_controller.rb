@@ -13,12 +13,14 @@ class ApplicationController < ActionController::Base
   def set_search
     case "#{params[:controller]}##{params[:action]}"
     when 'items#index'
-      @category = current_user.categories.find(params[:category_id])
-      @q_header = @category.items.ransack(params[:q])
+      @category = Category.find(params[:category_id])
+      child_categories = @category.descendants.pluck(:id)
+      category_ids = child_categories << @category.id
+      @q_header = Item.where(category_id: category_ids).ransack(params[:q])
     when 'items#history'
       @q_header = current_user.items.ransack(params[:q])
     when 'categories#index'
-      @q_header = current_user.categories.ransack(params[:q])
+      @q_header = Category.roots.ransack(params[:q])
     when 'posts#index'
       @q_header = Post.ransack(params[:q])
     when 'posts#likes'

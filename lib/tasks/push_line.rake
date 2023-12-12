@@ -19,7 +19,7 @@ namespace :push_line do
     limit_items = Item.joins(:notification).where(user_id: user.id).where(disposal_method: :before).where(notification: { notify_date: Date.today })
     unless limit_items.empty?
       names_with_links = limit_items.map do |item|
-        edit_url = "https://jjlfwz0d-3000.asse.devtunnels.ms/items/#{item.id}/edit"
+        edit_url = "https://steteco.fly.dev/items/#{item.id}/edit"
         default_url = "https://placehold.jp/80x80.png"
           {
             type: "box",

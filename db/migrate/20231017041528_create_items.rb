@@ -4,6 +4,7 @@ class CreateItems < ActiveRecord::Migration[7.0]
       t.string :image
       t.string :name, null: false
       t.integer :price
+      t.integer :color, null: false, default: 0
       t.date :disposed_at
       t.boolean :listing_status, null: false, default: false
       t.integer :disposal_method, null: false, default: 0

@@ -73,17 +73,23 @@ module ApplicationHelper
 
   def set_category
     if current_page?(history_items_path)
-      :category_title_eq
+      :category_id_eq
     elsif current_page?(posts_path) || current_page?(likes_posts_path)
-      :item_category_title_eq
+      :item_category_id_eq
     end
   end
 
   def set_categories_collection
-    if current_page?(history_items_path)
-      current_user.categories
-    elsif current_page?(posts_path) || current_page?(likes_posts_path)
-      Category.where(title: default_categories).select("title").distinct
-    end
+    parent_categories = Category.where(ancestry: nil)
+    grouped_options_for_select(parent_categories.map { |p| [p.title, p.children.map { |c| [c.title, c.id] }] })
+  end
+
+  def category_icon(category)
+    category_icons = {
+      'ファッション' => 'category_clothes.png', '書籍' => 'category_book.png', 'コスメ' => 'category_cosme.png',
+      'ゲーム' => 'category_game.png', '音楽' => 'category_music.png', 'おもちゃ・ぬいぐるみ' => 'category_doll.png',
+      'その他' => 'category_others.png'
+    }
+    category_icons.fetch(category.title, 'no_image.png')
   end
 end

@@ -26,13 +26,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_27_132754) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title", null: false
-    t.string "icon"
+    t.string "ancestry"
     t.integer "items_count", default: 0, null: false
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id", "title"], name: "index_categories_on_user_id_and_title", unique: true
-    t.index ["user_id"], name: "index_categories_on_user_id"
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
   create_table "declutterings", force: :cascade do |t|
@@ -47,6 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_27_132754) do
     t.string "image"
     t.string "name", null: false
     t.integer "price"
+    t.integer "color", default: 0, null: false
     t.date "disposed_at"
     t.boolean "listing_status", default: false, null: false
     t.integer "disposal_method", default: 0, null: false
@@ -101,7 +100,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_27_132754) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "categories", "users"
   add_foreign_key "declutterings", "users"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "users"

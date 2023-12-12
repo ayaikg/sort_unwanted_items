@@ -12,23 +12,27 @@
         </tr>
         <tr>
           <th><%= Category.human_attribute_name(:title) %></th>
-          <td><%= @item.category.title %></td>
+          <td><%= @item.category.parent.title %> / <%= @item.category.title %></td>
+        </tr>
+        <tr>
+          <th><%= Item.human_attribute_name(:color) %></th>
+          <td><%= @item.color_i18n %></td>
         </tr>
         <tr>
           <th><%= Item.human_attribute_name(:listing_status) %></th>
           <td><%= @item.listing_status ? '出品中' : '未出品' %></td>
         </tr>
         <tr>
-          <th><%= Item.human_attribute_name(:price) %></th>
-          <td><%= @item.price %></td>
+          <th><%= Item.human_attribute_name(:disposal_method) %></th>
+          <td><%= @item.disposal_method_i18n %></td>
         </tr>
         <tr>
           <th><%= Notification.human_attribute_name(:notify_date) %></th>
           <td><%= @item.notification.notify_date %></td>
         </tr>
         <tr>
-          <th><%= Item.human_attribute_name(:disposal_method) %></th>
-          <td><%= @item.disposal_method_i18n %></td>
+          <th><%= Item.human_attribute_name(:price) %></th>
+          <td><%= number_to_currency(@item.price, unit: "¥", format: "%u %n") %></td>
         </tr>
       </tbody>
     </table>
