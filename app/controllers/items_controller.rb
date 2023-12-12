@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :update, :destroy, :show]
-  before_action :set_categories, only: [:new, :create, :edit]
+  before_action :set_categories, only: [:new, :create, :edit, :update]
 
   def index
     if @q_header
@@ -31,8 +31,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @parent_category = @item.category.parent_id if @item.category.present?
     @child_categories = @item.category.siblings.order('id ASC')
+    @parent_category = @item.category.parent_id
   end
 
   def create
@@ -68,6 +68,7 @@ class ItemsController < ApplicationController
   end
 
   def update
+    @child_categories = @item.category.siblings.order('id ASC')
     if @item.update(item_params)
       redirect_to item_path(@item)
     else

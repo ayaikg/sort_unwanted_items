@@ -1,5 +1,11 @@
 <main class="my-auto md:m-auto">
   <div class="p-5 md:w-[700px]">
-    <%= render "form", { item: @item, category: @categories, child_category: @child_categories, parent_category: @parent_category } %>
+    <%= form_with model: @item, local: true, class: "space-y-6 lg:space-y-8" do |f| %>
+      <%= render "form", { f: f, item: @item, category: @categories, parent_category: @parent_category } do %>
+        <div class="form-control" id="children_wrapper2">
+          <%= f.collection_select :category_id, @child_categories, :id, :title, { include_blank: "カテゴリーを選択(必須)" }, { class: "select select-bordered", id: "child_category" } %>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </main>

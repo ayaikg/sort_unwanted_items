@@ -14,7 +14,7 @@
 
 @layer components {
   .custom-radio {
-    @apply border-2 px-4 py-2 w-28 h-12 text-center rounded-full text-sm md:m-5 md:text-lg;
+    @apply border-2 p-[10px] mx-[5px] w-[100px] h-[45px] text-center rounded-full text-sm md:mx-3 md:text-lg;
   }
 
   .custom-radio:hover {

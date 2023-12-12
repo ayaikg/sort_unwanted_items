@@ -1,66 +1,65 @@
-<%= form_with model: item, local: true, class: "space-y-6 lg:space-y-8" do |f| %>
-  <%= render 'shared/error_message', object: f.object %>
-    <div class="flex justify-center">
-      <%= f.label :image do %>
-        <%= image_tag item.image.url, id: "preview", class: "w-20 md:w-32 lg:w-40" %>
-        <%= f.file_field :image, onchange: "previewFileWithId('preview')", accept: "image/*", capture: "camera", class: "hidden" %>
-        <%= f.hidden_field :image_cache %>
+<%= render 'shared/error_message', object: f.object %>
+  <div class="flex justify-center">
+    <%= f.label :image do %>
+      <%= image_tag item.image.url, id: "preview", class: "w-20 md:w-32 lg:w-40" %>
+      <%= f.file_field :image, onchange: "previewFileWithId('preview')", accept: "image/*", capture: "camera", class: "hidden" %>
+      <%= f.hidden_field :image_cache %>
+    <% end %>
+  </div>
+  <div class="form-control">
+    <%= f.label :name, class: "mb-2" do %>
+      アイテム名<span class="text-xs text-error">*必須</span>
+    <% end %>
+    <%= f.text_field :name, placeholder: "必須(40文字まで)", class: "input input-bordered" %>
+  </div>
+  <div class="form-control">
+    <%= f.collection_select :category_id, category, :id, :title, { include_blank: "カテゴリーを選択(必須)", selected: parent_category }, { class: "select select-bordered", id: "item_category_id" } %>
+    <div class="append__category mt-6 lg:mt-8"></div>
+    <%= yield %>
+  </div>
+  <div>
+    <span>カラー</span>
+    <div class="flex items-center overflow-x-scroll h-[45px]">
+      <%= f.collection_radio_buttons :color, Item.colors_i18n, :first, :last do |b| %>
+        <div class="shrink-0">
+          <%= b.radio_button %>
+          <%= b.label(class: "custom-radio") %>
+        </div>
       <% end %>
     </div>
-    <div class="form-control">
-      <%= f.label :name, class: "mb-2" do %>
-        アイテム名<span class="text-xs text-error">*必須</span>
-      <% end %>
-      <%= f.text_field :name, placeholder: "必須(40文字まで)", class: "input input-bordered" %>
+  </div>
+  <div>アイテムの状態<span class="text-xs text-error">*必須</span></div>
+  <div class="flex justify-center">
+    <div>
+      <%= f.radio_button :listing_status, true %>
+      <%= f.label :listing_status, "出品中", value: true, class: "custom-radio" %>
     </div>
-    <div class="form-control">
-      <%= f.collection_select :category_id, category, :id, :title, { include_blank: "カテゴリーを選択(必須)", selected: parent_category }, { class: "select select-bordered", id: "item_category_id" } %>
+    <div>
+      <%= f.radio_button :listing_status, false %>
+      <%= f.label :listing_status, "未出品", value: false, class: "custom-radio" %>
     </div>
-    <div class="append__category"></div>
-    <% unless current_page?(new_item_path) %>
-      <div class="form-control" id="children_wrapper2">
-        <%= f.collection_select :category_id, child_category, :id, :title, { include_blank: "カテゴリーを選択(必須)" }, { class: "select select-bordered", id: "child_category" } %>
+  </div>
+  <div class="flex justify-center">
+    <%= f.collection_radio_buttons :disposal_method, Item.disposal_methods_i18n, :first, :last do |b| %>
+      <div>
+        <%= b.radio_button %>
+        <%= b.label(class: "custom-radio") %>
       </div>
     <% end %>
-    <div>アイテムの状態<span class="text-xs text-error">*必須</span></div>
-    <div class="flex justify-center">
-      <div>
-        <%= f.radio_button :listing_status, true %>
-        <%= f.label :listing_status, "出品中", value: true, class: "custom-radio" %>
-      </div>
-      <div>
-        <%= f.radio_button :listing_status, false %>
-        <%= f.label :listing_status, "未出品", value: false, class: "custom-radio" %>
-      </div>
-    </div>
-    <div class="flex justify-center">
-      <div>
-        <%= f.radio_button :disposal_method, :before %>
-        <%= f.label :disposal_method, "処分前", value: :before, class: "custom-radio" %>
-      </div>
-      <div>
-        <%= f.radio_button :disposal_method, :sold %>
-        <%= f.label :disposal_method, "売れた", value: :sold, class: "custom-radio" %>
-      </div>
-      <div>
-        <%= f.radio_button :disposal_method, :discard %>
-        <%= f.label :disposal_method, "捨てた", value: :discard, class: "custom-radio" %>
-      </div>
-    </div>
-    <div class="form-control">
-      <%= f.fields_for :notification do |n| %>
-        <%= n.label :notify_date, Notification.human_attribute_name(:notify_date) do %>
-          通知日<span class="text-xs text-error">*必須</span>
-        <% end %>
-        <%= n.date_field :notify_date, class: "p-2.5" %>
-      <% end %>
-    </div>
-    <div class="form-control border-b">
-      <%= f.label :price %>
-      <%= f.text_field :price, placeholder: "¥1~9,999,999", class: "input appearance-none bg-transparent border-none focus:outline-none text-right" %>
-    </div>
-    
-  <div class="flex justify-center">
-    <%= f.submit class: "btn btn-info px-12" %>
   </div>
-<% end %>
+  <div class="form-control">
+    <%= f.fields_for :notification do |n| %>
+      <%= n.label :notify_date, Notification.human_attribute_name(:notify_date) do %>
+        通知日<span class="text-xs text-error">*必須</span>
+      <% end %>
+      <%= n.date_field :notify_date, class: "p-2.5" %>
+    <% end %>
+  </div>
+  <div class="form-control border-b">
+    <%= f.label :price %>
+    <%= f.text_field :price, placeholder: "¥1~9,999,999", class: "input appearance-none bg-transparent border-none focus:outline-none text-right" %>
+  </div>
+  
+<div class="flex justify-center">
+  <%= f.submit class: "btn btn-info px-12" %>
+</div>

@@ -1,4 +1,7 @@
-document.addEventListener('turbo:load', function(){
+document.addEventListener('turbo:load', setupCategorySelection);
+document.addEventListener('turbo:render', setupCategorySelection);
+
+function setupCategorySelection(){
   function appendOption(category) {
     return `<option value="${category.id}">${category.title}</option>`;
   }
@@ -44,4 +47,4 @@ document.addEventListener('turbo:load', function(){
       }
     });
   } 
-});
+};

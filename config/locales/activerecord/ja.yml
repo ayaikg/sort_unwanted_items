@@ -23,6 +23,7 @@ ja:
         name: アイテム名
         image: アイテム画像
         price: 出品価格
+        color: カラー
         listing_status: 出品状態
         disposal_method: 処分方法
       notification:
@@ -40,6 +41,22 @@ ja:
         before: 処分前
         sold: 売れた
         discard: 捨てた
+      color:
+        nothing: なし
+        white: ホワイト
+        black: ブラック
+        gray: グレー
+        brown: ブラウン
+        beige: ベージュ
+        green: グリーン
+        blue: ブルー
+        purple: パープル
+        yellow: イエロー
+        pink: ピンク
+        red: レッド
+        orange: オレンジ
+        gold: ゴールド
+        silver: シルバー
     user:
       role:
         general: 一般

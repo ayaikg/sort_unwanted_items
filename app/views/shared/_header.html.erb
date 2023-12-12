@@ -49,7 +49,7 @@
         <div class="flex items-center justify-center flex-wrap">
           <div class="m-1"><%= f.select set_listing_key, [['出品中', true], ['未出品', false]], { include_blank: '出品状態で検索' }, class: "select select-bordered" %></div>
           <div class="m-1"><%= f.select set_diposal_key, Item.disposal_methods_i18n.except(:before).invert.map { |key, value| [key, Item.disposal_methods[value]] }, { include_blank: "処分方法で検索" }, class: "select select-bordered" %></div>
-          <div class="m-1"><%= f.collection_select set_category, set_categories_collection, :title, :title, { include_blank: 'カテゴリーで検索' }, class: "select select-bordered" %></div>
+          <div class="m-1"><%= f.select set_category, set_categories_collection, { include_blank: 'カテゴリーで検索' }, class: "select select-bordered" %></div>
         </div>
       <% end %>
         <div class="flex justify-center">
