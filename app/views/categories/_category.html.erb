@@ -10,7 +10,7 @@
     </div>
     <div>
       <p>アイテム数</p>
-      <p class="text-center"><%= category.children.sum(:items_count) %>個</p>
+      <p class="text-center"><%= category.children.joins(:items).where(items: { user_id: current_user.id }).sum(:items_count) %>個</p>
     </div>
   </div>
 </div>
