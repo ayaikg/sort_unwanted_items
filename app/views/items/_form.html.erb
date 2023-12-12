@@ -12,11 +12,7 @@
     <% end %>
     <%= f.text_field :name, placeholder: "必須(40文字まで)", class: "input input-bordered" %>
   </div>
-  <div class="form-control">
-    <%= f.collection_select :category_id, category, :id, :title, { include_blank: "カテゴリーを選択(必須)", selected: parent_category }, { class: "select select-bordered", id: "item_category_id" } %>
-    <div class="append__category mt-6 lg:mt-8"></div>
-    <%= yield %>
-  </div>
+  <%= yield %>
   <div>
     <span>カラー</span>
     <div class="flex items-center overflow-x-scroll h-[45px]">
