@@ -1,22 +1,18 @@
 <!-- Sidebar content -->
 <div class="drawer-side z-50">
   <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
-    <ul class="menu p-4 w-80 min-h-full bg-base-100 text-base-content">
+  <ul class="menu p-4 w-80 min-h-full bg-base-100 text-base-content">
     <% if logged_in? %>
       <li><%= button_to 'ログアウト', logout_path, method: :delete %></li>
       <li><%= link_to 'マイページ', user_path(current_user.id) %></li>
       <li><%= link_to 'カテゴリー一覧', categories_path %></li>
       <li><%= link_to '投稿一覧', posts_path %></li>
       <li><%= link_to 'お気に入り一覧', likes_posts_path %></a></li>
-      <li><%= link_to 'グラフ', chart_items_path, data: { "turbo" => false } %></li>
+      <li><%= link_to '目標設定', decluttering_path(current_user) %></li>
       <li><%= link_to '目標設定', decluttering_path(current_user) %></li>
       <li><%= link_to '捨てたモノ履歴', history_items_path %></li>
-      <div class="divider"></div> 
-      <li><a>お問い合わせ</a></li>
-      <li><a>利用規約</a></li>
-      <li><a>プライバシーポリシー</a></li>
-    <% else %>
-      <li><%= link_to '投稿一覧', posts_path %></li>
+      <li><%= link_to '目標設定', decluttering_path(current_user) %></li>
+      <li><%= link_to '捨てたモノ履歴', history_items_path %></li>
       <div class="divider"></div> 
       <li><a>お問い合わせ</a></li>
       <li><a>利用規約</a></li>
