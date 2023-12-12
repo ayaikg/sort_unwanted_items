@@ -21,7 +21,8 @@ class Item < ApplicationRecord
                             allow_nil: true }
 
   enum disposal_method: { before: 0, sold: 1, discard: 2 }
-  enum color: { nothing: 0, white: 1, black: 2, gray: 3, brown: 4, beige: 5, green: 6, blue: 7, purple: 8, yellow: 9, pink: 10, red: 11, orange: 12, gold: 13, silver: 14 }
+  enum color: { nothing: 0, white: 1, black: 2, gray: 3, brown: 4, beige: 5, green: 6, blue: 7, purple: 8, yellow: 9,
+                pink: 10, red: 11, orange: 12, gold: 13, silver: 14 }
 
   private
 

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       get 'history'
       get 'chart'
       get 'search'
-      get 'get_category_children', defaults: { format: 'json' }
+      get 'category_children', defaults: { format: 'json' }
     end
   end
   resources :posts do

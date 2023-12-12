@@ -47,7 +47,9 @@ class ItemsController < ApplicationController
   def history
     return unless @q_header
 
-    @disposal_items = @q_header.result(distinct: true).select('items.*, notifications.notify_date').joins(:notification).where.not(disposal_method: 0)
+    @disposal_items = @q_header.result(distinct: true)
+                               .select('items.*, notifications.notify_date').joins(:notification)
+                               .where.not(disposal_method: 0)
   end
 
   def chart
@@ -63,8 +65,8 @@ class ItemsController < ApplicationController
     @before_items = current_user.items.where(disposal_method: 0).count
   end
 
-  def get_category_children
-    @category_children = Category.find("#{params[:parent_id]}").children
+  def category_children
+    @category_children = Category.find(params[:parent_id]).children
   end
 
   def update
@@ -84,13 +86,13 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :price, :image, :image_cache, :listing_status, :disposal_method, :category_id, :color,
-                                 notification_attributes: [:notify_date])
+    params.require(:item).permit(:name, :price, :image, :image_cache, :listing_status, :disposal_method,
+                                 :category_id, :color, notification_attributes: [:notify_date])
   end
 
   def set_item
     @item = current_user.items.find_by(id: params[:id])
-    redirect_to(root_path, alert: 'Forbidden access.') unless @item
+    redirect_to(root_path, alert: t('defaults.message.forbidden_access')) unless @item
   end
 
   def set_categories

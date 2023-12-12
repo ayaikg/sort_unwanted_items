@@ -5,6 +5,7 @@ ja:
     create: 作成する
     message:
       require_login: ログインしてください
+      forbidden_access: こちらのページはアクセスできません
   users:
     new:
       title: ユーザー登録

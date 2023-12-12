@@ -85,23 +85,11 @@ module ApplicationHelper
   end
 
   def category_icon(category)
-    case category.title
-    when 'ファッション'
-      'category_clothes.png'
-    when '書籍'
-      'category_book.png'
-    when 'コスメ'
-      'category_cosme.png'
-    when 'ゲーム'
-      'category_game.png'
-    when '音楽'
-      'category_music.png'
-    when 'おもちゃ・ぬいぐるみ'
-      'category_doll.png'
-    when 'その他'
-      'category_others.png'
-    else
-      'no_image.png'
-    end
+    category_icons = {
+      'ファッション' => 'category_clothes.png', '書籍' => 'category_book.png', 'コスメ' => 'category_cosme.png',
+      'ゲーム' => 'category_game.png', '音楽' => 'category_music.png', 'おもちゃ・ぬいぐるみ' => 'category_doll.png',
+      'その他' => 'category_others.png'
+    }
+    category_icons.fetch(category.title, 'no_image.png')
   end
 end

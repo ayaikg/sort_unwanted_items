@@ -54,7 +54,7 @@ class PostsController < ApplicationController
 
   def set_post
     @post = current_user.posts.find_by(id: params[:id])
-    redirect_to(root_path, alert: 'Forbidden access.') unless @post
+    redirect_to(root_path, alert: t('defaults.message.forbidden_access')) unless @post
   end
 
   def set_disposal

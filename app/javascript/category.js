@@ -23,7 +23,7 @@ function setupCategorySelection(){
       if (childrenWrapper2) childrenWrapper2.remove();
       var parentId = this.value;
       if (parentId != "") {
-        fetch(`/items/get_category_children/?parent_id=${parentId}`)
+        fetch(`/items/category_children/?parent_id=${parentId}`)
         .then(response => response.json())
           .then(children => {
             var childrenWrapper = document.getElementById('children_wrapper');
