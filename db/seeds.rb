@@ -6,19 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-5.times do
-  name = Faker::Name.name
-  email = Faker::Internet.email
-
-  User.create!(
-    email:,
-    name:,
-    password: "password",
-    password_confirmation: "password"
-  )
-end
-
-fassion = Category.create!(title: 'ファッション')
+fashion = Category.create!(title: 'ファッション')
 book = Category.create!(title: '書籍')
 cosme = Category.create!(title: 'コスメ')
 beauty = Category.create!(title: '美容')
@@ -26,12 +14,11 @@ kids = Category.create!(title: 'ベビー・キッズ')
 music = Category.create!(title: '音楽')
 game = Category.create!(title: 'ゲーム')
 appliances = Category.create!(title: '家電')
-doll = Category.create!(title: 'おもちゃ・ぬいぐるみ')
-hobby = Category.create!(title: '趣味・グッズ')
+hobby = Category.create!(title: '趣味・グッズ・おもちゃ')
 sports = Category.create!(title: 'スポーツ・レジャー')
 others = Category.create!(title: 'その他')
 
-fassion.children.create!(
+fashion.children.create!(
   [
     { title: 'トップス' },
     { title: 'ジャケット/アウター' },
@@ -159,24 +146,18 @@ appliances.children.create!(
   ]
 )
 
-doll.children.create!(
-  [
-    { title: '楽器/器材' },
-    { title: 'ぬいぐるみ' },
-    { title: 'フィギュア' },
-    { title: 'プラモデル' },
-    { title: 'ラジコン' },
-    { title: 'ミニカー' },
-    { title: 'その他' }
-  ]
-)
-
 hobby.children.create!(
   [
     { title: 'タレントグッズ' },
     { title: 'キャラクターグッズ' },
     { title: 'アニメグッズ' },
+    { title: 'ぬいぐるみ' },
+    { title: 'フィギュア' },
+    { title: 'プラモデル' },
+    { title: 'ラジコン' },
+    { title: 'ミニカー' },
     { title: '切手/貨幣' },
+    { title: '楽器/器材' },
     { title: '美術品' },
     { title: 'アート用品' },
     { title: 'ハンドメイド' },
@@ -195,6 +176,8 @@ sports.children.create!(
     { title: 'スノーボード' },
     { title: 'スキー' },
     { title: 'トレーニング/エクササイズ' },
+    { title: 'キャンプ/登山' },
+    { title: '旅行用品' },
     { title: 'その他' }
   ]
 )
