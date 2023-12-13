@@ -4,7 +4,9 @@ class PostsController < ApplicationController
 
   def index
     # distinct: trueではsort_linkでエラーになるため
-    @posts = @q_header.result.group('posts.id').includes([:user, :likes, :item]).order(created_at: :desc) if @q_header
+    @posts = @q_header.result.group('posts.id').joins(:item)
+                             .where.not(items: { disposal_method: 0 }).includes([:user, :likes])
+                             .order(created_at: :desc) if @q_header
   end
 
   def show
