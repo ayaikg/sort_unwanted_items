@@ -1,6 +1,6 @@
 <main class="md:mx-auto">
   <div class="md:w-[700px]">
-    <div role="tablist" class="tabs tabs-boxed justify-around" data-controller="tab">
+    <div role="tablist" class="tabs tabs-boxed justify-around bg-base-100">
       <%= sort_link(@q_header, :likes_count, 'いいね順', default_order: :desc, class: "tab", role: "tab") %>
       <%= sort_link(@q_header, :updated_at, '新着順', default_order: :desc, class: "tab", role: "tab") %>
       <%= sort_link(@q_header, :created_at, '作成日順', default_order: :desc, class: "tab", role: "tab") %>

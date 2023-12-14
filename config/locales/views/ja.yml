@@ -9,6 +9,9 @@ ja:
   users:
     new:
       title: ユーザー登録
+  user_sessions:
+    destroy:
+      logout: ログアウトしました
   catagories:
     new:
       title: カテゴリー作成
