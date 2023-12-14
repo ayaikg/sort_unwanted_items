@@ -92,4 +92,10 @@ module ApplicationHelper
     }
     category_icons.fetch(category.title, 'no_image.png')
   end
+
+  def page_title(page_title = '')
+    base_title = 'steteco'
+
+    page_title.empty? ? base_title : page_title + ' | ' + base_title
+  end
 end

@@ -7,11 +7,43 @@ ja:
       require_login: ログインしてください
       forbidden_access: こちらのページはアクセスできません
   users:
-    new:
-      title: ユーザー登録
-  catagories:
-    new:
-      title: カテゴリー作成
+    edit:
+      title: ユーザー編集
+    show:
+      title: ユーザー詳細
+  user_sessions:
+    destroy:
+      logout: ログアウトしました
+  categories:
+    index:
+      title: カテゴリー一覧
   items:
     new:
       title: アイテム作成
+    edit:
+      title: アイテム編集
+    show:
+      title: アイテム詳細
+    index:
+      title: アイテム一覧
+    history:
+      title: アイテム履歴
+    chart:
+      title: グラフ
+  posts:
+    new:
+      title: 投稿作成
+    edit:
+      title: 投稿編集
+    index:
+      title: 投稿一覧
+    show:
+      title: 投稿詳細
+    likes:
+      title: お気に入り一覧
+  declutterings:
+    show:
+      title: 目標設定
+  homes:
+    top:
+      title: トップページ
