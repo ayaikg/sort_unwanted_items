@@ -1,1 +1,1 @@
-0 7 * * * bundle exec rake /rails/lib/tasks/push_line.rake push_line_message_notify_date
+*/5 * * * * bundle exec rake /rails/lib/tasks/push_line.rake push_line_message_notify_date
