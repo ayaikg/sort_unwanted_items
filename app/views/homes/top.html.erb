@@ -1,5 +1,5 @@
-<main class="m-auto">
-  <div class="hero h-auto" style="background-image: url(<%= asset_path 'top.jpg' %>);">
+<main class="flex-grow">
+  <div class="hero h-[300px] md:h-[400px]" style="background-image: url(<%= asset_path 'top.jpg' %>);">
     <div class="hero-overlay bg-opacity-60"></div>
       <div class="hero-content text-center text-neutral-content">
         <div class="max-w-md">
@@ -10,56 +10,53 @@
       </div>
     </div>
   <div class="w-full p-5">
-    <h2 class="mb-5 text-center text-2xl">How To Use</h2>
-    <div class="space-y-4">
+    <h2 class="mb-5 text-center text-2xl border-b">このサイトでできること</h2>
+    <div class="space-y-4 md:flex md:flex-wrap md:space-y-0 md:justify-around">
       <div>
-        <h3 class="text-lg text-center">STEP1.アイテム登録</h3>
-        <div class="md:flex items-center">
-          <%= image_tag "no_image.png", class: "mx-auto" %>
-          <div class="md:w-2/5">
-            <p>まずは溜まっている不用品をどんどん登録しましょう!</p>
-            <p>アイテムは、カテゴリー別や出品中・未出品別に分けて管理できます。</p>
-          </div>
+        <h3 class="text-lg text-center">アイテム登録</h3>
+        <div class="mx-auto bg-info rounded-full relative h-[250px] w-[250px]">
+          <p class="p-5 text-center absolute left-0 top-1/2 -translate-y-1/2 w-[250px]">
+            お家に溜まっている不用品をどんどん登録しましょう!</br>
+            アイテムは、カテゴリー別や出品中・未出品別に分けて管理できます。
+          </p>
         </div>
       </div>
       <div>
-        <h3 class="text-lg text-center">STEP2.LINE通知</h3>
-        <div class="md:flex items-center">
-          <div class="md:w-2/5">
-            <p>アイテム登録時には、通知日を指定します。</p>
-            <p>通知日が来たらLINEメッセージで断捨離の後押しをします!</p>
-          </div>
-          <%= image_tag "no_image.png", class: "mx-auto" %>
+        <h3 class="text-lg text-center">LINE通知</h3>
+        <div class="mx-auto bg-info rounded-full relative h-[250px] w-[250px]">
+          <p class="p-5 text-center absolute left-0 top-1/2 -translate-y-1/2 w-[250px]">
+            アイテム登録時には、通知日を指定します。</br>
+            通知日が来たらLINEメッセージが届きます!
+          </p>
         </div>
       </div>
       <div>
-        <h3 class="text-lg text-center">STEP3.履歴ページで確認</h3>
-        <div class="md:flex items-center">
-          <%= image_tag "no_image.png", class: "mx-auto" %>
-          <p class="md:w-2/5">どんなものを断捨離したのか履歴ページで確認することで、次回の購入の参考にしましょう!</p>
+        <h3 class="text-lg text-center">履歴ページで確認</h3>
+        <div class="mx-auto bg-info rounded-full relative h-[250px] w-[250px]">
+          <p class="p-5 text-center absolute left-0 top-1/2 -translate-y-1/2 w-[250px]">
+            どんなモノを断捨離したのか履歴ページで確認できます。</br>
+            次回の購入の参考にしましょう!
+          </p>
         </div>
       </div>
       <div>
-        <h3 class="text-lg text-center">STEP4.グラフ</h3>
-        <div class="md:flex items-center">
-          <div class="md:w-2/5">
-            <p>断捨離した数をグラフで確認できます。</p>
-            <p>皆さんの成果をわかりやすい形で可視化することでモチベーションも上がります!</p>
-          </div>
-          <%= image_tag "no_image.png", class: "mx-auto" %>
+        <h3 class="text-lg text-center">グラフ</h3>
+        <div class="mx-auto bg-info rounded-full relative h-[250px] w-[250px]">
+          <p class="p-5 text-center absolute left-0 top-1/2 -translate-y-1/2 w-[250px]">
+            断捨離した数をグラフで確認できます。</br>
+            皆さんの成果をわかりやすい形で可視化します!
+          </p>
         </div>
       </div>
       <div>
-        <h3 class="text-lg text-center">STEP5.捨てたモノをみんなでシェア</h3>
-        <div class="md:flex items-center">
-          <%= image_tag "no_image.png", class: "mx-auto" %>
-          <div class="md:w-2/5">
-            <p>アイテムを断捨離できたら投稿してみましょう！</p>
-            <p>あなたの投稿が誰かの助けになります。</p>
-          </div>
+        <h3 class="text-lg text-center">捨てたモノをみんなにシェア</h3>
+        <div class="mx-auto bg-info rounded-full relative h-[250px] w-[250px]">
+          <p class="p-5 text-center absolute left-0 top-1/2 -translate-y-1/2 w-[250px]">
+            アイテムを断捨離できたら投稿してみましょう！</br>
+            あなたの投稿が誰かの助けになります。
+          </p>
         </div>
       </div>
     </div>
   </div>
-  <div class="text-center">まずは友達追加から↓</div>
 </main>
