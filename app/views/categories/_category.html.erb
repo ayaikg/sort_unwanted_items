@@ -2,7 +2,7 @@
   <div class="flex justify-between w-full items-center">
     <div class="avatar border-2 rounded-lg">
       <div class="w-10">
-        <%= image_tag category_icon(category) %>
+        <%= category_icon(category) %>
       </div>
     </div>
     <div class="font-bold truncate w-48" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= category_items_path(category_id: category.id) %>">
@@ -10,7 +10,7 @@
     </div>
     <div>
       <p>アイテム数</p>
-      <p class="text-center"><%= category.children.joins(:items).where(items: { user_id: current_user.id }).sum(:items_count) %>個</p>
+      <p class="text-center"><%= category.children.joins(:items).where(items: { user_id: current_user.id }).where(items: { disposal_method: "before" }).count %>個</p>
     </div>
   </div>
 </div>

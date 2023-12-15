@@ -31,8 +31,8 @@ export default class extends Controller {
           {
             label: '断捨離数',
             data: disposalCounts,
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgba(255, 99, 132, 1)',
+            backgroundColor: 'rgba(30, 140, 180, 0.3)',
+            borderColor: 'rgba(30, 140, 180, 1)',
             borderWidth: 1,
           },
         ],
