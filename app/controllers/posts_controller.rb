@@ -3,9 +3,10 @@ class PostsController < ApplicationController
   before_action :set_disposal, only: [:new, :create, :edit, :update]
 
   def index
+    @q_header.sorts = 'likes_count desc' if @q_header.sorts.empty?
     @posts = @q_header.result(distinct: true).eager_load([:item, :user]).preload(:likes)
                              .where.not(items: { disposal_method: 0 })
-                             .order(created_at: :desc).page(params[:page]) if @q_header
+                             .page(params[:page]) if @q_header
   end
 
   def show
