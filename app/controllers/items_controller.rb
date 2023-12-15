@@ -49,7 +49,7 @@ class ItemsController < ApplicationController
 
     @disposal_items = @q_header.result(distinct: true)
                                .select('items.*, notifications.notify_date').joins(:notification)
-                               .where.not(disposal_method: 0)
+                               .where.not(disposal_method: 0).page(params[:page]).per(20)
   end
 
   def chart

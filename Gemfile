@@ -104,6 +104,10 @@ gem "ancestry"
 
 # N+1対策
 gem "counter_culture"
+
+# ページネーション
+gem "kaminari"
+
 gem "dockerfile-rails", ">= 1.5", :group => :development
 
 gem "sentry-ruby", "~> 5.15"

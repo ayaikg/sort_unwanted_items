@@ -79,11 +79,6 @@ module ApplicationHelper
     end
   end
 
-  def set_categories_collection
-    parent_categories = Category.where(ancestry: nil)
-    grouped_options_for_select(parent_categories.map { |p| [p.title, p.children.map { |c| [c.title, c.id] }] })
-  end
-
   def category_icon(category)
     category_icons = {
       'ファッション' => 'category_clothes.png', '書籍' => 'category_book.png', 'コスメ' => 'category_cosme.png',

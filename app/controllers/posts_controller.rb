@@ -3,10 +3,9 @@ class PostsController < ApplicationController
   before_action :set_disposal, only: [:new, :create, :edit, :update]
 
   def index
-    # distinct: trueではsort_linkでエラーになるため
-    @posts = @q_header.result.group('posts.id').joins(:item)
-                             .where.not(items: { disposal_method: 0 }).includes([:user, :likes])
-                             .order(created_at: :desc) if @q_header
+    @posts = @q_header.result(distinct: true).eager_load([:item, :user]).preload(:likes)
+                             .where.not(items: { disposal_method: 0 })
+                             .order(created_at: :desc).page(params[:page]) if @q_header
   end
 
   def show
@@ -45,7 +44,9 @@ class PostsController < ApplicationController
   end
 
   def likes
-    @like_posts = @q_header.result(distinct: true).includes(:user).order(created_at: :desc) if @q_header
+    @like_posts = @q_header.result(distinct: true).eager_load([:item, :user]).preload(:likes)
+                           .where.not(items: { disposal_method: 0 })
+                           .order(created_at: :desc).page(params[:page]) if @q_header
   end
 
   private
