@@ -4,8 +4,6 @@ module ApplicationHelper
       category_items_path(category)
     elsif current_page?(history_items_path)
       history_items_path
-    elsif current_page?(categories_path)
-      categories_path
     elsif current_page?(posts_path)
       posts_path
     elsif current_page?(likes_posts_path)
@@ -18,16 +16,12 @@ module ApplicationHelper
       search_items_path(view: 'index')
     elsif current_page?(history_items_path)
       search_items_path(view: 'history')
-    elsif current_page?(categories_path)
-      search_categories_path
     end
   end
 
   def set_search_key(category = nil)
     if (category && current_page?(category_items_path(category))) || current_page?(history_items_path)
       :name_cont
-    elsif current_page?(categories_path)
-      :title_or_items_name_cont
     elsif current_page?(posts_path) || current_page?(likes_posts_path)
       :content_or_item_name_cont
     end
@@ -36,8 +30,6 @@ module ApplicationHelper
   def set_key(category = nil)
     if (category && current_page?(category_items_path(category))) || current_page?(history_items_path)
       :name
-    elsif current_page?(categories_path)
-      :title
     elsif current_page?(posts_path) || current_page?(likes_posts_path)
       :content
     end
@@ -46,7 +38,6 @@ module ApplicationHelper
   def choice_page?(category = nil)
     (category && current_page?(category_items_path(category))) ||
       current_page?(history_items_path) ||
-      current_page?(categories_path) ||
       current_page?(posts_path) ||
       current_page?(likes_posts_path)
   end
