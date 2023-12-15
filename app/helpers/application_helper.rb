@@ -81,11 +81,15 @@ module ApplicationHelper
 
   def category_icon(category)
     category_icons = {
-      'ファッション' => 'category_clothes.png', '書籍' => 'category_book.png', 'コスメ' => 'category_cosme.png',
-      'ゲーム' => 'category_game.png', '音楽' => 'category_music.png', 'おもちゃ・ぬいぐるみ' => 'category_doll.png',
-      'その他' => 'category_others.png'
+      'ファッション' => 'categories/category_fashion', '書籍' => 'categories/category_book', 'コスメ' => 'categories/category_cosme',
+      'ゲーム' => 'categories/category_game', '音楽' => 'categories/category_music', '趣味・グッズ・おもちゃ' => 'categories/category_hobby',
+      '美容' => 'categories/category_beauty', 'ベビー・キッズ' => 'categories/category_kids', '家電' => 'categories/category_appliances',
+      'スポーツ・レジャー' => 'categories/category_sports', 'その他' => 'categories/category_others'
     }
-    category_icons.fetch(category.title, 'no_image.png')
+    if category_icons[category.title]
+      svg_content = render partial: category_icons[category.title]
+    end
+    svg_content.html_safe # HTMLとしてレンダリングするためにhtml_safeを呼ぶ
   end
 
   def page_title(page_title = '')
