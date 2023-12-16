@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   resources :declutterings, only: [:edit, :update, :show]
 
   namespace :admin do
-    root to: 'dashboards#index'
+    root to: 'users#index'
     get 'login', to: 'user_sessions#new'
     post 'login', to: 'user_sessions#create'
     delete 'logout', to: 'user_sessions#destroy'
