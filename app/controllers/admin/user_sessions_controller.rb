@@ -9,7 +9,7 @@ class Admin::UserSessionsController < Admin::BaseController
     if @user
       redirect_to admin_root_path, success: t('.success')
     else
-      flash.now[:error] = t('.fail')
+      flash.now[:alert] = t('.fail')
       render :new, status: :unprocessable_entity
     end
   end

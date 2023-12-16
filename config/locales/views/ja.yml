@@ -6,6 +6,7 @@ ja:
     message:
       require_login: ログインしてください
       forbidden_access: こちらのページはアクセスできません
+      not_authorized: 管理者権限を確認できませんでした
   users:
     edit:
       title: ユーザー編集
@@ -47,3 +48,36 @@ ja:
   homes:
     top:
       title: トップページ
+  admin:
+    users:
+      index:
+        title: ユーザー一覧
+      show:
+        title: ユーザー詳細
+      edit:
+        title: ユーザー編集
+    user_sessions:
+      new:
+        title: ログイン
+      create:
+        success: ログインしました
+        fail: ログインに失敗しました
+      destroy:
+        success: ログアウトしました
+    dashboards:
+      index:
+        title: ダッシュボード
+    posts:
+      index:
+        title: 投稿一覧
+      edit:
+        title: 投稿編集
+      show:
+        title: 投稿詳細
+    items:
+      index:
+        title: アイテム一覧
+      edit:
+        title: アイテム編集
+      show:
+        title: アイテム詳細
