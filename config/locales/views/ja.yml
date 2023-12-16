@@ -3,9 +3,29 @@ ja:
     login: ログイン
     logout: ログアウト
     create: 作成する
+    show: 詳細
+    edit: 編集
+    delete: 削除
+    search_word: 検索ワード
+    unspecified: 選択してください
     message:
       require_login: ログインしてください
       forbidden_access: こちらのページはアクセスできません
+      not_authorized: 管理者権限を確認できませんでした
+      delete_confirm: 本当に削除しますか?
+      updated: 更新に成功しました
+      not_updated: 更新に失敗しました
+      deleted: 削除ができました
+    time:
+      formats:
+        defaults: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
+        long: "%Y/%m/%d %H:%M"
+        short: "%m/%d %H:%M"
+    helpers:
+      submit:
+        create: 登録する
+        submit: 保存する
+        update: 更新する
   users:
     edit:
       title: ユーザー編集
@@ -47,3 +67,36 @@ ja:
   homes:
     top:
       title: トップページ
+  admin:
+    users:
+      index:
+        title: ユーザー一覧
+      show:
+        title: ユーザー詳細
+      edit:
+        title: ユーザー編集
+    user_sessions:
+      new:
+        title: ログイン
+      create:
+        success: ログインしました
+        fail: ログインに失敗しました
+      destroy:
+        success: ログアウトしました
+    dashboards:
+      index:
+        title: ダッシュボード
+    posts:
+      index:
+        title: 投稿一覧
+      edit:
+        title: 投稿編集
+      show:
+        title: 投稿詳細
+    items:
+      index:
+        title: アイテム一覧
+      edit:
+        title: アイテム編集
+      show:
+        title: アイテム詳細

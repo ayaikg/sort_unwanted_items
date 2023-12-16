@@ -83,8 +83,12 @@ module ApplicationHelper
     svg_content.html_safe # HTMLとしてレンダリングするためにhtml_safeを呼ぶ
   end
 
-  def page_title(page_title = '')
-    base_title = 'steteco'
+  def page_title(page_title = '', admin = false)
+    base_title = if admin
+                    'steteco(管理画面)'
+                 else
+                    'steteco'
+                 end
 
     page_title.empty? ? base_title : page_title + ' | ' + base_title
   end

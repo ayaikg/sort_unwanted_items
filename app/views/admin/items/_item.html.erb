@@ -1,0 +1,19 @@
+<tr>
+  <td>
+    <%= item.id %>
+  </td>
+  <td>
+    <%= item.user.name %>
+  </td>
+  <td>
+    <%= item.category.parent.title %>
+  </td>
+  <td>
+    <%= l item.created_at, format: :long %>
+  </td>
+  <td class="flex flex-wrap space-y-2 md:space-y-0 md:space-x-2">
+    <%= link_to t('defaults.show'), admin_item_path(item), class: 'btn btn-info' %>
+    <%= link_to t('defaults.edit'), edit_admin_item_path(item), class: 'btn btn-success' %>
+    <%= button_to t('defaults.delete'), admin_item_path(item), method: :delete, data: { turbo_confirm: t('defaults.message.delete_confirm') }, class: 'btn btn-error whitespace-nowrap' %>
+  </td>
+</tr>

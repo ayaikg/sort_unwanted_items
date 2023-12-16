@@ -1,0 +1,38 @@
+<% content_for(:title, t('.title')) %>
+<div class="p-5 space-y-5 md:p-10">
+  <h1 class="font-bold text-center text-2xl"><%= t('.title') %></h1> 
+  <div class="flex space-x-2 justify-end">
+    <%= link_to t('defaults.edit'), edit_admin_post_path(@post), class: 'btn btn-success' %>
+    <%= button_to t('defaults.delete'), admin_post_path(@post), method: :delete, data: { turbo_confirm: t('defaults.message.delete_confirm') }, class: 'btn btn-error' %>
+  </div>
+  <table class="table">
+    <tr>
+      <th><%= Post.human_attribute_name(:id) %></th>
+      <td><%= @post.id %></td>
+    </tr>
+    <tr>
+      <th><%= User.human_attribute_name(:name) %></th>
+      <td><%= @post.user.name %></td>
+    </tr>
+    <tr>
+      <th><%= Item.human_attribute_name(:name) %></th>
+      <td><%= @post.item.name %></td>
+    </tr>
+    <tr>
+      <th><%= Item.human_attribute_name(:image) %></th>
+      <td><%= image_tag @post.item.image.url %></td>
+    </tr>
+    <tr>
+      <th><%= Post.human_attribute_name(:post_image) %></th>
+      <td><%= image_tag @post.post_image.url %></td>
+    </tr>
+    <tr>
+      <th><%= Post.human_attribute_name(:content) %></th>
+      <td><%= @post.content %></td>
+    </tr>
+    <tr>
+      <th><%= Post.human_attribute_name(:created_at) %></th>
+      <td><%= l @post.created_at, format: :long %></td>
+    </tr>
+  </table>
+</div>

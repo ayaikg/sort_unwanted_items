@@ -5,7 +5,15 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-
+10.times do |n|
+  User.create!(
+    name: Faker::Name.name,
+    email: Faker::Internet.unique.email,
+    password: "password",
+    password_confirmation: "password",
+  )
+end
+User.create!(name: 'あどみんたろう', email: 'admin@example.com', password: 'password', password_confirmation: 'password', role: 1)
 fashion = Category.create!(title: 'ファッション')
 book = Category.create!(title: '書籍')
 cosme = Category.create!(title: 'コスメ')

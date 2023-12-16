@@ -9,17 +9,15 @@ ja:
       decluttering: 断捨離
     attributes:
       user:
-        id: ID
         name: ニックネーム
         avatar: プロフィール写真
         introduction: 自己紹介
         password: パスワード
         password_confirmation: パスワード確認
+        role: 権限
       category:
-        id: ID
         title: カテゴリー
       item:
-        id: ID
         name: アイテム名
         image: アイテム画像
         price: 出品価格
@@ -27,14 +25,16 @@ ja:
         listing_status: 出品状態
         disposal_method: 処分方法
       notification:
-        id: ID
         notify_date: 通知日
       post:
-        id: ID
         content: 投稿内容
+        post_image: 投稿画像
       decluttering:
-        id: ID
-        goal_amount: 目標個数 
+        goal_amount: 目標個数
+  attributes:
+    id: ID
+    created_at: 登録日時
+    updated_at: 更新日時
   enums:
     item:
       disposal_method:

@@ -36,12 +36,12 @@
 * 検索機能（オートコンプリート）
 * LINE通知
 * Xシェア
+* 管理機能
 
 ### その後の機能
 * レコメンド機能 (ユーザーの捨てたものの中から、どの様なものがよく買われているけど捨てているのかレコメンド機能を応用して、次回の購入で注意喚起する。)
 * 投稿のランキング化 (ログインなしで利用可)
 * コメント機能
-* 管理機能
 
 ### 画面遷移図
 https://www.figma.com/file/Zzg6RfUUWUZmRSWMpDLzQs/Untitled?type=design&node-id=0%3A1&mode=design&t=Oh14cjazP605Vgvy-1

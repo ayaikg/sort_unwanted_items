@@ -1,0 +1,22 @@
+<% content_for(:title, t('.title')) %>
+<div class="p-5 space-y-5">
+  <h1 class="text-center text-2xl font-bold"><%= t '.title' %></h1>
+  <%= form_with model: @post, url: admin_post_path(@post), local: true, class: "space-y-6 p-10 lg:p-16" do |f| %>
+    <%= render 'shared/error_message', object: f.object %>
+    <div>投稿画像</div>
+    <div class="flex justify-center">
+      <%= f.label :post_image do %>
+        <%= image_tag @post.post_image.url, id: "preview", class: "w-24 md:w-40" %>
+        <%= f.file_field :post_image, onchange: "previewFileWithId(preview)", accept: "image/*", class: "hidden" %>
+        <%= f.hidden_field :post_image_cache %>
+      <% end %>
+    </div>
+    <div class="form-control">
+      <%= f.label :content, class: "mb-4" %>
+      <%= f.text_area :content, class: "textarea textarea-bordered" %>
+    </div>
+    <div class="flex justify-center">
+      <%= f.submit class: 'btn btn-info px-10' %>
+    </div>
+  <% end %>
+</div>
