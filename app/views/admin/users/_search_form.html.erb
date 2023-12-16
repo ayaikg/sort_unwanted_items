@@ -1,0 +1,13 @@
+<%= search_form_for @q, url: admin_users_path do |f| %>
+  <div>
+    <div class='form-control'>
+      <%= f.search_field :name_cont, placeholder: t('defaults.search_word') %>
+    </div>
+    <div class='form-control mr-1'>
+      <%= f.select :role_eq, User.roles_i18n.invert.map{|key, value| [key, User.roles[value]]}, { include_blank: t('defaults.unspecified') } %>
+    </div>
+    <div>
+      <%= f.submit class: 'btn btn-info' %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+<div>
+  <h1 class="text-center text-xl font-bold mb-10"><%= t '.title' %></h1>
+  <%= form_with model: @user, url: admin_user_path(@user), local: true, class: "space-y-6" do |f| %>
+    <%= render 'shared/error_message', object: f.object %>
+    <div>プロフィール画像</div>
+    <div class="flex justify-center">
+      <%= f.label :avatar do %>
+        <%= image_tag @user.avatar.url, id: "preview", class: "w-24 rounded-full md:w-40" %>
+        <%= f.file_field :avatar, onchange: "previewFileWithId(preview)", accept: "image/*", class: "hidden" %>
+        <%= f.hidden_field :avatar_cache %>
+      <% end %>
+    </div>
+    <div class="form-control">
+      <%= f.label :name, class: "mb-4" %>
+      <%= f.text_field :name, class: "input input-bordered" %>
+    </div>
+    <div class="form-control">
+      <%= f.label :introduction, class: "mb-4" %>
+      <%= f.text_area :introduction, class: "textarea textarea-bordered" %>
+    </div>
+    <div class="form-control">
+      <%= f.label :role, class: "mb-4" %>
+      <%= f.select :role, User.roles_i18n.invert, {}, class: "select select-bordered" %>
+    </div>
+    <div class="flex justify-center">
+      <%= f.submit '更新', class: 'btn btn-info px-10' %>
+    </div>
+  <% end %>
+</div>

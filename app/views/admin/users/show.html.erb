@@ -1,0 +1,29 @@
+<div>
+  <h1><%= t('.title') %></h1> 
+  <div>
+    <%= link_to t('defaults.edit'), edit_admin_user_path(user), class: 'btn btn-success' %>
+    <%= button_to t('defaults.delete'), admin_user_path(user), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: 'btn btn-error' %>
+  </div>
+  <table class="table">
+    <tr>
+      <th><%= User.human_attribute_name(:id) %></th>
+      <td><%= @user.id %></td>
+    </tr>
+    <tr>
+      <th><%= User.human_attribute_name(:role) %></th>
+      <td><%= @user.role_i18n %></td>
+    </tr>
+    <tr>
+      <th><%= User.human_attribute_name(:name) %></th>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <th><%= User.human_attribute_name(:avatar) %></th>
+      <td><%= image_tag @user.avatar.url %></td>
+    </tr>
+    <tr>
+      <th><%= User.human_attribute_name(:created_at) %></th>
+      <td><%= l @user.created_at, format: :long %></td>
+    </tr>
+  </table>
+</div>

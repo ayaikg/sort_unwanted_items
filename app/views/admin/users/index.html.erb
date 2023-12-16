@@ -1,0 +1,25 @@
+<div>
+  <h1>ユーザー一覧</h1>
+  <div>
+    <%= render 'search_form' %>
+  </div>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= User.human_attribute_name(:id) %></th>
+          <th><%= User.human_attribute_name(:name) %></th>
+          <th><%= User.human_attribute_name(:role) %></th>
+          <th><%= User.human_attribute_name(:created_at) %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @users %>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <%= paginate @users %>
+  </div>
+</div>
