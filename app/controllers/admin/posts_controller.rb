@@ -3,7 +3,7 @@ class Admin::PostsController < Admin::BaseController
 
   def index
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).includes(:user).order(id: :asc).page(params[:page])
+    @posts = @q.result(distinct: true).includes(:user, :item).order(id: :asc).page(params[:page])
   end
 
   def edit; end

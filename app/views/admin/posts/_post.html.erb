@@ -6,7 +6,7 @@
     <%= post.user.name %>
   </td>
   <td>
-    <%= post.item.name %>
+    <p class="truncate w-[70px] md:w-[145px]"><%= post.content %></p>
   </td>
   <td>
     <%= l post.created_at, format: :long %>

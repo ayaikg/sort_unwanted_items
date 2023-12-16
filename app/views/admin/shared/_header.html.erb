@@ -7,7 +7,7 @@
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
         <li><%= link_to 'ユーザー管理', admin_users_path %></li>
         <li><%= link_to '投稿管理', admin_posts_path %></li>
-        <li><a>アイテム管理</a></li>
+        <li><%= link_to 'アイテム管理', admin_items_path %></li>
       </ul>
     </div>
     <a class="btn btn-ghost text-xl">管理者画面</a>
@@ -16,7 +16,7 @@
     <ul class="menu menu-horizontal px-1">
       <li><%= link_to 'ユーザー管理', admin_users_path %></li>
       <li><%= link_to '投稿管理', admin_posts_path %></li>
-      <li><a>アイテム管理</a></li>
+      <li><%= link_to 'アイテム管理', admin_items_path %></li>
     </ul>
   </div>
   <div class="navbar-end">
