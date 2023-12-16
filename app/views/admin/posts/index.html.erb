@@ -1,0 +1,25 @@
+<div class="p-5 space-y-5">
+  <h1 class="font-bold text-center text-2xl"><%= t('.title') %></h1>
+  <div>
+    <%= render 'search_form' %>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= Post.human_attribute_name(:id) %></th>
+          <th><%= User.human_attribute_name(:name) %></th>
+          <th><%= Item.human_attribute_name(:name) %></th>
+          <th><%= Post.human_attribute_name(:created_at) %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @posts %>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <%= paginate @posts %>
+  </div>
+</div>

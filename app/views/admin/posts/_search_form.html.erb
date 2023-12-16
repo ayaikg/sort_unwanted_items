@@ -1,0 +1,15 @@
+<%= search_form_for @q, url: admin_posts_path do |f| %>
+  <div class="space-y-2 md:space-y-0 md:flex md:justify-center md:space-x-4">
+    <div class='form-control'>
+      <%= f.search_field :content_or_item_name_cont, class: "input input-bordered", placeholder: t('defaults.search_word') %>
+    </div>
+    <div class='flex justify-center items-center'>
+      <%= f.date_field :created_at_gteq, class: 'p-2.5 border' %>
+      <span>〜</span>
+      <%= f.date_field :created_at_lteq_end_of_day, class: 'p-2.5 border' %>
+    </div>
+    <div class="flex justify-center">
+      <%= f.submit class: 'btn btn-info px-10' %>
+    </div>
+  </div>
+<% end %>

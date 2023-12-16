@@ -3,7 +3,7 @@ class Admin::PostsController < Admin::BaseController
 
   def index
     @q = Post.ransack(params[:q])
-    @posts = @q.result(distinct: true).includes(:user).order(created_at: :desc).page(params[:page])
+    @posts = @q.result(distinct: true).includes(:user).order(id: :asc).page(params[:page])
   end
 
   def edit; end
@@ -13,7 +13,7 @@ class Admin::PostsController < Admin::BaseController
       redirect_to admin_post_path(@post), success: t('defaults.message.updated')
     else
       flash.now['danger'] = t('defaults.message.not_updated')
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

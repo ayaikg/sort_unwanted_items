@@ -28,6 +28,7 @@ ja:
         notify_date: 通知日
       post:
         content: 投稿内容
+        post_image: 投稿画像
       decluttering:
         goal_amount: 目標個数
   attributes:
