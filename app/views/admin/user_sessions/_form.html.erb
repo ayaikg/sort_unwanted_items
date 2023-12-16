@@ -1,0 +1,14 @@
+<%= form_with url: admin_login_path, local: true, class: "card-body" do |f| %>
+  <div class="form-control">
+    <%= f.label :email %>
+    <%= f.text_field :email, class: "input input-bordered" %>
+  </div>
+  <div class="form-control">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: "input input-bordered" %>
+  </div>
+  <div class="form-control mt-6">
+    <%= f.submit 'ログイン', class: 'btn btn-info' %>
+  </div>
+<% end %>
+    
