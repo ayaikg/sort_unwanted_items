@@ -1,3 +1,4 @@
+<% content_for(:title, t('.title')) %>
 <div class="p-5 space-y-5">
   <h1 class="text-center text-2xl font-bold"><%= t '.title' %></h1>
   <%= form_with model: @item, url: admin_item_path(@item), local: true, class: "space-y-6 p-10 lg:p-16" do |f| %>

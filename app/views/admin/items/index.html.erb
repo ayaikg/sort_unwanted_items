@@ -1,27 +1,26 @@
-<div class="p-5">
-  <h1 class="font-bold text-center text-2xl mb-8"><%= t('.title') %></h1>
-  <%= turbo_frame_tag "items_list" do %>
-    <div class="mb-8">
-      <%= render 'search_form', categories_collection: @categories_collection %>
-    </div>
-      <div class="overflow-x-auto">
-        <table class="table">
-          <thead>
-            <tr>
-              <th><%= Item.human_attribute_name(:id) %></th>
-              <th><%= Item.human_attribute_name(:name) %></th>
-              <th><%= Category.human_attribute_name(:title) %></th>
-              <th><%= Item.human_attribute_name(:created_at) %></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <%= render @items %>
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <%= paginate @items %>
-      </div>
-  <% end %>
+<% content_for(:title, t('.title')) %>
+<div class="p-5 space-y-8">
+  <h1 class="font-bold text-center text-2xl"><%= t('.title') %></h1>
+  <div>
+    <%= render 'search_form', categories_collection: @categories_collection %>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= Item.human_attribute_name(:id) %></th>
+          <th><%= Item.human_attribute_name(:name) %></th>
+          <th><%= Category.human_attribute_name(:title) %></th>
+          <th><%= Item.human_attribute_name(:created_at) %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @items %>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <%= paginate @items %>
+  </div>
 </div>
