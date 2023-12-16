@@ -13,6 +13,9 @@ ja:
       forbidden_access: こちらのページはアクセスできません
       not_authorized: 管理者権限を確認できませんでした
       delete_confirm: 本当に削除しますか?
+      updated: 更新に成功しました
+      not_updated: 更新に失敗しました
+      deleted: 削除ができました
     time:
       formats:
         defaults: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"

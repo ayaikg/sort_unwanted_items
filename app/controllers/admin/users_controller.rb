@@ -3,7 +3,7 @@ class Admin::UsersController < Admin::BaseController
 
   def index
     @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true).order(created_at: :desc).page(params[:page])
+    @users = @q.result(distinct: true).order(id: :asc).page(params[:page])
   end
 
   def edit; end
@@ -31,6 +31,6 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def user_params
-    params.require(:user).permit(:email, :name, :avatar, :avatar_cache, :role)
+    params.require(:user).permit(:email, :name, :avatar, :avatar_cache, :role, :introduction)
   end
 end

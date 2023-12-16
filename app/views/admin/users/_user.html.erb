@@ -11,9 +11,9 @@
   <td>
     <%= l user.created_at, format: :long %>
   </td>
-  <td>
+  <td class="flex flex-wrap space-y-2 md:space-y-0 md:space-x-2">
     <%= link_to t('defaults.show'), admin_user_path(user), class: 'btn btn-info' %>
     <%= link_to t('defaults.edit'), edit_admin_user_path(user), class: 'btn btn-success' %>
-    <%= button_to t('defaults.delete'), admin_user_path(user), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: 'btn btn-error' %>
+    <%= button_to t('defaults.delete'), admin_user_path(user), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: 'btn btn-error whitespace-nowrap' %>
   </td>
 </tr>
