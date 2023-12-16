@@ -12,7 +12,7 @@ class Admin::PostsController < Admin::BaseController
     if @post.update(post_params)
       redirect_to admin_post_path(@post), success: t('defaults.message.updated')
     else
-      flash.now['danger'] = t('defaults.message.not_updated')
+      flash.now[:error] = t('defaults.message.not_updated')
       render :edit, status: :unprocessable_entity
     end
   end

@@ -17,7 +17,7 @@ class Admin::ItemsController < Admin::BaseController
     if @item.update(item_params)
       redirect_to admin_item_path(@item), success: t('defaults.message.updated')
     else
-      flash.now['danger'] = t('defaults.message.not_updated')
+      flash.now[:error] = t('defaults.message.not_updated')
       render :edit, status: :unprocessable_entity
     end
   end

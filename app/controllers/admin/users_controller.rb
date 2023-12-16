@@ -12,7 +12,7 @@ class Admin::UsersController < Admin::BaseController
     if @user.update(user_params)
       redirect_to admin_user_path(@user), success: t('defaults.message.updated')
     else
-      flash.now['danger'] = t('defaults.message.not_updated')
+      flash.now[:error] = t('defaults.message.not_updated')
       render :edit
     end
   end
