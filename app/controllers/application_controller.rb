@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   def not_authenticated
     flash[:error] = t('defaults.message.require_login')
-    redirect_to login_path
+    redirect_to root_path
   end
 
   def set_search
@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
       @q_header = Category.roots.ransack(params[:q])
     when 'posts#index'
       @q_header = Post.ransack(params[:q])
-      self.set_categories_collection
+      self.set_categories_collection if logged_in?
     when 'posts#likes'
       @q_header = current_user.like_posts.ransack(params[:q])
       self.set_categories_collection

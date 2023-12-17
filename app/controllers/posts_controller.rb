@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  skip_before_action :require_login, only: :index
   before_action :set_post, only: [:edit, :update, :destroy]
   before_action :set_disposal, only: [:new, :create, :edit, :update]
 
@@ -7,6 +8,8 @@ class PostsController < ApplicationController
     @posts = @q_header.result(distinct: true).eager_load([:item, :user]).preload(:likes)
                              .where.not(items: { disposal_method: 0 })
                              .page(params[:page]) if @q_header
+    @before_login_posts = Post.all.eager_load([:user, :item]).where.not(items: { disposal_method: 0 })
+                             .order(likes_count: :desc).limit(10)
   end
 
   def show
