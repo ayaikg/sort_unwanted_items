@@ -35,8 +35,10 @@
       <% if current_page?(root_path) || current_page?(login_path) %>
         <%= render 'shared/footer' %>
       <% else %>
-        <div class="h-16"></div>
-        <%= render 'shared/bottom_nav' %>
+        <% if logged_in? %>
+          <div class="h-16"></div>
+          <%= render 'shared/bottom_nav' %>
+        <% end %>
       <% end %>
 
       <%= render 'shared/sidebar' %>
