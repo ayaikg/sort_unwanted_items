@@ -1,6 +1,6 @@
 <% content_for(:title, t('.title')) %>
-<main class="md:mx-auto">
-  <div class="md:w-[700px]">
+<% if logged_in? %>
+  <main class="p-10">
     <div role="tablist" class="tabs tabs-boxed justify-around bg-base-100">
       <%= sort_link(@q_header, :updated_at, '新着順', default_order: :desc, class: "tab", role: "tab") %>
       <%= sort_link(@q_header, :created_at, '作成日順', default_order: :asc, class: "tab", role: "tab") %>
@@ -14,5 +14,17 @@
       <% end %>
     </div>
     <%= paginate @posts %>
-  </div>
-</main>
+  </main>
+<% else %>
+  <main class="p-10">
+    <h1 class="text-center font-bold text-xl">今日のランキングTOP10</h1>
+    <div class="flex flex-wrap items-center justify-center">
+      <% if @before_login_posts.present? %>
+        <%= render partial: "before_login_post", collection: @before_login_posts %>
+      <% else %>
+        <p class="text-center">投稿はありません</p>
+      <% end %>
+    </div>
+  </main>
+<% end %>
+

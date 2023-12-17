@@ -20,6 +20,11 @@
   .custom-radio:hover {
     @apply bg-info;
   }
+
+  div.ranks {
+    counter-increment: rank;
+    @apply before:content-[counter(rank)"位"] before:font-bold before:text-red-600;
+  }
 }
 
 input[type=radio]:checked + label {
