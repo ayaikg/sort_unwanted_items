@@ -2,6 +2,13 @@
 <html data-theme="lemonade">
   <head>
     <title><%= page_title(yield(:title)) %></title>
+    <% twitter_card = get_twitter_card_info(@page ? @page : nil) %>
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@blog10946927952" /> 
+    <meta property="og:url" content="https://steteco.fly.dev" />
+    <meta property="og:title" content="断捨離アプリ「steteco」" />
+    <meta property="og:description" content="売れると思うと捨てられない...そんな悩みを解決するアプリです。フリマアプリ利用者で優柔不断な方におすすめです!" />
+    <meta property="og:image" content="<%= image_url('steteco.jpg') %>" />
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
