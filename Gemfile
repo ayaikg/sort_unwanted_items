@@ -54,7 +54,6 @@ group :development, :test do
   gem "rubocop-rails", require: false
   gem "rspec-rails"
   gem "factory_bot_rails"
-  gem "faker"
 end
 
 group :test do
@@ -72,6 +71,8 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
+# ダミーデータ投入
+gem "faker"
 
 # 日本語化対応
 gem "rails-i18n"
