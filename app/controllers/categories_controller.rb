@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
   def index
-    @categories = @q_header.result(distinct: true).order(id: :asc) if @q_header
+    @categories = Category.where(ancestry: nil).order(id: :asc)
   end
 end

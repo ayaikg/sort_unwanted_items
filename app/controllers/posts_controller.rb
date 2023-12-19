@@ -2,14 +2,14 @@ class PostsController < ApplicationController
   skip_before_action :require_login, only: :index
   before_action :set_post, only: [:edit, :update, :destroy]
   before_action :set_disposal, only: [:new, :create, :edit, :update]
+  before_action :set_categories_collection, only: [:index, :likes]
 
   def index
-    @q_header.sorts = 'likes_count desc' if @q_header.sorts.empty?
-    if @q_header
-      @posts = @q_header.result(distinct: true).eager_load([:item, :user]).preload(:likes)
-                        .where.not(items: { disposal_method: 0 })
-                        .page(params[:page])
-    end
+    @q = Post.ransack(params[:q])
+    @q.sorts = 'likes_count desc' if @q.sorts.empty?
+    @posts = @q.result(distinct: true).eager_load([:item, :user]).preload(:likes)
+               .where.not(items: { disposal_method: 0 })
+               .page(params[:page])
     @before_login_posts = Post.all.eager_load([:user, :item]).where.not(items: { disposal_method: 0 })
                               .order(likes_count: :desc).limit(10)
   end
@@ -50,11 +50,10 @@ class PostsController < ApplicationController
   end
 
   def likes
-    return unless @q_header
-
-    @like_posts = @q_header.result(distinct: true).eager_load([:item, :user]).preload(:likes)
-                           .where.not(items: { disposal_method: 0 })
-                           .order(created_at: :desc).page(params[:page])
+    @q = current_user.like_posts.ransack(params[:q])
+    @like_posts = @q.result(distinct: true).eager_load([:item, :user]).preload(:likes)
+                    .where.not(items: { disposal_method: 0 })
+                    .order(created_at: :desc).page(params[:page])
   end
 
   private
@@ -70,5 +69,9 @@ class PostsController < ApplicationController
 
   def set_disposal
     @disposal_items = current_user.items.includes(:user).where.not(disposal_method: 0)
+  end
+
+  def set_categories_collection
+    @categories_collection = Category.where(ancestry: nil).map { |p| [p.title, p.children.map { |c| [c.title, c.id] }] }
   end
 end
