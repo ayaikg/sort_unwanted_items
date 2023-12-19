@@ -6,6 +6,7 @@ class Admin::UsersController < Admin::BaseController
     @users = @q.result(distinct: true).order(id: :asc).page(params[:page])
   end
 
+  def show; end
   def edit; end
 
   def update
@@ -16,8 +17,6 @@ class Admin::UsersController < Admin::BaseController
       render :edit
     end
   end
-
-  def show; end
 
   def destroy
     @user.destroy!

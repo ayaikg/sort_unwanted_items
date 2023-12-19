@@ -1,16 +1,15 @@
-<div class="bg-base-100 p-4 h-20 w-[350px] md:w-[500px]">
-  <div class="flex justify-between w-full items-center">
+<div class="bg-base-100 mt-1 p-4 h-20 border-l-[6px] border-solid border-secondary shadow-md md:w-[500px]">
+  <div class="flex justify-between w-full items-center" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= category_items_path(category_id: category.id) %>">
     <div class="avatar border-2 rounded-lg">
       <div class="w-10">
         <%= category_icon(category) %>
       </div>
     </div>
-    <div class="font-bold truncate w-48" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= category_items_path(category_id: category.id) %>">
+    <div class="font-bold truncate w-48">
       <%= category.title %>
     </div>
     <div>
-      <p>アイテム数</p>
-      <p class="text-center"><%= category.children.joins(:items).where(items: { user_id: current_user.id }).where(items: { disposal_method: "before" }).count %>個</p>
+      <p class="text-center">(<%= category.children.joins(:items).where(items: { user_id: current_user.id }).where(items: { disposal_method: "before" }).count %>)</p>
     </div>
   </div>
 </div>

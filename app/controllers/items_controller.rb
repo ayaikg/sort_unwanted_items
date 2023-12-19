@@ -4,11 +4,13 @@ class ItemsController < ApplicationController
   before_action :set_child_categories, only: [:edit, :update]
 
   def index
-    if @q_header
-      before_items = @q_header.result(distinct: true).includes(:notification)
-                              .select('items.*, notifications.notify_date').joins(:notification)
-                              .where(disposal_method: 0).where(user_id: current_user.id)
-    end
+    @category = Category.find(params[:category_id])
+    child_categories = @category.descendants.pluck(:id)
+    category_ids = child_categories << @category.id
+    @q = Item.where(category_id: category_ids).ransack(params[:q])
+    before_items = @q.result(distinct: true).includes(:notification)
+                     .select('items.*, notifications.notify_date').joins(:notification)
+                     .where(disposal_method: 0).where(user_id: current_user.id)
     @listed_items = before_items.where(listing_status: true)
     @unlisted_items = before_items.where(listing_status: false)
   end
@@ -45,11 +47,11 @@ class ItemsController < ApplicationController
   end
 
   def history
-    return unless @q_header
-
-    @disposal_items = @q_header.result(distinct: true)
-                               .select('items.*, notifications.notify_date').joins(:notification)
-                               .where.not(disposal_method: 0).page(params[:page]).per(20)
+    @q = current_user.items.ransack(params[:q])
+    @disposal_items = @q.result(distinct: true)
+                        .select('items.*, notifications.notify_date').joins(:notification)
+                        .where.not(disposal_method: 0).page(params[:page]).per(20)
+    @categories_collection = Category.where(ancestry: nil).map { |p| [p.title, p.children.map { |c| [c.title, c.id] }] }
   end
 
   def chart

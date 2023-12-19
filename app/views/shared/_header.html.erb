@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<div class="navbar bg-base-100 border-b">
+<div class="navbar bg-primary border-b">
   <div class="navbar-start">
     <%= link_to "steteco", root_path, class: "btn btn-ghost normal-case text-xl" %>
   </div>
@@ -7,50 +7,9 @@
   <div class="navbar-end">
     <a href="https://lin.ee/Vit5Ykr"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0" class="w-28"></a>
     <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-ghost btn-circle avatar">
-      <div class="w-10 rounded-full border border-2">
+      <div class="w-10 rounded-full border border-2 bg-base-100">
         <%= image_tag current_user.avatar.url %>
       </div>
     </label>
   </div>
 </div>
-
-<% if choice_page?(@category) %>
-  <details class="border-b ">
-    <summary class="btn btn-ghost flex justify-center md:mx-auto md:w-[700px]">
-      検索フォームをひらく
-    </summary>
-    <div class="p-2" data-controller="autocomplete" data-autocomplete-url-value=<%= set_value(@category) %> role="combobox">
-      <%= search_form_for @q_header, url: set_url(@category), class: "space-y-4" do |f| %>
-        <div class="flex flex-col items-center">
-          <%= f.search_field set_search_key(@category), data: { autocomplete_target: 'input'}, class: "input input-bordered md:w-96", placeholder: "キーワード検索" %>
-          <%= f.hidden_field set_key(@category), data: { autocomplete_target: 'hidden' } %>
-          <div class="flex justify-center">
-            <ul class="list-group bg-white absolute md:text-sm max-w-max" data-autocomplete-target="results"></ul>
-          </div>
-        </div>
-
-      <% if @category.present? && current_page?(category_items_path(@category)) || current_page?(history_items_path) %>
-        <div>
-          <label class="label flex justify-center"><span class="label-text">通知日で検索</span></label>
-          <div class="flex justify-center items-center">
-            <%= f.date_field :notification_notify_date_gteq, class: "p-2.5 border" %>
-              <span>~</span>
-            <%= f.date_field :notification_notify_date_lteq_end_of_day, class: "p-2.5 border" %>
-          </div>
-        </div>
-      <% end %>
-      
-      <% if current_page?(posts_path) || current_page?(likes_posts_path) || current_page?(history_items_path) %>
-        <div class="flex items-center justify-center flex-wrap">
-          <div class="m-1"><%= f.select set_listing_key, [['出品中', true], ['未出品', false]], { include_blank: '出品状態で検索' }, class: "select select-bordered" %></div>
-          <div class="m-1"><%= f.select set_diposal_key, Item.disposal_methods_i18n.except(:before).invert.map { |key, value| [key, Item.disposal_methods[value]] }, { include_blank: "処分方法で検索" }, class: "select select-bordered" %></div>
-          <div class="m-1"><%= f.select set_category, grouped_options_for_select(@categories_collection), { include_blank: 'カテゴリーで検索' }, class: "select select-bordered" %></div>
-        </div>
-      <% end %>
-        <div class="flex justify-center">
-          <%= f.submit "検索する", class: "btn btn-info px-10" %>
-        </div>
-      <% end %>
-    </div>
-  </details>
-<% end %>

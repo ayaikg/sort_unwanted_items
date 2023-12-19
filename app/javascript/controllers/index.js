@@ -10,9 +10,6 @@ application.register("chart", ChartController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-import IconController from "./icon_controller"
-application.register("icon", IconController)
-
 import LinkController from "./link_controller"
 application.register("link", LinkController)
 

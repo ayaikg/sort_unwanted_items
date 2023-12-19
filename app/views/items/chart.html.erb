@@ -6,9 +6,9 @@
       <div class="flex items-center">
         <h3 class="mr-3">現在のアイテム数: <%= @before_items %></h3>
       </div>
-      <%= link_to "データを詳しく見る", decluttering_path(current_user), class: "btn btn-info" %>
+      <%= link_to "データを詳しく見る", decluttering_path(current_user), class: "btn btn-secondary" %>
     </div>
-    <div data-controller="chart" class="relative h-[500px] md:h-[700px]">
+    <div data-controller="chart" class="relative h-[500px] md:h-[700px] bg-base-100">
       <canvas data-chart-target="canvas"></canvas>
     </div>
   </div>

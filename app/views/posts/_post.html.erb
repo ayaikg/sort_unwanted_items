@@ -1,32 +1,28 @@
 <div class="card w-[320px] bg-base-100 shadow-xl m-2">
   <% unless current_page?(user_path(post.user)) %>
-    <%= link_to user_path(post.user), class: "block py-2.5 px-4" do %>
-      <div class="border-b flex items-center p-2">
-        <div class="avatar mr-2">
-          <div class="w-12 rounded-full border border-2">
-            <%= image_tag post.user.avatar.url %>
-          </div>
+    <div class="border-b flex items-center p-3" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= user_path(post.user) %>">
+      <div class="avatar mr-2">
+        <div class="w-12 rounded-full border border-2">
+          <%= image_tag post.user.avatar.url %>
         </div>
-        <div>
-          <p class="font-bold"><%= post.user.name %></p>
-        </div> 
       </div>
-    <% end %>
+      <div>
+        <p class="font-bold"><%= post.user.name %></p>
+      </div> 
+    </div>
   <% end %>
-  <%= link_to post_path(post), class: "block py-2.5 px-4" do %>
-    <div class="card-body pb-0 pt-2">
-      <h2 class="card-title truncate w-64"><%= post.item.name %></h2>
-      <p class="truncate w-64"><%= post.content %></p>
+
+  <div data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= post_path(post) %>">
+    <div class="card-body">
+      <h2 class="card-title"><%= truncate(post.item.name, length: 15) %></h2>
+      <p><%= truncate(post.content, length: 50) %></p>
     </div>
     <div class="flex justify-center">
-      <% if post.item.image.present? %>
-        <div><%= image_tag post.item.image.url %></div>
-      <% end %>
-      <% if post.post_image.present? %>
-        <div><%= image_tag post.post_image.url %></div>
-      <% end %>
+      <div><%= image_tag post.item.image.url %></div>
+      <div><%= image_tag post.post_image.url %></div>
     </div>
-  <% end %>
+  </div>
+
   <div class="flex items-center justify-around h-[50px]">
     <p class="text-sm text-neutral-400">更新日: <%= post.updated_at.strftime("%Y-%m-%d") %></p>
     <% if current_user.own?(post) %>
