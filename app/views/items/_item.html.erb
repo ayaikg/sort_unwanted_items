@@ -1,7 +1,7 @@
 <div class="shadow-md mb-1 py-2 bg-base-100">
   <div class="flex items-center w-full justify-between">
-    <div class="flex items-center" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= item_path(item) %>">
-      <div class="mask mask-squircle w-24 md:w-32">
+    <div class="flex items-center space-x-2" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= item_path(item) %>">
+      <div class="mask mask-squircle p-2 w-24 md:w-28">
         <%= image_tag item.image.url %>
       </div>
       <div>

@@ -1,18 +1,16 @@
 <% content_for(:title, t('.title')) %>
 <main class="my-auto md:m-auto">
   <div class="p-5 md:w-[700px]">
-    <%= link_to user_path(@post.user), class: "block py-2.5 px-4" do %>
-      <div class="border-b flex items-center p-2">
-        <div class="avatar mr-2">
-          <div class="w-12 rounded-full border border-2">
-            <%= image_tag @post.user.avatar.url %>
-          </div>
+    <div class="p-3 border-b border-secondary flex items-center p-2" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= user_path(@post.user) %>">
+      <div class="avatar mr-2">
+        <div class="w-12 rounded-full border border-2 bg-base-100">
+          <%= image_tag @post.user.avatar.url %>
         </div>
-        <div>
-          <p class="font-bold"><%= @post.user.name %></p>
-        </div> 
       </div>
-    <% end %>
+      <div>
+        <p class="font-bold"><%= @post.user.name %></p>
+      </div> 
+    </div>
     <div class="flex justify-end items-center space-x-5">
       <p class="text-sm text-neutral-400">更新日: <%= @post.updated_at.strftime("%Y-%m-%d") %></p>
     <% if current_user.own?(@post) %>
@@ -40,7 +38,7 @@
         <div class="flex justify-center"><%= image_tag @post.post_image.url, class: "w-[150px] md:w-[300px]" %></div>
       <% end %>
       <div>
-        <h2 class="bg-info">断捨離したモノ</h2>
+        <h2 class="border-b border-secondary">断捨離したモノ</h2>
         <% if @post.item.image.present? %>
           <div class="flex justify-center"><%= image_tag @post.item.image.url, class: "w-[150px] md:w-[300px]" %></div>
         <% end %>
