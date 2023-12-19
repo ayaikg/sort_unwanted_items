@@ -2,7 +2,7 @@
 <% if logged_in? %>
   <main class="pb-10 px-10">
     <%= render 'search_form', url: posts_path %>
-    <div role="tablist" class="tabs tabs-boxed justify-around bg-base-100">
+    <div role="tablist" class="tabs tabs-boxed justify-around bg-neutral">
       <%= sort_link(@q, :updated_at, '新着順', default_order: :desc, class: "tab", role: "tab") %>
       <%= sort_link(@q, :created_at, '作成日順', default_order: :asc, class: "tab", role: "tab") %>
     </div>

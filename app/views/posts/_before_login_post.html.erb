@@ -9,9 +9,9 @@
       <p class="font-bold"><%= before_login_post.user.name %></p>
     </div> 
   </div>
-  <div class="card-body pb-0 pt-2">
-    <h2 class="card-title truncate w-64"><%= before_login_post.item.name %></h2>
-    <p class="truncate w-64"><%= before_login_post.content %></p>
+  <div class="card-body">
+    <h2 class="card-title"><%= truncate(before_login_post.item.name, length: 15) %></h2>
+    <p><%= truncate(before_login_post.content, length: 50) %></p>
   </div>
   <div class="flex justify-center">
     <% if before_login_post.item.image.present? %>
