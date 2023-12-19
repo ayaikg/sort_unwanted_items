@@ -9,6 +9,8 @@ class Admin::ItemsController < Admin::BaseController
     @categories_collection = Category.where(ancestry: nil).map { |p| [p.title, p.children.map { |c| [c.title, c.id] }] }
   end
 
+  def show; end
+
   def edit
     @parent_category = @item.category.parent_id
   end
@@ -21,8 +23,6 @@ class Admin::ItemsController < Admin::BaseController
       render :edit, status: :unprocessable_entity
     end
   end
-
-  def show; end
 
   def category_children
     @category_children = Category.find(params[:parent_id]).children

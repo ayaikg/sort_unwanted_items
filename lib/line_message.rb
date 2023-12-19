@@ -1,6 +1,6 @@
 module LineMessage
   module_function
-  
+
   def item_list(object)
     edit_url = "https://steteco.fly.dev/items/#{object.id}/edit"
     default_url = "https://placehold.jp/80x80.png"
@@ -37,7 +37,7 @@ module LineMessage
                 }
               ],
               size: "sm",
-              wrap: true,
+              wrap: true
             },
             {
               type: "box",
@@ -45,7 +45,7 @@ module LineMessage
               contents: [
                 {
                   type: "button",
-                  action:{
+                  action: {
                     type: "uri",
                     label: "編集ページにいく",
                     uri: edit_url
@@ -62,22 +62,22 @@ module LineMessage
       paddingAll: "20px"
     }
   end
-  
+
   def message_mold(names_with_links, title, description)
     {
       type: 'flex',
       altText: title,
       contents: {
         type: 'bubble',
-        header:{
+        header: {
           type: 'box',
           layout: 'horizontal',
-          contents:[
+          contents: [
             {
               type: 'text',
               text: title,
               wrap: true,
-              size: 'md',
+              size: 'md'
             }
           ]
         },
@@ -102,7 +102,7 @@ module LineMessage
               type: "box",
               layout: "vertical",
               contents: names_with_links
-            },
+            }
           ],
           paddingAll: "0px"
         }

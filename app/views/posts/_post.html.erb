@@ -19,12 +19,8 @@
       <p class="truncate w-64"><%= post.content %></p>
     </div>
     <div class="flex justify-center">
-      <% if post.item.image.present? %>
-        <div><%= image_tag post.item.image.url %></div>
-      <% end %>
-      <% if post.post_image.present? %>
-        <div><%= image_tag post.post_image.url %></div>
-      <% end %>
+      <div><%= image_tag post.item.image.url %></div>
+      <div><%= image_tag post.post_image.url %></div>
     </div>
   <% end %>
   <div class="flex items-center justify-around h-[50px]">

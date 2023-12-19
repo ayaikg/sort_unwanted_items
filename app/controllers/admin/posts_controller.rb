@@ -6,6 +6,7 @@ class Admin::PostsController < Admin::BaseController
     @posts = @q.result(distinct: true).includes(:user, :item).order(id: :asc).page(params[:page])
   end
 
+  def show; end
   def edit; end
 
   def update
@@ -16,8 +17,6 @@ class Admin::PostsController < Admin::BaseController
       render :edit, status: :unprocessable_entity
     end
   end
-
-  def show; end
 
   def destroy
     @post.destroy!

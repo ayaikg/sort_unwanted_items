@@ -5,11 +5,13 @@ class PostsController < ApplicationController
 
   def index
     @q_header.sorts = 'likes_count desc' if @q_header.sorts.empty?
-    @posts = @q_header.result(distinct: true).eager_load([:item, :user]).preload(:likes)
-                             .where.not(items: { disposal_method: 0 })
-                             .page(params[:page]) if @q_header
+    if @q_header
+      @posts = @q_header.result(distinct: true).eager_load([:item, :user]).preload(:likes)
+                        .where.not(items: { disposal_method: 0 })
+                        .page(params[:page])
+    end
     @before_login_posts = Post.all.eager_load([:user, :item]).where.not(items: { disposal_method: 0 })
-                             .order(likes_count: :desc).limit(10)
+                              .order(likes_count: :desc).limit(10)
   end
 
   def show
@@ -48,9 +50,11 @@ class PostsController < ApplicationController
   end
 
   def likes
+    return unless @q_header
+
     @like_posts = @q_header.result(distinct: true).eager_load([:item, :user]).preload(:likes)
                            .where.not(items: { disposal_method: 0 })
-                           .order(created_at: :desc).page(params[:page]) if @q_header
+                           .order(created_at: :desc).page(params[:page])
   end
 
   private

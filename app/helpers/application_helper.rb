@@ -58,10 +58,6 @@ module ApplicationHelper
     end
   end
 
-  def default_categories
-    %w[ファッション 書籍 コスメ ゲーム 音楽 ぬいぐるみ その他]
-  end
-
   def set_category
     if current_page?(history_items_path)
       :category_id_eq
@@ -70,26 +66,9 @@ module ApplicationHelper
     end
   end
 
-  def category_icon(category)
-    category_icons = {
-      'ファッション' => 'categories/category_fashion', '書籍' => 'categories/category_book', 'コスメ' => 'categories/category_cosme',
-      'ゲーム' => 'categories/category_game', '音楽' => 'categories/category_music', '趣味・グッズ・おもちゃ' => 'categories/category_hobby',
-      '美容' => 'categories/category_beauty', 'ベビー・キッズ' => 'categories/category_kids', '家電' => 'categories/category_appliances',
-      'スポーツ・レジャー' => 'categories/category_sports', 'その他' => 'categories/category_others'
-    }
-    if category_icons[category.title]
-      svg_content = render partial: category_icons[category.title]
-    end
-    svg_content.html_safe # HTMLとしてレンダリングするためにhtml_safeを呼ぶ
-  end
+  def page_title(page_title = '', admin: false)
+    base_title = admin ? 'steteco(管理画面)' : 'steteco'
 
-  def page_title(page_title = '', admin = false)
-    base_title = if admin
-                    'steteco(管理画面)'
-                 else
-                    'steteco'
-                 end
-
-    page_title.empty? ? base_title : page_title + ' | ' + base_title
+    page_title.empty? ? base_title : "#{page_title} | #{base_title}"
   end
 end
