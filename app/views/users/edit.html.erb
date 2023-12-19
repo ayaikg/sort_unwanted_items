@@ -7,7 +7,7 @@
       <div>プロフィール画像</div>
       <div class="flex justify-center">
         <%= f.label :avatar do %>
-          <%= image_tag @user.avatar.url, id: "preview", class: "w-24 rounded-full md:w-40" %>
+          <%= image_tag @user.avatar.url, id: "preview", class: "bg-base-100 w-24 rounded-full md:w-40" %>
           <%= f.file_field :avatar, onchange: "previewFileWithId(preview)", accept: "image/*", class: "hidden" %>
           <%= f.hidden_field :avatar_cache %>
         <% end %>
@@ -21,7 +21,7 @@
         <%= f.text_area :introduction, class: "textarea textarea-bordered" %>
       </div>
       <div class="flex justify-center">
-        <%= f.submit '更新', class: 'btn btn-info px-10' %>
+        <%= f.submit '更新', class: 'btn btn-secondary px-12 md:px-20' %>
       </div>
     <% end %>
     <div class='text-center mt-5'>
