@@ -2,33 +2,30 @@
 <main class="md:mx-auto">
   <%= render 'search_form', url: category_items_path(@category), set_value: search_items_path(view: 'index') %>
   <div class="md:w-[700px]">
-    <div role="tablist" class="tabs tabs-boxed justify-around bg-base-100">
+    <div role="tablist" class="tabs tabs-boxed justify-around bg-neutral">
       <%= sort_link(@q, :name, '名前順', default_order: :desc, class: "tab", role: "tab") %>
       <%= sort_link(@q, :updated_at, '新着順', default_order: :desc, class: "tab", role: "tab") %>
       <%= sort_link(@q, :created_at, '作成日順', { class: "tab", role: "tab"}) %>
       <%= sort_link(@q, :notification_notify_date, '通知日順', default_order: :desc, class: "tab", role: "tab") %>
     </div>
+    <h2 class="text-center font-bold border-b-2 border-primary py-2 mb-2"><%= @category.title %></h2>
     <div data-controller="tab">
-      <div class="tabs">
-        <a class="tab w-1/2 tab-bordered tab-active" data-tab-target="status" data-action="click->tab#status">出品中</a> 
-        <a class="tab w-1/2 tab-bordered not-active" data-tab-target="status" data-action="click->tab#status">未出品</a> 
+      <div class="tabs tabs-boxed bg-base-100">
+        <a class="tab w-1/2 tab-active" data-tab-target="status" data-action="click->tab#status">出品中</a> 
+        <a class="tab w-1/2 not-active" data-tab-target="status" data-action="click->tab#status">未出品</a> 
       </div>
-      <div data-tab-target="content">
-        <div class="overflow-x-auto">
-          <table class="table">
-            <% if @listed_items.present? %>
-              <%= render partial: 'item', collection: @listed_items, locals: { category: @category } %>
-            <% end %>
-          </table>
+      <div class="mt-4" data-tab-target="content">
+        <div>
+          <% if @listed_items.present? %>
+            <%= render partial: 'item', collection: @listed_items, locals: { category: @category } %>
+          <% end %>
         </div>
       </div>
-      <div class="hidden" data-tab-target="content">
-        <div class="overflow-x-auto">
-          <table class="table">
-            <% if @unlisted_items.present? %>
-              <%= render partial: 'item', collection: @unlisted_items, locals: { category: @category } %>
-            <% end %>
-          </table>
+      <div class="hidden mt-4" data-tab-target="content">
+        <div>
+          <% if @unlisted_items.present? %>
+            <%= render partial: 'item', collection: @unlisted_items, locals: { category: @category } %>
+          <% end %>
         </div>
       </div>
     </div>

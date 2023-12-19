@@ -1,6 +1,6 @@
 <details class="border-b ">
     <summary class="btn btn-ghost flex justify-center md:mx-auto md:w-[700px]">
-      検索フォームをひらく
+      検索条件
     </summary>
     <div class="p-2" data-controller="autocomplete" data-autocomplete-url-value=<%= set_value %> role="combobox">
       <%= search_form_for @q, url: url, class: "space-y-4" do |f| %>
@@ -29,7 +29,7 @@
           </div>
         <% end %>
         <div class="flex justify-center">
-          <%= f.submit "検索する", class: "btn btn-info px-10" %>
+          <%= f.submit "検索する", class: "btn btn-secondary px-12 md:px-20" %>
         </div>
       <% end %>
     </div>

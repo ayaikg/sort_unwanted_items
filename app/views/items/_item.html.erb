@@ -1,35 +1,29 @@
-<tr class="bg-base-100">
-  <td>
-    <%= link_to item_path(item), class: "block py-2.5 px-4" do %>
-      <div class="flex items-center space-x-5">
-        <div class="avatar">
-          <div class="mask mask-squircle w-12 h-12">
-            <%= image_tag item.image.url %>
-          </div>
-        </div>
-        <div>
-          <div class="font-bold truncate w-56"><%= item.name %></div>
-          <% if current_page?(history_items_path) %>
-            <div class="md:flex md:space-x-5">
-              <span class="badge badge-info"><%= item.listing_status ? '出品中' : '未出品' %></span>
-              <span class="badge badge-info"><%= item.disposal_method_i18n %></span>
-              <div>断捨離日: <%= item.disposed_at %></div>
-            </div>
-          <% elsif current_page?(category_items_path(category)) %>
-            <div class="md:flex md:space-x-5">
-              <% if item.price.present? %>
-                <div><%= number_to_currency(item.price, unit: "¥", format: "%u %n") %></div>
-              <% end %>
-              <div>更新日: <%= item.updated_at.strftime("%Y-%m-%d") %></div>
-              <div>通知日: <%= item.notification.notify_date %></div>
-            </div>
-          <% end %>
-        </div>
+<div class="shadow-md mb-1 py-2 bg-base-100">
+  <div class="flex items-center w-full justify-between">
+    <div class="flex items-center" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= item_path(item) %>">
+      <div class="mask mask-squircle w-24 md:w-32">
+        <%= image_tag item.image.url %>
       </div>
-    <% end %>
-  </td>
-  <% if current_page?(history_items_path) %>
-    <td>
+      <div>
+        <div class="font-bold truncate w-56"><%= item.name %></div>
+        <% if current_page?(history_items_path) %>
+          <div class="md:flex md:space-x-5">
+            <span class="badge badge-primary"><%= item.listing_status ? '出品中' : '未出品' %></span>
+            <span class="badge badge-primary"><%= item.disposal_method_i18n %></span>
+            <div>断捨離日: <%= item.disposed_at %></div>
+          </div>
+        <% elsif current_page?(category_items_path(category)) %>
+          <div class="md:flex md:space-x-5">
+            <% if item.price.present? %>
+              <div><%= number_to_currency(item.price, unit: "¥", format: "%u %n") %></div>
+            <% end %>
+            <div>更新日: <%= item.updated_at.strftime("%Y-%m-%d") %></div>
+            <div>通知日: <%= item.notification.notify_date %></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <% if current_page?(history_items_path) %>
       <details class="dropdown dropdown-left dropdown-end">
         <summary class="btn btn-square btn-ghost">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
@@ -43,7 +37,7 @@
           </li>
         </ul>
       </details>
-    </td>
-  <% end %>
-</tr>
+    <% end %>
+  </div>
+</div>
   

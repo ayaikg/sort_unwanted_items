@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-theme="lemonade">
+<html data-theme="mytheme">
   <head>
     <title><%= page_title(yield(:title)) %></title>
     <meta name="twitter:card" content="summary" />
@@ -18,7 +18,7 @@
   </head>
 
   <body>
-    <div class="drawer drawer-end flex flex-col min-h-screen">
+    <div class="drawer drawer-end flex flex-col min-h-screen bg-neutral">
       <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
       <header class="drawer-content">
         <% if logged_in? %>

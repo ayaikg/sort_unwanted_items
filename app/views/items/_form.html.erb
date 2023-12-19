@@ -1,7 +1,7 @@
 <%= render 'shared/error_message', object: f.object %>
   <div class="flex justify-center">
     <%= f.label :image do %>
-      <%= image_tag item.image.url, id: "preview", class: "w-20 md:w-32 lg:w-40" %>
+      <%= image_tag item.image.url, id: "preview", class: "w-[180px] md:w-[250px] lg:w-[300px]" %>
       <%= f.file_field :image, onchange: "previewFileWithId('preview')", accept: "image/*", class: "hidden" %>
       <%= f.hidden_field :image_cache %>
     <% end %>
@@ -57,5 +57,5 @@
   </div>
   
 <div class="flex justify-center">
-  <%= f.submit class: "btn btn-info px-12" %>
+  <%= f.submit class: "btn btn-secondary px-12 md:px-20" %>
 </div>
