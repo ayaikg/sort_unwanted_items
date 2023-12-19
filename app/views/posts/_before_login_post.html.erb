@@ -14,12 +14,8 @@
     <p><%= truncate(before_login_post.content, length: 50) %></p>
   </div>
   <div class="flex justify-center">
-    <% if before_login_post.item.image.present? %>
-      <div><%= image_tag before_login_post.item.image.url %></div>
-    <% end %>
-    <% if before_login_post.post_image.present? %>
-      <div><%= image_tag before_login_post.post_image.url %></div>
-    <% end %>
+    <div><%= image_tag before_login_post.item.image.url %></div>
+    <div><%= image_tag before_login_post.post_image.url %></div>
   </div>
   
   <div class="flex items-center justify-around h-[50px]">
