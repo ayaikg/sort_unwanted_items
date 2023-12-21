@@ -30,23 +30,25 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to posts_path
+      redirect_to posts_path, success: t('.success')
     else
+      flash.now[:error] = t('.fail')
       render :new, status: :unprocessable_entity
     end
   end
 
   def update
     if @post.update(post_params)
-      redirect_to post_path(@post)
+      redirect_to post_path(@post), success: t('.success')
     else
+      flash.now[:error] = t('.fail')
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @post.destroy!
-    redirect_to posts_path
+    redirect_to posts_path, success: t('.success')
   end
 
   def likes

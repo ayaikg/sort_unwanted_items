@@ -4,12 +4,15 @@
       <%= f.label :item_id, "投稿するアイテム", class: "mb-2" %>
       <%= f.collection_select :item_id, disposal_item, :id, :name, { include_blank: "選択して下さい" }, { class: "select select-bordered" } %>
     </div>
-    <div class="flex justify-center">
-      <%= f.label :post_image do %>
+    <div class="space-y-2">
+      <%= f.label :post_image %>
+      <div class="flex justify-center">
         <%= image_tag post.post_image.url, id: "preview", class: "w-[250px] md:w-80" %>
-        <%= f.file_field :post_image, onchange: "previewFileWithId('preview')", accept: "image/*", class: "hidden" %>
+      </div>
+      <div class="text-center">
+        <%= f.file_field :post_image, onchange: "previewFileWithId('preview')", accept: "image/*", class: "file-input file-input-bordered file-input-primary file-input-sm md:file-input-md" %>
         <%= f.hidden_field :post_image_cache %>
-      <% end %>
+      </div>
     </div>
     <div class="form-control">
       <%= f.label :content, class: "mb-2" %>

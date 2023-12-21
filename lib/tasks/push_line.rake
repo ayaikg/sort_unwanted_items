@@ -2,11 +2,8 @@ namespace :push_line do
   desc "LINEBOT:notify_dateの通知"
   task push_line_message_notify_date: :environment do
     require 'line_message'
+    require 'line_client'
 
-    client = Line::Bot::Client.new { |config|
-      config.channel_secret = Rails.application.credentials.dig(:line, :secret)
-      config.channel_token = Rails.application.credentials.dig(:line, :channel_token)
-    }
     users = User.all
     users.each do |user|
       unless user.authentications.empty?
@@ -19,7 +16,7 @@ namespace :push_line do
         title = "今日の断捨離アイテム"
         description = "今日は通知日設定をしたアイテムがあります。断捨離できたアイテムは、編集ページで処分方法を選択しましょう!"
         message = LineMessage.message_mold(names_with_links, title, description)
-        response = client.push_message(user.authentications.first.uid, message)
+        response = LineClient.line_bot_client.push_message(user.authentications.first.uid, message)
         p response
       end
     end

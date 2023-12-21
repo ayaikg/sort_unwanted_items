@@ -1,10 +1,13 @@
 <%= render 'shared/error_message', object: f.object %>
-  <div class="flex justify-center">
-    <%= f.label :image do %>
+  <div class="space-y-2">
+    <%= f.label :image %>
+    <div class="flex justify-center">
       <%= image_tag item.image.url, id: "preview", class: "w-[180px] md:w-[250px] lg:w-[300px]" %>
-      <%= f.file_field :image, onchange: "previewFileWithId('preview')", accept: "image/*", class: "hidden" %>
+    </div>
+    <div class="text-center">
+      <%= f.file_field :image, onchange: "previewFileWithId('preview')", accept: "image/*", class: "file-input file-input-bordered file-input-primary file-input-sm md:file-input-md" %>
       <%= f.hidden_field :image_cache %>
-    <% end %>
+    </div>
   </div>
   <div class="form-control">
     <%= f.label :name, class: "mb-2" do %>
