@@ -26,7 +26,7 @@
   <div class="flex items-center justify-around h-[50px]">
     <p class="text-sm text-neutral-400">更新日: <%= post.updated_at.strftime("%Y-%m-%d") %></p>
     <% if current_user.own?(post) %>
-      <%= link_to "https://twitter.com/share?url=#{ request.url }&text=#{ post.item.name }%0a%0a#{ post.content }", target: '_blank', class: "btn btn-sm" do %>
+      <%= link_to "https://twitter.com/share?url=#{ request.url }&text=【投稿したアイテム】%0a%0a#{ post.item.name }%0a%0a【断捨離日】%0a%0a#{ post.item.disposed_at }", target: '_blank', class: "btn btn-sm" do %>
         <%= image_tag "logo-black.png", class: "w-3" %>シェア
       <% end %>
       <details class="dropdown dropdown-top dropdown-end">
