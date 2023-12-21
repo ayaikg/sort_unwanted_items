@@ -29,6 +29,9 @@ ja:
   users:
     edit:
       title: ユーザー編集
+    update:
+      success: マイページを更新しました
+      fail: マイページの更新に失敗しました
     show:
       title: ユーザー詳細
   user_sessions:
@@ -40,8 +43,16 @@ ja:
   items:
     new:
       title: アイテム作成
+    create:
+      success: アイテムを作成しました
+      fail: アイテム作成に失敗しました
     edit:
       title: アイテム編集
+    update:
+      success: アイテムを更新しました
+      fail: アイテム更新に失敗しました
+    destroy:
+      success: アイテムを削除しました
     show:
       title: アイテム詳細
     index:
@@ -53,8 +64,16 @@ ja:
   posts:
     new:
       title: 投稿作成
+    create:
+      success: 投稿を作成しました
+      fail: 投稿作成に失敗しました
     edit:
       title: 投稿編集
+    update:
+      success: 投稿を更新しました
+      fail: 投稿更新に失敗しました
+    destroy:
+      success: 投稿を削除しました
     index:
       title: 投稿一覧
     show:

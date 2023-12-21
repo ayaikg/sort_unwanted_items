@@ -40,8 +40,9 @@ class ItemsController < ApplicationController
   def create
     @item = current_user.items.build(item_params)
     if @item.save
-      redirect_to categories_path
+      redirect_to categories_path, success: t('.success')
     else
+      flash.now[:error] = t('.fail')
       render :new, status: :unprocessable_entity
     end
   end
@@ -73,15 +74,16 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to item_path(@item)
+      redirect_to item_path(@item), success: t('.success')
     else
+      flash.now[:error] = t('.fail')
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @item.destroy!
-    redirect_to categories_path
+    redirect_to categories_path, success: t('.success')
   end
 
   private
