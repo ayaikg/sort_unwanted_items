@@ -12,12 +12,13 @@ namespace :line_bot do
           names_with_links = expired_items.map do |item|
             LineMessage.item_list(item)
           end
+        
+          title = "未断捨離リスト"
+          description = "以下のアイテムはすでに通知日を過ぎています。早めの断捨離をおすすめします!"
+          message = LineMessage.message_mold(names_with_links, title, description)
+          response = LineClient.line_bot_client.push_message(user.authentications.first.uid, message)
+          p response
         end
-        title = "未断捨離リスト"
-        description = "以下のアイテムはすでに通知日を過ぎています。早めの断捨離をおすすめします!"
-        message = LineMessage.message_mold(names_with_links, title, description)
-        response = LineClient.line_bot_client.push_message(user.authentications.first.uid, message)
-        p response
       end
     end
   end
