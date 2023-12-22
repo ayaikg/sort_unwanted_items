@@ -15,7 +15,7 @@ class User < ApplicationRecord
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
 
-  validates :email, uniqueness: true
+  validates :email, uniqueness: true, allow_nil: true
   validates :name, presence: true
 
   enum role: { general: 0, admin: 1 }
