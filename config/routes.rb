@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   end
   resources :likes, only: [:create, :destroy]
   resources :declutterings, only: [:edit, :update, :show]
+  resource :recommend, only: :show
 
   namespace :admin do
     root to: 'users#index'

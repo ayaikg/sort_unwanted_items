@@ -1,0 +1,20 @@
+<%= render "shared/modal" do %>
+  <div class="text-center border-2 border-secondary p-2 rounded-md mb-5">
+    <p>みんなが捨てたアイテムと似ているものをご提案します。</p>
+    <p>類似アイテムを捨てることで、新たな始まりを感じましょう!</p>
+  </div>
+  <% if @recommend_item.present? %>
+    <h3 class="font-bold text-lg text-center">似ているアイテム</h3>
+    <table class="table">
+      <%= render 'items/item_show', item: @recommend_item %>
+    </table>
+  <% else %>
+    <div class="text-center">
+      <h3 class="font-bold text-lg">類似アイテムはありませんでした</h3>
+      <p>代わりに通知日が近づいているアイテムをお知らせします!</p>
+    </div>
+    <table class="table">
+      <%= render 'items/item_show', item: @nearest_item %>
+    </table>
+  <% end %>
+<% end %>

@@ -2,40 +2,7 @@
 <main class="m-auto">
   <div class="overflow-x-auto md:w-[700px]">
     <table class="table h-[600px] md:h-[750px] lg:h-[1000px]">
-      <tbody>
-        <tr>
-          <th><%= Item.human_attribute_name(:image) %></th>
-          <td><%= image_tag @item.image.url, class: "w-[180px] md:w-[250px]" %></td>
-        </tr>
-        <tr>
-          <th><%= Item.human_attribute_name(:name) %></th>
-          <td><%= @item.name %></td>
-        </tr>
-        <tr>
-          <th><%= Category.human_attribute_name(:title) %></th>
-          <td><%= @item.category.parent.title %> / <%= @item.category.title %></td>
-        </tr>
-        <tr>
-          <th><%= Item.human_attribute_name(:color) %></th>
-          <td><%= @item.color_i18n %></td>
-        </tr>
-        <tr>
-          <th><%= Item.human_attribute_name(:listing_status) %></th>
-          <td><%= @item.listing_status ? '出品中' : '未出品' %></td>
-        </tr>
-        <tr>
-          <th><%= Item.human_attribute_name(:disposal_method) %></th>
-          <td><%= @item.disposal_method_i18n %></td>
-        </tr>
-        <tr>
-          <th><%= Notification.human_attribute_name(:notify_date) %></th>
-          <td><%= @item.notification.notify_date %></td>
-        </tr>
-        <tr>
-          <th><%= Item.human_attribute_name(:price) %></th>
-          <td><%= number_to_currency(@item.price, unit: "¥", format: "%u %n") %></td>
-        </tr>
-      </tbody>
+      <%= render 'item_show', item: @item %>
     </table>
     <div class="mt-5 flex justify-center">
       <ul>

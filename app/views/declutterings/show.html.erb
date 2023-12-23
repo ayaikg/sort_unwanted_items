@@ -2,8 +2,9 @@
 <main class="my-auto md:m-auto bg-base-100">
   <div class="p-4 md:w-[700px] md:h-[850px] lg:p-6 lg:border lg:rounded-lg">
     <h2 class="text-center font-bold md:text-xl">目標設定</h2>
-    <div class="text-right mt-6 md:mt-10">
-      <%= link_to 'グラフを見る', chart_items_path, data: { "turbo" => false }, class: "btn btn-sm btn-secondary btn-outline md:btn-md" %>
+    <div class="text-center mt-6 md:mt-8 md:text-left">
+      <%= link_to "アドバイスをみる", recommend_path, data: { turbo_frame: "modal" }, class: "btn btn-sm btn-secondary btn-outline md:btn-md" %>
+      <%= link_to 'グラフをみる', chart_items_path, data: { "turbo" => false }, class: "btn btn-sm btn-secondary btn-outline md:btn-md" %>
     </div>
       <%= turbo_frame_tag "decluttering_amount", class: "w-full" do %>
         <div class="flex justify-center mt-4 md:mt-6">
