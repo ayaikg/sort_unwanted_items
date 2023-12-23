@@ -12,12 +12,13 @@ namespace :push_line do
           names_with_links = limit_items.map do |item|
             LineMessage.item_list(item)
           end
+        
+          title = "今日の断捨離アイテム"
+          description = "今日は通知日設定をしたアイテムがあります。断捨離できたアイテムは、編集ページで処分方法を選択しましょう!"
+          message = LineMessage.message_mold(names_with_links, title, description)
+          response = LineClient.line_bot_client.push_message(user.authentications.first.uid, message)
+          p response
         end
-        title = "今日の断捨離アイテム"
-        description = "今日は通知日設定をしたアイテムがあります。断捨離できたアイテムは、編集ページで処分方法を選択しましょう!"
-        message = LineMessage.message_mold(names_with_links, title, description)
-        response = LineClient.line_bot_client.push_message(user.authentications.first.uid, message)
-        p response
       end
     end
   end
