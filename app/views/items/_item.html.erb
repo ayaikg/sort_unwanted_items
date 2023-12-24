@@ -12,7 +12,7 @@
             <span class="badge badge-primary"><%= item.disposal_method_i18n %></span>
             <div>断捨離日: <%= item.disposed_at %></div>
           </div>
-        <% elsif current_page?(category_items_path(category)) %>
+        <% else %>
           <div class="md:flex md:space-x-5">
             <% if item.price.present? %>
               <div><%= number_to_currency(item.price, unit: "¥", format: "%u %n") %></div>

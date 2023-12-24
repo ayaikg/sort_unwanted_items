@@ -10,16 +10,16 @@ class ItemsController < ApplicationController
     @q = Item.where(category_id: category_ids).ransack(params[:q])
     before_items = @q.result(distinct: true).includes(:notification)
                      .select('items.*, notifications.notify_date').joins(:notification)
-                     .where(disposal_method: 0).where(user_id: current_user.id)
+                     .where(disposal_method: "before").where(user_id: current_user.id)
     @listed_items = before_items.where(listing_status: true)
     @unlisted_items = before_items.where(listing_status: false)
   end
 
   def search
     if params[:view] == 'history'
-      @items = current_user.items.where.not(disposal_method: 0).where("name like ?", "%#{params[:q]}%")
+      @items = current_user.items.where.not(disposal_method: "before").where("name like ?", "%#{params[:q]}%")
     elsif params[:view] == 'index'
-      @items = current_user.items.where(disposal_method: 0).where("name like ?", "%#{params[:q]}%")
+      @items = current_user.items.where(disposal_method: "before").where("name like ?", "%#{params[:q]}%")
     end
     respond_to do |format|
       format.js
@@ -51,7 +51,7 @@ class ItemsController < ApplicationController
     @q = current_user.items.ransack(params[:q])
     @disposal_items = @q.result(distinct: true)
                         .select('items.*, notifications.notify_date').joins(:notification)
-                        .where.not(disposal_method: 0).page(params[:page]).per(20)
+                        .where.not(disposal_method: "before").page(params[:page]).per(20)
     @categories_collection = Category.where(ancestry: nil).map { |p| [p.title, p.children.map { |c| [c.title, c.id] }] }
   end
 
@@ -65,7 +65,7 @@ class ItemsController < ApplicationController
     gon.disposal_dates = dates
     gon.disposal_counts = counts
 
-    @before_items = current_user.items.where(disposal_method: 0).count
+    @before_items = current_user.items.where(disposal_method: "before").count
   end
 
   def category_children

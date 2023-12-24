@@ -8,9 +8,9 @@ class PostsController < ApplicationController
     @q = Post.ransack(params[:q])
     @q.sorts = 'likes_count desc' if @q.sorts.empty?
     @posts = @q.result(distinct: true).eager_load([:item, :user]).preload(:likes)
-               .where.not(items: { disposal_method: 0 })
+               .where.not(items: { disposal_method: "before" })
                .page(params[:page])
-    @before_login_posts = Post.all.eager_load([:user, :item]).where.not(items: { disposal_method: 0 })
+    @before_login_posts = Post.all.eager_load([:user, :item]).where.not(items: { disposal_method: "before" })
                               .order(likes_count: :desc).limit(10)
   end
 
@@ -54,7 +54,7 @@ class PostsController < ApplicationController
   def likes
     @q = current_user.like_posts.ransack(params[:q])
     @like_posts = @q.result(distinct: true).eager_load([:item, :user]).preload(:likes)
-                    .where.not(items: { disposal_method: 0 })
+                    .where.not(items: { disposal_method: "before" })
                     .order(created_at: :desc).page(params[:page])
   end
 
@@ -70,7 +70,7 @@ class PostsController < ApplicationController
   end
 
   def set_disposal
-    @disposal_items = current_user.items.includes(:user).where.not(disposal_method: 0)
+    @disposal_items = current_user.items.includes(:user).where.not(disposal_method: "before")
   end
 
   def set_categories_collection

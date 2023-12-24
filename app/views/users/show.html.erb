@@ -20,7 +20,7 @@
       </div>
       <div class="py-5 border-b-2 border-secondary">
         <% if @user.introduction.present? %>
-          <%= simple_format(@user.introduction) %>
+          <%= simple_format(h(@user.introduction), {}, sanitize: false) %>
         <% else %>
           <p class="text-center">自己紹介をかいてみよう!</p>
         <% end %>
