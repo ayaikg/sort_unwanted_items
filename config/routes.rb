@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show, :edit, :update]
   resources :categories, only: :index do
     resources :items, only: :index
-    get 'search', on: :collection
   end
   resources :items, except: :index do
     collection do
