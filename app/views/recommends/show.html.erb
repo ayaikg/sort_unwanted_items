@@ -8,7 +8,7 @@
     <table class="table">
       <%= render 'items/item_show', item: @recommend_item %>
     </table>
-  <% else %>
+  <% elsif @nearest_item.present? %>
     <div class="text-center">
       <h3 class="font-bold text-lg">類似アイテムはありませんでした</h3>
       <p>代わりに通知日が近づいているアイテムをお知らせします!</p>
@@ -16,5 +16,7 @@
     <table class="table">
       <%= render 'items/item_show', item: @nearest_item %>
     </table>
+  <% else %>
+    <h3 class="font-bold text-lg">類似アイテムはありませんでした</h3>
   <% end %>
 <% end %>
