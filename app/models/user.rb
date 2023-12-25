@@ -37,10 +37,18 @@ class User < ApplicationRecord
   end
 
   def disposal_data_for_past_week
+    # 過去１週間の断捨離アイテム数を取得
     items.where(disposed_at: 1.week.ago.to_date..Time.zone.today)
          .where(disposal_method: %w[sold discard])
          .group("DATE(disposed_at)")
          .count
+  end
+
+  def disposal_chart_datas
+    # 過去1週間の全日についてデータを保証する
+    dates = (1.week.ago.to_date..Time.zone.today).map { |date| date.strftime('%Y-%m-%d') }
+    counts = dates.map { |date| disposal_data_for_past_week[date.to_date].to_i }
+    { dates:, counts: }
   end
 
   def last_month_disposed_items

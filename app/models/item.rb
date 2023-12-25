@@ -20,9 +20,21 @@ class Item < ApplicationRecord
   enum color: { nothing: 0, white: 1, black: 2, gray: 3, brown: 4, beige: 5, green: 6, blue: 7, purple: 8, yellow: 9,
                 pink: 10, red: 11, orange: 12, gold: 13, silver: 14 }
 
-  scope :upcoming_notification, -> { joins(:notification).where('notifications.notify_date > ?', Date.today)
-                                                         .order('notifications.notify_date ASC')
-                                    }
+  scope :before_disposal, -> { where(disposal_method: "before") }
+  scope :after_disposal, -> { where.not(disposal_method: "before") }
+  scope :upcoming_notification, lambda {
+                                  joins(:notification).where('notifications.notify_date > ?', Time.zone.today)
+                                                      .order('notifications.notify_date ASC')
+                                }
+  scope :with_before_disposal, lambda {
+                                 includes(:notification).select('items.*, notifications.notify_date')
+                                                        .joins(:notification).before_disposal
+                               }
+  scope :with_after_disposal, -> { select('items.*, notifications.notify_date').joins(:notification).after_disposal }
+  scope :search_name, lambda { |view, query|
+    items = view == 'history' ? after_disposal : before_disposal
+    items.where("name like ?", "%#{query}%")
+  }
 
   private
 

@@ -1,26 +1,19 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :update, :destroy, :show]
-  before_action :set_categories, only: [:new, :create, :edit, :update]
+  before_action :set_categories, only: [:new, :create, :edit, :update, :history]
   before_action :set_child_categories, only: [:edit, :update]
 
   def index
     @category = Category.find(params[:category_id])
-    child_categories = @category.descendants.pluck(:id)
-    category_ids = child_categories << @category.id
-    @q = Item.where(category_id: category_ids).ransack(params[:q])
-    before_items = @q.result(distinct: true).includes(:notification)
-                     .select('items.*, notifications.notify_date').joins(:notification)
-                     .where(disposal_method: "before").where(user_id: current_user.id)
+    category_ids = @category.subtree_ids
+    @q = current_user.items.where(category_id: category_ids).with_before_disposal.ransack(params[:q])
+    before_items = @q.result(distinct: true)
     @listed_items = before_items.where(listing_status: true)
     @unlisted_items = before_items.where(listing_status: false)
   end
 
   def search
-    if params[:view] == 'history'
-      @items = current_user.items.where.not(disposal_method: "before").where("name like ?", "%#{params[:q]}%")
-    elsif params[:view] == 'index'
-      @items = current_user.items.where(disposal_method: "before").where("name like ?", "%#{params[:q]}%")
-    end
+    @items = current_user.items.search_name(params[:view], params[:q])
     respond_to do |format|
       format.js
     end
@@ -48,24 +41,16 @@ class ItemsController < ApplicationController
   end
 
   def history
-    @q = current_user.items.ransack(params[:q])
-    @disposal_items = @q.result(distinct: true)
-                        .select('items.*, notifications.notify_date').joins(:notification)
-                        .where.not(disposal_method: "before").page(params[:page]).per(20)
-    @categories_collection = Category.where(ancestry: nil).map { |p| [p.title, p.children.map { |c| [c.title, c.id] }] }
+    @q = current_user.items.with_after_disposal.ransack(params[:q])
+    @disposal_items = @q.result(distinct: true).page(params[:page])
+    @categories_collection = @categories.map { |p| [p.title, p.children.map { |c| [c.title, c.id] }] }
   end
 
   def chart
-    # 過去１週間の断捨離アイテム数を取得
-    disposal_datas = current_user.disposal_data_for_past_week
-    # 過去1週間の全日についてデータを保証する
-    dates = (1.week.ago.to_date..Time.zone.today).map { |date| date.strftime('%Y-%m-%d') }
-    counts = dates.map { |date| disposal_datas[date.to_date].to_i }
-
-    gon.disposal_dates = dates
-    gon.disposal_counts = counts
-
-    @before_items = current_user.items.where(disposal_method: "before").count
+    chart_datas = current_user.disposal_chart_datas
+    gon.disposal_dates = chart_datas[:dates]
+    gon.disposal_counts = chart_datas[:counts]
+    @before_items = current_user.items.before_disposal.count
   end
 
   def category_children
@@ -99,7 +84,7 @@ class ItemsController < ApplicationController
   end
 
   def set_categories
-    @categories = Category.where(ancestry: nil)
+    @categories = Category.roots
   end
 
   def set_child_categories
