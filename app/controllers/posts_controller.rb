@@ -69,6 +69,6 @@ class PostsController < ApplicationController
   end
 
   def set_categories_collection
-    @categories_collection = Category.where(ancestry: nil).map { |p| [p.title, p.children.map { |c| [c.title, c.id] }] }
+    @categories_collection = Category.roots.map { |p| [p.title, p.children.map { |c| [c.title, c.id] }] }
   end
 end
