@@ -1,5 +1,5 @@
 module DeclutteringsHelper
-  def set_goal_amount(decluttering)
+  def with_goal_amount(decluttering)
     # goal_amountが初期値の0の場合は未設定と表示し、それ以外の場合はその値をセット
     decluttering.goal_amount.zero? ? "未設定" : decluttering.goal_amount
   end
