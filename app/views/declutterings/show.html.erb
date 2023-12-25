@@ -6,40 +6,11 @@
       <%= link_to "アドバイスをみる", recommend_path, data: { turbo_frame: "modal" }, class: "btn btn-sm btn-secondary btn-outline md:btn-md" %>
       <%= link_to 'グラフをみる', chart_items_path, data: { "turbo" => false }, class: "btn btn-sm btn-secondary btn-outline md:btn-md" %>
     </div>
-      <%= turbo_frame_tag "decluttering_amount", class: "w-full" do %>
-        <div class="flex justify-center mt-4 md:mt-6">
-          <div class="radial-progress bg-base-200 text-primary border-4 border-base-300" style="--value:<%= @rate %>; --size:10rem;" role="progressbar">
-            <%= @rate %>%
-          </div>
-        </div>
-      
-        <div class="flex my-4 md:my-6">
-          <div class="stats flex-1">
-            <div class="stat place-items-center">
-              <div class="stat-title">現在</div>
-              <div class="stat-value"><%= @total_disposed_items %><span class="text-sm">個</span></div>
-            </div>
-          </div>
-          <div class="stats flex-1">
-            <div class="stat place-items-center">
-              <div class="stat-title">今月の目標</div>
-              <div class="stat-value"><%= @goal_amount %><span class="text-sm">個</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="stats shadow w-full bg-base-200 my-4 md:my-6">
-          <div class="stat place-items-center">
-            <div class="stat-title">目標との差</div>
-            <div class="stat-value"><span class="text-sm">あと</span><%= @difference %><span class="text-sm">個</span></div>
-          </div>
-        </div>
-      <% end %>
-
+    <%= render @decluttering %>
       <div class="stats shadow bg-base-200 w-full">
         <div class="stat place-items-center">
           <div class="stat-title">先月の断捨離数</div>
-          <div class="stat-value"><%= @last_month_items %><span class="text-sm">個</span></div>
+          <div class="stat-value"><%= current_user.last_month_disposed_items %><span class="text-sm">個</span></div>
         </div>
       </div>
 

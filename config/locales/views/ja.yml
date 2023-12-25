@@ -83,6 +83,8 @@ ja:
   declutterings:
     show:
       title: 目標設定
+    update:
+      success: 目標を設定しました
   homes:
     top:
       title: トップページ
