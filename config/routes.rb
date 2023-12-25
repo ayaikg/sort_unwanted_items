@@ -14,9 +14,7 @@ Rails.application.routes.draw do
     end
   end
   resources :posts do
-    collection do
-      get 'likes'
-    end
+    get 'likes', on: :collection
   end
   resources :likes, only: [:create, :destroy]
   resources :declutterings, only: [:edit, :update, :show]
