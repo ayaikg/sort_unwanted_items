@@ -4,6 +4,7 @@
     <div class="m-5 md:mx-0">
       <div class="flex justify-end">
         <% if current_user == @user %>
+          <a href="https://lin.ee/Vit5Ykr"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0" class="w-28"></a>
           <%= link_to '編集', edit_user_path(@user), class: "btn btn-sm btn-secondary btn-outline" %>
         <% end %>
       </div>
@@ -18,7 +19,7 @@
           <p class="text-sm text-neutral-400 text-center">更新日: <%= @user.updated_at.strftime("%Y-%m-%d")%></p>
         </div>
       </div>
-      <div class="py-5 border-b-2 border-secondary">
+      <div class="p-5 border-b-2 border-secondary">
         <% if @user.introduction.present? %>
           <%= simple_format(h(@user.introduction), {}, sanitize: false) %>
         <% else %>
@@ -34,5 +35,6 @@
         <p class="text-center"><%= @user.name %>さんの投稿はありません</p>
       <% end %>
     </div>
+    <%= paginate @user_posts %>
   </div>
 </main>
