@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
   end
 
   def history
-    @q = current_user.items.with_after_disposal.ransack(params[:q])
+    @q = current_user.items.after_disposal.ransack(params[:q])
     @disposal_items = @q.result(distinct: true).page(params[:page])
     @categories_collection = @categories.map { |p| [p.title, p.children.map { |c| [c.title, c.id] }] }
   end
