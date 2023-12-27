@@ -1,7 +1,7 @@
 <% content_for(:title, t('.title')) %>
-<main class="pb-10 px-10">
+<main>
   <%= render 'search_form', url: likes_posts_path %>
-  <div class="flex flex-wrap items-center justify-center">
+  <div class="flex flex-wrap items-center justify-center px-10">
     <% if @like_posts.present? %>
       <%= render @like_posts %>
     <% else %>
