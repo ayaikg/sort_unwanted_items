@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root to: 'homes#top'
+  get 'privacy', to: 'homes#privacy'
+  get 'terms', to: 'homes#terms'
   resources :users, only: [:new, :create, :show, :edit, :update]
   resources :categories, only: :index do
     resources :items, only: :index
