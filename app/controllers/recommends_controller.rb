@@ -30,6 +30,7 @@ class RecommendsController < ApplicationController
       values.count { |value| value >= 0.6 }
     end
     return nil if change_hash.values.all?(&:zero?)
+
     # returnがないと値が返らない
     return change_hash
   end
