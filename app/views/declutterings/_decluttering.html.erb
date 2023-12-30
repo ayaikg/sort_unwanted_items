@@ -1,21 +1,30 @@
 <%= turbo_frame_tag decluttering, class: "w-full" do %>
   <div class="flex justify-center mt-4 md:mt-6">
-    <div class="radial-progress bg-base-200 text-primary border-4 border-base-300" style="--value:<%= set_rate(decluttering, current_user) %>; --size:10rem;" role="progressbar">
+    <div class="radial-progress bg-base-200 text-secondary border-4 border-base-300" style="--value:<%= set_rate(decluttering, current_user) %>; --size:10rem;" role="progressbar">
       <%= set_rate(decluttering, current_user) %>%
     </div>
   </div>
 
-  <div class="flex my-4 md:my-6">
+  <div class="flex my-4 md:my-6 items-center">
     <div class="stats flex-1">
       <div class="stat place-items-center">
         <div class="stat-title">現在</div>
         <div class="stat-value"><%= current_user.total_disposed_items %><span class="text-sm">個</span></div>
       </div>
     </div>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+      <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+    </svg>
     <div class="stats flex-1">
       <div class="stat place-items-center">
         <div class="stat-title">今月の目標</div>
-        <div class="stat-value"><%= with_goal_amount(decluttering) %><span class="text-sm">個</span></div>
+        <div class="stat-value">
+          <% if decluttering.goal_amount.zero? %>
+            未設定
+          <% else %>
+            <%= decluttering.goal_amount %><span class="text-sm">個</span>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
@@ -23,7 +32,7 @@
   <div class="stats shadow w-full bg-base-200 my-4 md:my-6">
     <div class="stat place-items-center">
       <div class="stat-title">目標との差</div>
-      <div class="stat-value"><span class="text-sm">あと</span><%= set_difference(decluttering, current_user) %><span class="text-sm">個</span></div>
+      <div class="stat-value"><%= set_difference(decluttering, current_user) %></div>
     </div>
   </div>
 <% end %>
