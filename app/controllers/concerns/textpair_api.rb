@@ -1,6 +1,24 @@
 module TextpairApi
-  
-  def post_message(text1, text2)
+  extend ActiveSupport::Concern
+
+  def calculate_similarity(user_items, grouped_items)
+    similarity_hash = {}
+    user_items.each do |user_item|
+      user_item_id = user_item.id
+      similarities = []
+
+      grouped_items_names = grouped_items[user_item.category_id] || []
+      grouped_items_names.each do |grouped_item_name|
+        similarity = post_text(user_item.name, grouped_item_name)
+        similarities << similarity if similarity
+      end
+      # ハッシュオブジェクト[キー] = 値で新しい要素を追加
+      similarity_hash[user_item_id] = similarities
+    end
+    similarity_hash
+  end
+
+  def post_text(text1, text2)
     uri = URI.parse("https://labs.goo.ne.jp/api/textpair")
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
@@ -14,10 +32,9 @@ module TextpairApi
     begin
       res = http.request(req)
       req_result = JSON.parse(res.body)
-      return req_result["score"] if req_result["score"]
-      # 0.50798434
+      req_result["score"]
     rescue Net::ReadTimeout, Net::OpenTimeout
-      return nil
+      nil
     end
   end
 end

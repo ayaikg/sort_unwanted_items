@@ -35,6 +35,7 @@ class Item < ApplicationRecord
     items = view == 'history' ? after_disposal : before_disposal
     items.where("name like ?", "%#{query}%")
   }
+  scope :random_order, ->(ids) { where(id: ids).order("RANDOM()") }
 
   private
 
