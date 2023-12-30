@@ -2,7 +2,7 @@
 <main class="md:mx-auto">
   <details>
     <summary class="btn btn-ghost flex justify-center md:mx-auto md:w-[700px]">
-      検索条件
+      アイテム検索
     </summary>
     <div class="p-2" data-controller="autocomplete" data-autocomplete-url-value=<%= search_items_path(view: 'index') %> role="combobox">
       <%= search_form_for @q, url: categories_path do |f| %>
