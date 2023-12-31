@@ -1,6 +1,6 @@
 <%= render "shared/modal" do %>
   <div>
-    <%= form_with model: @decluttering, data: { action: "turbo:submit-end->modal#close", turbo_frame: "decluttering_amount" }, local: true do |f| %>
+    <%= form_with model: @decluttering, data: { action: "turbo:submit-end->modal#close" }, local: true do |f| %>
       <%= render 'shared/error_message', object: f.object %>
       <div class="form-control my-5">
         <%= f.label :goal_amount %>

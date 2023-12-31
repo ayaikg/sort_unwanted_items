@@ -18,9 +18,9 @@
           <p class="text-sm text-neutral-400 text-center">更新日: <%= @user.updated_at.strftime("%Y-%m-%d")%></p>
         </div>
       </div>
-      <div class="py-5 border-b-2 border-secondary">
+      <div class="p-5 border-b-2 border-secondary">
         <% if @user.introduction.present? %>
-          <%= simple_format(@user.introduction) %>
+          <%= simple_format(h(@user.introduction), {}, sanitize: false) %>
         <% else %>
           <p class="text-center">自己紹介をかいてみよう!</p>
         <% end %>
@@ -34,5 +34,6 @@
         <p class="text-center"><%= @user.name %>さんの投稿はありません</p>
       <% end %>
     </div>
+    <%= paginate @user_posts %>
   </div>
 </main>

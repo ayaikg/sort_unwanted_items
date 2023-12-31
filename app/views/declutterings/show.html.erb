@@ -1,44 +1,16 @@
 <% content_for(:title, t('.title')) %>
-<main class="my-auto md:m-auto bg-base-100">
+<main class="bg-base-100 py-11 md:p-8 lg:p-0 md:m-auto md:rounded-md md:border-2">
   <div class="p-4 md:w-[700px] md:h-[850px] lg:p-6 lg:border lg:rounded-lg">
     <h2 class="text-center font-bold md:text-xl">目標設定</h2>
-    <div class="text-right mt-6 md:mt-10">
-      <%= link_to 'グラフを見る', chart_items_path, data: { "turbo" => false }, class: "btn btn-sm btn-secondary btn-outline md:btn-md" %>
+    <div class="text-center mt-6 md:mt-8 md:text-left">
+      <%= link_to "アドバイスをみる", recommend_path, data: { turbo_frame: "modal" }, class: "btn btn-sm btn-secondary btn-outline md:btn-md" %>
+      <%= link_to 'グラフをみる', chart_items_path, data: { "turbo" => false }, class: "btn btn-sm btn-secondary btn-outline md:btn-md" %>
     </div>
-      <%= turbo_frame_tag "decluttering_amount", class: "w-full" do %>
-        <div class="flex justify-center mt-4 md:mt-6">
-          <div class="radial-progress bg-base-200 text-primary border-4 border-base-300" style="--value:<%= @rate %>; --size:10rem;" role="progressbar">
-            <%= @rate %>%
-          </div>
-        </div>
-      
-        <div class="flex my-4 md:my-6">
-          <div class="stats flex-1">
-            <div class="stat place-items-center">
-              <div class="stat-title">現在</div>
-              <div class="stat-value"><%= @total_disposed_items %><span class="text-sm">個</span></div>
-            </div>
-          </div>
-          <div class="stats flex-1">
-            <div class="stat place-items-center">
-              <div class="stat-title">今月の目標</div>
-              <div class="stat-value"><%= @goal_amount %><span class="text-sm">個</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="stats shadow w-full bg-base-200 my-4 md:my-6">
-          <div class="stat place-items-center">
-            <div class="stat-title">目標との差</div>
-            <div class="stat-value"><span class="text-sm">あと</span><%= @difference %><span class="text-sm">個</span></div>
-          </div>
-        </div>
-      <% end %>
-
+    <%= render @decluttering %>
       <div class="stats shadow bg-base-200 w-full">
         <div class="stat place-items-center">
           <div class="stat-title">先月の断捨離数</div>
-          <div class="stat-value"><%= @last_month_items %><span class="text-sm">個</span></div>
+          <div class="stat-value"><%= current_user.last_month_disposed_items %><span class="text-sm">個</span></div>
         </div>
       </div>
 

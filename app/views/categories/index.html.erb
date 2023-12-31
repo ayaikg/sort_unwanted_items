@@ -1,7 +1,30 @@
 <% content_for(:title, t('.title')) %>
-<main class="md:m-auto">
-  <div class="flex flex-col justify-center">
-    <%= render @categories %>
-  </div>
+<main class="md:mx-auto">
+  <details>
+    <summary class="btn btn-ghost flex justify-center md:mx-auto md:w-[700px]">
+      アイテム検索
+    </summary>
+    <div class="p-2" data-controller="autocomplete" data-autocomplete-url-value=<%= search_items_path(view: 'index') %> role="combobox">
+      <%= search_form_for @q, url: categories_path do |f| %>
+        <div class="flex flex-col items-center">
+          <%= f.search_field :name_cont, data: { autocomplete_target: 'input'}, class: "input input-bordered md:w-96", placeholder: "キーワード検索" %>
+          <%= f.hidden_field :name, data: { autocomplete_target: 'hidden' } %>
+          <div class="flex justify-center">
+            <ul class="list-group bg-white absolute md:text-sm max-w-max" data-autocomplete-target="results"></ul>
+          </div>
+        </div>
+        <div class="flex justify-center mt-2">
+          <%= f.submit "検索する", class: "btn btn-secondary px-12 md:px-20" %>
+        </div>
+      <% end %>
+    </div>
+  </details>
+  <% if params[:q].present? %>
+    <%= render partial: 'items/item', collection: @search_items %>
+  <% else %>
+    <div class="flex flex-col justify-center md:items-center">
+      <%= render @categories %>
+    </div>
+  <% end %>
 </main>
   

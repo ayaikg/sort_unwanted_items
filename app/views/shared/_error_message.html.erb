@@ -1,6 +1,6 @@
 <% if object.errors.any? %>
-  <div class = "alert alert-error">
-    <ul>
+  <div class = "border border-rose-600 mx-auto alert alert-error">
+    <ul class="list-disc md:ml-5">
       <% object.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>

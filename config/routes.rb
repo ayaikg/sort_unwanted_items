@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root to: 'homes#top'
+  get 'privacy', to: 'homes#privacy'
+  get 'terms', to: 'homes#terms'
   resources :users, only: [:new, :create, :show, :edit, :update]
   resources :categories, only: :index do
     resources :items, only: :index
-    get 'search', on: :collection
   end
   resources :items, except: :index do
     collection do
@@ -15,12 +16,11 @@ Rails.application.routes.draw do
     end
   end
   resources :posts do
-    collection do
-      get 'likes'
-    end
+    get 'likes', on: :collection
   end
   resources :likes, only: [:create, :destroy]
   resources :declutterings, only: [:edit, :update, :show]
+  resource :recommend, only: :show
 
   namespace :admin do
     root to: 'users#index'

@@ -9,6 +9,19 @@ module.exports = {
     container: {
       center: true
     },
+    extend: {
+      keyframes: {
+        flashFade: {
+          "0%": { tramsform: "translateX(180px)", opacity: 0 },
+          "20%": { transform: "translateX(0)", opacity: 1 },
+          "80%": { transform: "translateX(0)", opacity: 1 },
+          "100%": { transform: "translateX(180px)", opacity: 0 },
+        },
+      },
+      animation: {
+        flash: "flashFade 7.0s forwards",
+      },
+    },
   },
   plugins: [
     require('daisyui')
@@ -23,9 +36,9 @@ module.exports = {
           "neutral": "#d6e8ee",
           "base-100": "#ffffff",
           "info": "#02457a",
-          "success": "#f27f0c",
+          "success": "#dcfce7",
           "warning": "#f7ad19",
-          "error": "#f87272",
+          "error": "#fecaca",
         },
       },
     ],

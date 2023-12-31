@@ -1,5 +1,7 @@
 class CategoriesController < ApplicationController
   def index
-    @categories = Category.where(ancestry: nil).order(id: :asc)
+    @categories = Category.roots.order(id: :asc)
+    @q = current_user.items.before_disposal.ransack(params[:q])
+    @search_items = @q.result(distinct: true)
   end
 end

@@ -5,13 +5,10 @@ class PostsController < ApplicationController
   before_action :set_categories_collection, only: [:index, :likes]
 
   def index
-    @q = Post.ransack(params[:q])
+    @q = Post.preload(:likes).with_item.ransack(params[:q])
     @q.sorts = 'likes_count desc' if @q.sorts.empty?
-    @posts = @q.result(distinct: true).eager_load([:item, :user]).preload(:likes)
-               .where.not(items: { disposal_method: 0 })
-               .page(params[:page])
-    @before_login_posts = Post.all.eager_load([:user, :item]).where.not(items: { disposal_method: 0 })
-                              .order(likes_count: :desc).limit(10)
+    @posts = @q.result(distinct: true).page(params[:page])
+    @before_login_posts = Post.with_item.order(likes_count: :desc).limit(10)
   end
 
   def show
@@ -52,10 +49,8 @@ class PostsController < ApplicationController
   end
 
   def likes
-    @q = current_user.like_posts.ransack(params[:q])
-    @like_posts = @q.result(distinct: true).eager_load([:item, :user]).preload(:likes)
-                    .where.not(items: { disposal_method: 0 })
-                    .order(created_at: :desc).page(params[:page])
+    @q = current_user.like_posts.preload(:likes).with_item.ransack(params[:q])
+    @like_posts = @q.result(distinct: true).order(likes_count: :desc).page(params[:page])
   end
 
   private
@@ -70,10 +65,10 @@ class PostsController < ApplicationController
   end
 
   def set_disposal
-    @disposal_items = current_user.items.includes(:user).where.not(disposal_method: 0)
+    @disposal_items = current_user.items.includes(:user).after_disposal
   end
 
   def set_categories_collection
-    @categories_collection = Category.where(ancestry: nil).map { |p| [p.title, p.children.map { |c| [c.title, c.id] }] }
+    @categories_collection = Category.roots.map { |p| [p.title, p.children.map { |c| [c.title, c.id] }] }
   end
 end

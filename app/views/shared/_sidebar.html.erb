@@ -9,9 +9,9 @@
       <li><%= link_to 'お気に入り一覧', likes_posts_path %></a></li>
       <li><%= link_to '目標設定', decluttering_path(current_user) %></li>
       <div class="divider"></div> 
-      <li><a>お問い合わせ</a></li>
-      <li><a>利用規約</a></li>
-      <li><a>プライバシーポリシー</a></li>
+      <li><%= link_to "利用規約", terms_path %></li>
+      <li><%= link_to "プライバシーポリシー", privacy_path %></li>
+      <li><%= link_to "お問い合わせ", privacy_path(anchor: "contact") %></li>
     <% end %>
   </ul>
 </div>
