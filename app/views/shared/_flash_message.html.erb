@@ -1,3 +1,12 @@
 <% flash.each do |message_type, message| %>
-  <div class="alert alert-<%= message_type %>"><%= message %></div>
+  <% case message_type %>
+  <% when "success" %>
+    <div class="animate-flash fixed top-24 translate-x-1/2 right-6 sm:translate-x-0 z-30 w-fit max-w-[90%] sm:max-w-1/2 py-4 px-6 flex justify-center items-center bg-white shadow-lg border border-sky-400 rounded-[3px]">
+      <p class="text-base font-bold text-dark-blue-200 !leading-none"><%= message %></p>
+    </div>
+  <% when "error" %>
+    <div class="animate-flash fixed top-24 translate-x-1/2 right-6 sm:translate-x-0 z-30 w-fit max-w-[90%] sm:max-w-1/2 py-4 px-6 flex justify-center items-center bg-white shadow-lg border border-rose-600 rounded-[3px]">
+      <p class="text-base font-bold text-secondary-200"><%= message %></p>
+    </div>
+  <% end %>
 <% end %>
