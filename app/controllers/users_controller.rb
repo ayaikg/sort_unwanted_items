@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update]
+  before_action :set_user, only: [:show, :edit, :update]
 
   def show
-    @user = User.find(params[:id])
     @user_posts = @user.posts.includes(:item).order(created_at: :desc).page(params[:page]).per(5)
   end
 
@@ -20,7 +19,10 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find(current_user.id)
+    @user = User.find(params[:id])
+    return if @user == current_user
+
+    redirect_to current_user, error: t('defaults.message.forbidden_access')
   end
 
   def user_params

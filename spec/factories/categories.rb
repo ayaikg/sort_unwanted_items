@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :category do
-    sequence(:title) { |n| "title_#{n}" } 
-    association :user
+    title { "ファッション" } 
+    ancestry { nil }
   end
 end
