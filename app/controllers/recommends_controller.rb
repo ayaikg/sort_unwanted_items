@@ -33,7 +33,7 @@ class RecommendsController < ApplicationController
     end
     return nil if change_hash.values.all?(&:zero?)
 
-    # returnがないと値が返らない
+    # デバッグ時にreturnがないと値が返らない
     return change_hash
   end
 
