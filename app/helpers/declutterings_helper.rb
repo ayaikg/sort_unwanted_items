@@ -4,6 +4,8 @@ module DeclutteringsHelper
   def set_rate(decluttering, user)
     if decluttering.goal_amount.zero?
       ZERO_ITEMS
+    elsif user.total_disposed_items >= decluttering.goal_amount
+      PERCENTAGE_MULTIPLIER
     else
       (user.total_disposed_items.to_f / decluttering.goal_amount * PERCENTAGE_MULTIPLIER).to_i
     end
@@ -11,7 +13,8 @@ module DeclutteringsHelper
 
   def set_difference(decluttering, user)
     if decluttering.goal_amount.zero?
-      safe_join([content_tag(:span, 'あと', class: 'text-sm'), ZERO_ITEMS.to_s, content_tag(:span, '個', class: 'text-sm')])
+      safe_join([content_tag(:span, 'あと', class: 'text-sm'), ZERO_ITEMS.to_s,
+                 content_tag(:span, '個', class: 'text-sm')])
     elsif user.total_disposed_items >= decluttering.goal_amount
       "達成済み"
     else
