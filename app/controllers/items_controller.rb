@@ -80,7 +80,7 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = current_user.items.find_by(id: params[:id])
-    redirect_to(root_path, alert: t('defaults.message.forbidden_access')) unless @item
+    redirect_to(root_path, error: t('defaults.message.forbidden_access')) unless @item
   end
 
   def set_categories
