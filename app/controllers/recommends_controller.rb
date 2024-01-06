@@ -5,6 +5,8 @@ class RecommendsController < ApplicationController
   require 'json'
   include TextpairApi
 
+  SIMILARITY_THRESHOLD = 0.6
+
   def show
     return unless @user_items.present? && @grouped_items.present?
 
@@ -27,7 +29,7 @@ class RecommendsController < ApplicationController
 
   def change_count_hash(result_hash)
     change_hash = result_hash.transform_values do |values|
-      values.count { |value| value >= 0.6 }
+      values.count { |value| value >= SIMILARITY_THRESHOLD }
     end
     return nil if change_hash.values.all?(&:zero?)
 
