@@ -2,7 +2,7 @@ module LineMessage
   module_function
 
   def item_list(object)
-    edit_url = "https://steteco.fly.dev/items/#{object.id}/edit"
+    edit_url = "https://steteco-dansyari.com/items/#{object.id}/edit"
     default_url = "https://placehold.jp/15/cccccc/ffffff/80x80.png?text=No%20Image"
     {
       type: "box",

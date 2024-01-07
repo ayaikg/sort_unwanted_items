@@ -1,2 +1,2 @@
 sorcery:
-  line_callback_url: 'https://steteco.fly.dev/oauth/callback?provider=line'
+  line_callback_url: 'https://steteco-dansyari.com/oauth/callback?provider=line'
