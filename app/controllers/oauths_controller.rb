@@ -8,7 +8,7 @@ class OauthsController < ApplicationController
   def callback
     provider = auth_params[:provider]
     if (@user = login_from(provider))
-      redirect_to categories_path, notice: "#{provider.titleize}でログインしました"
+      redirect_back_or_to categories_path, notice: "#{provider.titleize}でログインしました"
     else
       begin
         @user = create_from(provider)
