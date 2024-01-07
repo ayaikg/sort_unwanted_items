@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Items', type: :system do
   let(:user) { create(:user) }
   let(:category) { create(:category) }
-  let(:item) { create(:item, category: category, user: user) }
+  let(:item) { create(:item, user: user) }
 
   describe 'ログイン前' do
     describe 'ページ遷移確認' do
@@ -11,7 +11,7 @@ RSpec.describe 'Items', type: :system do
         it '新規登録ページへのアクセスが失敗する' do
           visit new_item_path
           expect(page).to have_content('ログインしてください')
-          expect(current_path).to eq login_path
+          expect(current_path).to eq root_path
         end
       end
 
@@ -19,7 +19,7 @@ RSpec.describe 'Items', type: :system do
         it '編集ページへのアクセスが失敗する' do
           visit edit_item_path(item)
           expect(page).to have_content('ログインしてください')
-          expect(current_path).to eq login_path
+          expect(current_path).to eq root_path
         end
       end
 
@@ -27,14 +27,18 @@ RSpec.describe 'Items', type: :system do
         it '一覧ページへのアクセスが失敗する' do
           visit category_items_path(category)
           expect(page).to have_content('ログインしてください')
-          expect(current_path).to eq login_path
+          expect(current_path).to eq root_path
         end
       end
     end
   end
 
   describe 'ログイン後' do
-    before { login_as(user) }
+    before do
+      login_as(user)
+      parent_category = create(:category, title: "書籍")
+      create(:category, title: "小説", ancestry: parent_category.id.to_s)
+    end
 
     describe 'アイテム新規登録' do
       #一回だとログインできないため
@@ -43,7 +47,9 @@ RSpec.describe 'Items', type: :system do
         it 'アイテムの新規作成が成功する' do
           visit new_item_path
           fill_in 'アイテム名', with: 'test_name'
-          select 'ファッション', from: 'カテゴリー'
+          select 'ファッション', from: 'item[category_id]'
+          select 'トップス'
+          expect(page).to have_checked_field 'なし', visible: false
           expect(page).to have_checked_field '未出品', visible: false
           fill_in '通知日', with: Date.new(2023, 12, 11)
           expect(page).to have_checked_field '処分前', visible: false
@@ -56,7 +62,9 @@ RSpec.describe 'Items', type: :system do
         it 'アイテムの新規作成が失敗する' do
           visit new_item_path
           fill_in 'アイテム名', with: ''
-          select 'ファッション', from: 'カテゴリー'
+          select 'ファッション', from: 'item[category_id]'
+          select 'トップス'
+          expect(page).to have_checked_field 'なし', visible: false
           expect(page).to have_checked_field '未出品', visible: false
           fill_in '通知日', with: Date.new(2023, 12, 11)
           expect(page).to have_checked_field '処分前', visible: false
@@ -68,13 +76,14 @@ RSpec.describe 'Items', type: :system do
     end
 
     describe 'アイテム編集' do
-      let!(:item) { create(:item, category: category, user: user) }
+      let!(:item) { create(:item, user: user) }
       before { visit edit_item_path(item) }
 
       context 'フォームの入力値が正常' do
         it 'カテゴリーの編集が成功する' do
           fill_in 'アイテム名', with: 'update_name'
-          select 'コスメ', from: 'カテゴリー'
+          select 'ファッション', from: 'item[category_id]'
+          select 'トップス'
           click_button '更新する'
           expect(page).to have_content 'update_name'
           expect(page).to have_content 'コスメ'
@@ -97,18 +106,19 @@ RSpec.describe 'Items', type: :system do
 
         it '編集ページへのアクセスが失敗する' do
           visit edit_item_path(other_item)
-          expect(page).to have_content 'Forbidden access.'
+          expect(page).to have_content 'こちらのページはアクセスできません'
           expect(current_path).to eq root_path
         end
       end
     end
 
     describe 'アイテム削除' do
-      let!(:item) { create(:item, category: category, user: user) }
+      let!(:item) { create(:item, user: user) }
 
       it 'アイテムの削除が成功する' do
         visit item_path(item)
         click_button '削除'
+        expect(page.accept_confirm).to eq '本当に削除しますか？'
         expect(page).to have_current_path(categories_path)
       end
     end
