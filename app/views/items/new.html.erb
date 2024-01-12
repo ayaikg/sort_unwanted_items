@@ -1,11 +1,14 @@
 <% content_for(:title, t('.title')) %>
 <main class="bg-base-100 my-auto md:m-auto md:rounded-md md:border-2">
   <div class="p-5 md:w-[700px]">
-  <%= form_with model: @item, local: true, class: "space-y-6 lg:space-y-8" do |f| %>
+  <%= form_with model: @item, local: true do |f| %>
     <%= render "form", { f: f, item: @item } do %>
-      <div class="form-control">
-        <%= f.collection_select :category_id, @categories, :id, :title, { include_blank: "カテゴリーを選択(必須)" }, { class: "select select-bordered", id: "item_category_id" } %>
-        <div class="append__category mt-6 lg:mt-8"></div>
+      <div class="form-control mb-4 lg:mb-4">
+        <%= f.label :category_id, class: "mb-2" do %>
+          カテゴリー<span class="text-xs text-error">*必須</span>
+        <% end %>
+        <%= f.collection_select :category_id, @categories, :id, :title, { include_blank: "選択してください" }, { class: "select select-bordered", id: "item_category_id" } %>
+        <div class="append__category mt-2 lg:mt-4"></div>
       </div>
     <% end %>
   <% end %>
