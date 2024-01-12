@@ -2,7 +2,7 @@ document.addEventListener('turbo:load', function() {
   // 「投稿するアイテム」の下に表示するための要素を作成
   const itemInfo = document.createElement('p');
   itemInfo.id = 'item-info'; // この要素を操作しやすくするためにIDを付与
-  itemInfo.classList.add('mb-2', 'ml-2', 'text-center'); // スタイルを適用
+  itemInfo.classList.add('mb-2', 'text-center'); // スタイルを適用
   itemInfo.textContent = 'アイテムを選択してください'; // 初期テキスト
 
   // 「投稿するアイテム」のpタグを取得して、その後ろにitemInfoを挿入
