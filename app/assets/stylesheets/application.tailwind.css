@@ -11,7 +11,7 @@
 @layer components {
   div.ranks {
     counter-increment: rank;
-    @apply before:content-[counter(rank)"位"] before:font-bold before:text-red-600;
+    @apply before:content-[counter(rank)"位"] before:font-bold before:text-red-600 relative before:absolute before:top-[15px] before:left-[15px];
   }
 }
 
