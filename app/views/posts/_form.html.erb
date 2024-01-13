@@ -1,15 +1,17 @@
 <%= form_with model: post, local: true do |f| %>
   <%= render 'shared/error_message', object: f.object %>
   <div class="form-control">
-    <p class="mb-2 ml-2" id="title">投稿するアイテム</p>
-    <div class="flex flex-wrap overflow-y-scroll h-[350px] bg-base-100 shadow-md">
-      <%= f.collection_radio_buttons :item_id, disposal_item, :id, :name_with_image do |b| %>
-        <div class="w-[120px] md:w-[140px] p-1 shadow-md mx-auto md:mx-0 bg-base-100 hover:bg-base-200 active:base-200">
-          <%= b.radio_button(class: "radio radio-primary radio-xs") %>
-          <%= b.label %>
-        </div>
-      <% end %>
-    </div>
+    <p class="my-2 ml-5" id="title">投稿するアイテム</p>
+    <% if disposal_item.present? %>
+      <div class="flex flex-wrap overflow-y-scroll h-[220px]">
+        <%= f.collection_radio_buttons :item_id, disposal_item, :id, :name_with_image do |b| %>
+          <div class="w-[120px] md:w-[140px] p-1 mx-auto md:mx-0 hover:bg-base-200 active:base-200">
+            <%= b.radio_button(class: "radio radio-primary radio-xs") %>
+            <%= b.label %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
   <div class="space-y-3 p-5">
     <%= f.label :post_image %>
