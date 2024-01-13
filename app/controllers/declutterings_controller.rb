@@ -1,7 +1,12 @@
 class DeclutteringsController < ApplicationController
   before_action :set_decluttering, only: [:edit, :update, :show]
 
-  def show; end
+  def show
+    chart_datas = current_user.disposal_chart_datas
+    gon.disposal_dates = chart_datas[:dates]
+    gon.disposal_counts = chart_datas[:counts]
+    @before_items = current_user.items.before_disposal.count
+  end
 
   def edit; end
 

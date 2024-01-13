@@ -59,8 +59,6 @@ ja:
       title: アイテム一覧
     history:
       title: アイテム履歴
-    chart:
-      title: グラフ
   posts:
     new:
       title: 投稿作成
@@ -82,7 +80,7 @@ ja:
       title: お気に入り一覧
   declutterings:
     show:
-      title: 目標設定
+      title: グラフ
     update:
       success: 目標を設定しました
   homes:

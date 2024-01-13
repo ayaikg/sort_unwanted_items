@@ -1,7 +1,6 @@
 <%= render "shared/modal" do %>
-  <div class="text-center border-2 border-secondary p-2 rounded-md mb-5">
-    <p>みんなが捨てたアイテムと似ているものをご提案します。</p>
-    <p>類似アイテムを捨てることで、新たな始まりを感じましょう!</p>
+  <div class="text-center bg-neutral p-2 rounded-md mb-5">
+    <p>登録したアイテムの中から、みんなが捨てたアイテムと似ているものをご提案します。</p>
   </div>
   <% if @recommend_item.present? %>
     <h3 class="font-bold text-lg text-center">似ているアイテム</h3>
