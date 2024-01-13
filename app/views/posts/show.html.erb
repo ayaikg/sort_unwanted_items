@@ -11,24 +11,24 @@
         <p class="font-bold"><%= @post.user.name %></p>
       </div> 
     </div>
-    <div class="flex justify-end items-center space-x-5">
+    <div class="flex justify-end items-center space-x-5 mt-2">
       <p class="text-sm text-neutral-400">更新日: <%= @post.updated_at.strftime("%Y-%m-%d") %></p>
-    <% if current_user.own?(@post) %>
-      <%= link_to "https://twitter.com/share?url=#{ request.url }&text=#{ @post.item.name }%0a%0a#{ @post.content }", target: '_blank', class: "btn btn-sm" do %>
-        <%= image_tag "logo-black.png", class: "w-3" %>シェア
+      <% if current_user.own?(@post) %>
+        <%= link_to "https://twitter.com/share?url=#{ request.url }&text=#{ @post.item.name }%0a%0a#{ @post.content }", target: '_blank', class: "btn btn-sm" do %>
+          <%= image_tag "logo-black.png", class: "w-3" %>シェア
+        <% end %>
+        <div class="dropdown dropdown-top dropdown-end">
+          <label tabindex="0" class="btn btn-square btn-ghost">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
+          </label>
+          <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+            <li><%= link_to "投稿を編集", edit_post_path(@post) %></li>
+            <li><%= button_to "投稿を削除", @post, method: :delete, data: { turbo_confirm: "本当に削除しますか？" } %></li>
+          </ul>
+        </div>
+      <% else %>
+        <%= render "posts/like_button", post: @post %>
       <% end %>
-      <div class="dropdown dropdown-top dropdown-end">
-        <label tabindex="0" class="btn btn-square btn-ghost">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
-        </label>
-        <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-          <li><%= link_to "投稿を編集", edit_post_path(@post) %></li>
-          <li><%= button_to "投稿を削除", @post, method: :delete, data: { turbo_confirm: "本当に削除しますか？" } %></li>
-        </ul>
-      </div>
-    <% else %>
-      <%= render "posts/like_button", post: @post %>
-    <% end %>
     </div>
 
     <!-- 投稿内容 -->
@@ -38,9 +38,9 @@
         <div class="flex justify-center"><%= image_tag @post.post_image.url, class: "w-[150px] md:w-[300px]" %></div>
       <% end %>
       <div>
-        <h2 class="border-b border-secondary">断捨離したモノ</h2>
+        <h2 class="bg-base-100 p-1 border-l-[3px] border-solid border-secondary">断捨離したモノ</h2>
         <% if @post.item.image.present? %>
-          <div class="flex justify-center"><%= image_tag @post.item.image.url, class: "w-[150px] md:w-[300px]" %></div>
+          <div class="flex justify-center mt-2"><%= image_tag @post.item.image.url, class: "w-[150px] md:w-[300px]" %></div>
         <% end %>
         <table class="table">
           <tr>

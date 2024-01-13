@@ -1,23 +1,12 @@
 <div class="card w-[330px] md:w-full lg:w-[800px] bg-base-100 shadow-md m-2 ranks">
-  <div class="border-b flex items-center p-2">
-    <div class="avatar mr-2">
-      <div class="w-12 rounded-full border border-2">
-        <%= image_tag before_login_post.user.avatar.url %>
-      </div>
-    </div>
-    <div>
-      <p class="font-bold"><%= before_login_post.user.name %></p>
-    </div> 
-  </div>
-
   <div class="md:flex">
     <figure class="mt-6 md:mt-0">
       <div class="w-[240px]">
         <%= image_tag before_login_post.item.image.url %>
       </div>
     </figure>
-    <div class="md:w-full">
-      <div class="card-body">
+    <div class="md:w-3/4 md:flex md:flex-col">
+      <div class="card-body md:flex-grow">
         <h2 class="card-title"><%= truncate(before_login_post.item.name, length: 15) %></h2>
         <p><%= truncate(before_login_post.content, length: 80) %></p>
       </div>

@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:edit, :update]
 
   def show
+    @user = User.find(params[:id])
     @user_posts = @user.posts.includes(:item).order(created_at: :desc).page(params[:page]).per(5)
   end
 

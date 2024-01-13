@@ -1,31 +1,38 @@
 <div class="card shadow-md w-[340px] md:w-full lg:w-[650px] bg-base-100 m-2">
-  <% unless current_page?(user_path(post.user)) %>
-    <div class="border-b flex items-center p-3" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= user_path(post.user) %>">
-      <div class="avatar mr-2">
-        <div class="w-12 rounded-full border border-2">
-          <%= image_tag post.user.avatar.url %>
-        </div>
-      </div>
-      <div>
-        <p class="font-bold"><%= post.user.name %></p>
-      </div> 
-    </div>
-  <% end %>
-
   <div class="md:flex">
-    <figure class="mt-6 md:mt-0">
-      <div class="w-[240px]" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= post_path(post) %>">
+    <!-- タブレット以上のレイアウト(画像位置) -->
+    <figure>
+      <div class="hidden md:block" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= post_path(post) %>">
         <%= image_tag post.item.image.url %>
       </div>
     </figure>
-    <div class="md:w-full">
-      <div class="card-body" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= post_path(post) %>">
-        <h2 class="card-title"><%= truncate(post.item.name, length: 15) %></h2>
-        <p><%= truncate(post.content, length: 25) %></p>
-      </div>
-  
+    <div class="md:w-3/4 md:flex md:flex-col">
+      <% unless current_page?(user_path(post.user)) %>
+        <div class="border-b flex items-center p-3" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= user_path(post.user) %>">
+          <div class="avatar mr-2">
+            <div class="w-12 rounded-full border border-2">
+              <%= image_tag post.user.avatar.url %>
+            </div>
+          </div>
+          <div>
+            <p class="font-bold"><%= post.user.name %></p>
+          </div> 
+        </div>
+      <% end %>
 
-      <div class="flex items-center justify-around h-[50px] border-t">
+      <!-- スマホのレイアウト(画像位置) -->
+      <figure class="mt-6 md:mt-0">
+        <div class="w-[240px] md:hidden" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= post_path(post) %>">
+          <%= image_tag post.item.image.url %>
+        </div>
+      </figure>
+
+      <div class="card-body md:flex-grow" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= post_path(post) %>">
+        <h2 class="card-title"><%= truncate(post.item.name, length: 15) %></h2>
+        <p><%= truncate(post.content, length: 20) %></p>
+      </div>
+    
+      <div class="flex items-center justify-around border-t h-[50px]">
         <p class="text-sm text-neutral-400">更新日: <%= post.updated_at.strftime("%Y-%m-%d") %></p>
         <% if current_user.own?(post) %>
           <%= link_to "https://twitter.com/share?url=#{ request.url }&text=【投稿したアイテム】%0a%0a#{ post.item.name }%0a%0a【断捨離日】%0a%0a#{ post.item.disposed_at }", target: '_blank', class: "btn btn-sm" do %>

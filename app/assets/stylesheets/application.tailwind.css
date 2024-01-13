@@ -3,30 +3,18 @@
 @tailwind utilities;
 
 @layer base {
-  input[type=radio] {
-    @apply hidden;
-  }
-
   .field_with_errors {
     @apply contents;
   }
 }
 
 @layer components {
-  .custom-radio {
-    @apply border-2 p-[10px] mx-[5px] w-[100px] h-[45px] text-center rounded-full text-sm md:mx-3 md:text-lg;
-  }
-
-  .custom-radio:hover {
-    @apply bg-primary;
-  }
-
   div.ranks {
     counter-increment: rank;
-    @apply before:content-[counter(rank)"位"] before:font-bold before:text-red-600;
+    @apply before:content-[counter(rank)"位"] before:font-bold before:text-red-600 relative before:absolute before:top-[15px] before:left-[15px];
   }
 }
 
-input[type=radio]:checked + label {
+.radio-custum:checked + label {
   @apply bg-primary; 
 }

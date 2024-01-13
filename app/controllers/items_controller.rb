@@ -46,13 +46,6 @@ class ItemsController < ApplicationController
     @categories_collection = @categories.map { |p| [p.title, p.children.map { |c| [c.title, c.id] }] }
   end
 
-  def chart
-    chart_datas = current_user.disposal_chart_datas
-    gon.disposal_dates = chart_datas[:dates]
-    gon.disposal_counts = chart_datas[:counts]
-    @before_items = current_user.items.before_disposal.count
-  end
-
   def category_children
     @category_children = Category.find(params[:parent_id]).children
   end

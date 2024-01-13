@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   resources :items, except: :index do
     collection do
       get 'history'
-      get 'chart'
       get 'search'
       get 'category_children', defaults: { format: 'json' }
     end

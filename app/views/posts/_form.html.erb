@@ -1,24 +1,33 @@
-<%= form_with model: post, local: true, class: "space-y-10 md:space-y-12" do |f| %>
+<%= form_with model: post, local: true do |f| %>
   <%= render 'shared/error_message', object: f.object %>
-    <div class="form-control">
-      <%= f.label :item_id, "投稿するアイテム", class: "mb-2" %>
-      <%= f.collection_select :item_id, disposal_item, :id, :name, { include_blank: "選択して下さい" }, { class: "select select-bordered" } %>
+  <div class="form-control">
+    <p class="my-2 ml-5" id="title">投稿するアイテム</p>
+    <% if disposal_item.present? %>
+      <div class="flex flex-wrap overflow-y-scroll h-[220px]">
+        <%= f.collection_radio_buttons :item_id, disposal_item, :id, :name_with_image do |b| %>
+          <div class="w-[120px] md:w-[140px] p-1 mx-auto md:mx-0 hover:bg-base-200 active:base-200">
+            <%= b.radio_button(class: "radio radio-primary radio-xs") %>
+            <%= b.label %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="space-y-3 p-5">
+    <%= f.label :post_image %>
+    <div class="flex justify-center">
+      <%= image_tag post.post_image.url, id: "preview", class: "w-[200px] md:w-[280px]" %>
     </div>
-    <div class="space-y-2">
-      <%= f.label :post_image %>
-      <div class="flex justify-center">
-        <%= image_tag post.post_image.url, id: "preview", class: "w-[250px] md:w-80" %>
-      </div>
-      <div class="text-center">
-        <%= f.file_field :post_image, onchange: "previewFileWithId('preview')", accept: "image/*", class: "file-input file-input-bordered file-input-primary file-input-sm md:file-input-md" %>
-        <%= f.hidden_field :post_image_cache %>
-      </div>
+    <div class="text-center">
+      <%= f.file_field :post_image, onchange: "previewFileWithId('preview')", accept: "image/*", class: "file-input file-input-bordered file-input-primary file-input-sm md:file-input-md" %>
+      <%= f.hidden_field :post_image_cache %>
     </div>
     <div class="form-control">
       <%= f.label :content, class: "mb-2" %>
       <%= f.text_area :content, placeholder: "1,000文字まで", class: "textarea textarea-bordered" %>
     </div>
-  <div class="flex justify-center">
-    <%= f.submit class: "btn btn-secondary px-12 md:px-20" %>
+    <div class="flex justify-center">
+      <%= f.submit class: "btn btn-secondary px-12 md:px-20" %>
+    </div>
   </div>
 <% end %>

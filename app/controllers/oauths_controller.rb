@@ -14,7 +14,7 @@ class OauthsController < ApplicationController
         @user = create_from(provider)
         reset_session
         auto_login(@user)
-        redirect_to categories_path, notice: "#{provider.titleize}でログインしました"
+        redirect_back_or_to categories_path, notice: "#{provider.titleize}でログインしました"
       rescue StandardError
         redirect_to root_path, alert: "#{provider.titleize}でのログインに失敗しました"
       end

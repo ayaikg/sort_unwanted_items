@@ -1,21 +1,34 @@
 <% content_for(:title, t('.title')) %>
-<main class="bg-base-100 py-11 md:p-8 lg:p-0 md:m-auto md:rounded-md md:border-2">
-  <div class="p-4 md:w-[700px] md:h-[850px] lg:p-6 lg:border lg:rounded-lg">
-    <h2 class="text-center font-bold md:text-xl">目標設定</h2>
-    <div class="text-center mt-6 md:mt-8 md:text-left">
-      <%= link_to "アドバイスをみる", recommend_path, data: { turbo_frame: "modal" }, class: "btn btn-sm btn-secondary btn-outline md:btn-md" %>
-      <%= link_to 'グラフをみる', chart_items_path, data: { "turbo" => false }, class: "btn btn-sm btn-secondary btn-outline md:btn-md" %>
-    </div>
-    <%= render @decluttering %>
-      <div class="stats shadow bg-base-200 w-full">
-        <div class="stat place-items-center">
-          <div class="stat-title">先月の断捨離数</div>
-          <div class="stat-value"><%= current_user.last_month_disposed_items %><span class="text-sm">個</span></div>
+<main class="md:my-auto">
+  <div>
+    <div class="p-5">
+      <h2 class="mb-5 text-center font-bold md:text-xl">1週間のデータ</h2>
+      <div class="flex justify-center">
+        <div class="stats shadow md:w-1/2">
+          <div class="stat place-items-center">
+            <div class="stat-title">現在のアイテム数</div>
+            <div class="stat-value"><%= @before_items %><span class="text-sm">個</span></div>
+          </div>
+          <div class="stat place-items-center">
+            <div class="stat-title">先月の断捨離数</div>
+            <div class="stat-value"><%= current_user.last_month_disposed_items %><span class="text-sm">個</span></div>
+          </div>
         </div>
       </div>
+      <div class="text-center mb-3">
+        <%= link_to "アドバイスをみる", recommend_path, data: { turbo_frame: "modal" }, class: "btn btn-sm btn-secondary md:btn-wide" %>
+      </div>
+      <div data-controller="chart" class="relative h-[400px] md:h-[450px]">
+        <canvas data-chart-target="canvas"></canvas>
+      </div>
+    </div>
 
-    <div class="flex justify-center mt-6 md:mt-10">
-      <%= link_to "目標を設定する", edit_decluttering_path(current_user), data: { turbo_frame: "modal" }, class: "btn btn-secondary px-12 md:px-20" %>
+    <div class="p-3 md:p-5">
+      <h2 class="text-center font-bold md:text-xl mb-5">今月の達成度</h2>
+      <%= render @decluttering %>
+      <div class="flex justify-center items-center mt-3">
+        <%= link_to "目標を設定する", edit_decluttering_path(current_user), data: { turbo_frame: "modal" }, class: "btn btn-secondary rounded-full md:btn-wide" %>
+      </div>
     </div>
   </div>
 </main>
