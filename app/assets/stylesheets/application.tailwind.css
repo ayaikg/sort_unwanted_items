@@ -14,7 +14,3 @@
     @apply before:content-[counter(rank)"位"] before:font-bold before:text-red-600 relative before:absolute before:top-[15px] before:left-[15px];
   }
 }
-
-.radio-custum:checked + label {
-  @apply bg-primary; 
-}
