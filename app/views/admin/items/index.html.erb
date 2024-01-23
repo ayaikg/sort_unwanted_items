@@ -4,7 +4,7 @@
   <div>
     <%= render 'search_form', categories_collection: @categories_collection %>
   </div>
-  <%= turbo_frame_tag "items_list" do %>
+  <%= turbo_frame_tag "admin_items_list" do %>
     <div class="overflow-x-auto">
       <table class="table">
         <thead>
