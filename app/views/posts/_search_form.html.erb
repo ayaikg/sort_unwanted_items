@@ -1,4 +1,4 @@
-<details class="md:hidden bg-neutral">
+<details class="md:hidden">
   <summary class="btn btn-ghost flex justify-center">
     投稿検索
   </summary>
@@ -15,13 +15,13 @@
   <% end %>
 </details>
 
-<div class="hidden md:block bg-neutral">
+<div class="hidden md:block p-2">
   <%= search_form_for @q, url: url, data: { turbo_frame: "posts_list", controller: "search", action: "input->search#submit" } do |f| %>
-    <div class="flex items-center justify-center md:space-x-1 lg:space-x-2">
-      <%= f.search_field :content_or_item_name_cont, class: "input input-bordered", placeholder: "キーワード検索" %>
-      <%= f.select :item_listing_status_eq, [['出品中', true], ['未出品', false]], { include_blank: '出品状態' }, class: "select select-bordered" %>
-      <%= f.select :item_disposal_method_eq, Item.disposal_methods_i18n.except(:before).invert.map { |key, value| [key, Item.disposal_methods[value]] }, { include_blank: "処分方法" }, class: "select select-bordered" %>
-      <%= f.select :item_category_id_eq, grouped_options_for_select(@categories_collection), { include_blank: 'カテゴリー' }, class: "select select-bordered" %>
+    <div class="flex items-center justify-center join">
+      <%= f.search_field :content_or_item_name_cont, class: "input input-bordered join-item lg:w-96", placeholder: "キーワード検索" %>
+      <%= f.select :item_listing_status_eq, [['出品中', true], ['未出品', false]], { include_blank: '出品状態' }, class: "select select-bordered join-item" %>
+      <%= f.select :item_disposal_method_eq, Item.disposal_methods_i18n.except(:before).invert.map { |key, value| [key, Item.disposal_methods[value]] }, { include_blank: "処分方法" }, class: "select select-bordered join-item" %>
+      <%= f.select :item_category_id_eq, grouped_options_for_select(@categories_collection), { include_blank: 'カテゴリー' }, class: "select select-bordered join-item" %>
     </div>
   <% end %>
 </div>
