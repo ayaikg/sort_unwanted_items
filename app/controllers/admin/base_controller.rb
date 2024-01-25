@@ -11,7 +11,7 @@ module Admin
     end
 
     def check_admin
-      redirect_to root_path, error: t('defaults.message.not_authorized') unless current_user.admin?
+      redirect_to root_path, error: t('defaults.message.not_authorized') unless current_user&.admin?
     end
   end
 end
