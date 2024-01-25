@@ -1,5 +1,5 @@
 <% content_for(:title, t('.title')) %>
-<main class="md:my-auto">
+<main class="md:my-auto bg-slate-50">
   <div>
     <div class="p-5">
       <h2 class="mb-5 text-center font-bold md:text-xl">1週間のデータ</h2>
@@ -18,7 +18,7 @@
       <div class="text-center mb-3">
         <%= link_to "アドバイスをみる", recommend_path, data: { turbo_frame: "modal" }, class: "btn btn-sm btn-secondary md:btn-wide" %>
       </div>
-      <div data-controller="chart" class="relative h-[400px] md:h-[450px]">
+      <div data-controller="chart" class="relative h-[400px] md:h-[450px] bg-base-100">
         <canvas data-chart-target="canvas"></canvas>
       </div>
     </div>
