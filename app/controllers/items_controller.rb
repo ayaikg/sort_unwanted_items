@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :update, :destroy, :show]
-  before_action :set_categories, only: [:new, :create, :edit, :update, :history]
+  before_action :set_categories, only: [:new, :create, :edit, :update, :history, :index]
   before_action :set_child_categories, only: [:edit, :update]
 
   def index
@@ -77,7 +77,7 @@ class ItemsController < ApplicationController
   end
 
   def set_categories
-    @categories = Category.roots
+    @categories = Category.roots.order(id: :asc)
   end
 
   def set_child_categories
