@@ -35,7 +35,7 @@
       <div class="flex items-center justify-around border-t h-[50px]">
         <p class="text-sm text-neutral-400">更新日: <%= post.updated_at.strftime("%Y-%m-%d") %></p>
         <% if current_user.own?(post) %>
-          <%= link_to "https://twitter.com/share?url=#{ request.url }&text=【投稿したアイテム】%0a%0a#{ post.item.name }%0a%0a【断捨離日】%0a%0a#{ post.item.disposed_at }", target: '_blank', class: "btn btn-sm" do %>
+          <%= link_to "https://twitter.com/share?url=#{ request.url }&text=【投稿したアイテム】%0a%0a#{ post.item.name }%0a%0a【断捨離日】%0a%0a#{ post.item.disposed_at }", target: '_blank', class: "btn btn-sm", data: { "turbo" => false } do %>
             <%= image_tag "logo-black.png", class: "w-3" %>シェア
           <% end %>
           <details class="dropdown dropdown-top dropdown-end">
@@ -43,7 +43,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
             </summary>
             <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-              <li><%= link_to "投稿を編集", edit_post_path(post),  data: { "turbo" => false } %></li>
+              <li><%= link_to "投稿を編集", edit_post_path(post), data: { "turbo" => false } %></li>
               <li><%= button_to "投稿を削除", post, method: :delete, data: { turbo_confirm: "本当に削除しますか？" } %></li>
             </ul>
           </details>
