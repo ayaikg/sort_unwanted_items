@@ -46,7 +46,7 @@
       </div>
       <%= yield %>
       
-      <% if current_page?(root_path) || current_page?(login_path) %>
+      <% if current_page?(root_path) %>
         <%= render 'shared/footer' %>
       <% else %>
         <% if logged_in? %>
