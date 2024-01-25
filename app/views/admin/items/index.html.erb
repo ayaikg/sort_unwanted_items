@@ -4,23 +4,25 @@
   <div>
     <%= render 'search_form', categories_collection: @categories_collection %>
   </div>
-  <div class="overflow-x-auto">
-    <table class="table">
-      <thead>
-        <tr>
-          <th><%= Item.human_attribute_name(:id) %></th>
-          <th><%= Item.human_attribute_name(:name) %></th>
-          <th><%= Category.human_attribute_name(:title) %></th>
-          <th><%= Item.human_attribute_name(:created_at) %></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <%= render @items %>
-      </tbody>
-    </table>
-  </div>
-  <div>
-    <%= paginate @items %>
-  </div>
+  <%= turbo_frame_tag "admin_items_list" do %>
+    <div class="overflow-x-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th><%= Item.human_attribute_name(:id) %></th>
+            <th><%= Item.human_attribute_name(:name) %></th>
+            <th><%= Category.human_attribute_name(:title) %></th>
+            <th><%= Item.human_attribute_name(:created_at) %></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @items %>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <%= paginate @items %>
+    </div>
+  <% end %>
 </div>

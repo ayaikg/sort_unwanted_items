@@ -4,23 +4,25 @@
   <div>
     <%= render 'search_form' %>
   </div>
-  <div class="overflow-x-auto">
-    <table class="table">
-      <thead>
-        <tr>
-          <th><%= Post.human_attribute_name(:id) %></th>
-          <th><%= User.human_attribute_name(:name) %></th>
-          <th><%= Post.human_attribute_name(:content) %></th>
-          <th><%= Post.human_attribute_name(:created_at) %></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <%= render @posts %>
-      </tbody>
-    </table>
-  </div>
-  <div>
-    <%= paginate @posts %>
-  </div>
+  <%= turbo_frame_tag "admin_posts_list" do %>
+    <div class="overflow-x-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th><%= Post.human_attribute_name(:id) %></th>
+            <th><%= User.human_attribute_name(:name) %></th>
+            <th><%= Post.human_attribute_name(:content) %></th>
+            <th><%= Post.human_attribute_name(:created_at) %></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @posts %>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <%= paginate @posts %>
+    </div>
+  <% end %>
 </div>

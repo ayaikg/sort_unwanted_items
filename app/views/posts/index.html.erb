@@ -2,20 +2,22 @@
 <% if logged_in? %>
   <main>
     <%= render 'search_form', url: posts_path %>
-    <div role="tablist" class="tabs tabs-boxed justify-around bg-neutral">
-      <%= sort_link(@q, :likes_count, 'いいね順', default_order: :desc, class: "tab", role: "tab") %>
-      <%= sort_link(@q, :updated_at, '新着順', default_order: :desc, class: "tab", role: "tab") %>
-      <%= sort_link(@q, :created_at, '作成日順', default_order: :asc, class: "tab", role: "tab") %>
-    </div>
-  
-    <div class="flex flex-wrap items-center justify-center px-5 md:px-10">
-      <% if @posts.present? %>
-        <%= render @posts %>
-      <% else %>
-        <p class="text-center">投稿はありません</p>
-      <% end %>
-    </div>
-    <%= paginate @posts %>
+    <%= turbo_frame_tag "posts_list" do %>
+      <div role="tablist" class="tabs tabs-boxed justify-around bg-base-100">
+        <%= sort_link(@q, :likes_count, 'いいね順', default_order: :desc, class: "tab", role: "tab") %>
+        <%= sort_link(@q, :updated_at, '新着順', default_order: :desc, class: "tab", role: "tab") %>
+        <%= sort_link(@q, :created_at, '作成日順', default_order: :asc, class: "tab", role: "tab") %>
+      </div>
+    
+      <div class="flex flex-wrap items-center justify-center px-5 md:px-10">
+        <% if @posts.present? %>
+          <%= render @posts %>
+        <% else %>
+          <p class="text-center">投稿はありません</p>
+        <% end %>
+      </div>
+      <%= paginate @posts %>
+    <% end %>
   </main>
 <% else %>
   <main class="p-5">

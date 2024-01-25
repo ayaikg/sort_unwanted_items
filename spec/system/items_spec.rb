@@ -80,7 +80,7 @@ RSpec.describe 'Items', type: :system do
       before { visit edit_item_path(item) }
 
       context 'フォームの入力値が正常' do
-        it 'カテゴリーの編集が成功する' do
+        it '投稿の編集が成功する' do
           fill_in 'アイテム名', with: 'update_name'
           select 'ファッション', from: 'item[category_id]'
           select 'トップス'

@@ -12,7 +12,7 @@
 
   <body>
     <div class="flex flex-col min-h-screen">
-      <% if logged_in? %>
+      <% if logged_in? && current_user&.admin? %>
         <%= render 'admin/shared/header'%>
       <% end %>
       <%= render 'shared/flash_message' %>

@@ -1,12 +1,14 @@
 <% content_for(:title, t('.title')) %>
 <main>
   <%= render 'search_form', url: likes_posts_path %>
-  <div class="flex flex-wrap items-center justify-center px-10">
-    <% if @like_posts.present? %>
-      <%= render @like_posts %>
-    <% else %>
-      <p>お気に入りしている投稿はありません</p>
-    <% end %>
-  </div>
-  <%= paginate @like_posts %>
+  <%= turbo_frame_tag "posts_list" do %>
+    <div class="flex flex-wrap items-center justify-center px-10">
+      <% if @like_posts.present? %>
+        <%= render @like_posts %>
+      <% else %>
+        <p>お気に入りしている投稿はありません</p>
+      <% end %>
+    </div>
+    <%= paginate @like_posts %>
+  <% end %>
 </main>

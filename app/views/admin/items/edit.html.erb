@@ -14,7 +14,7 @@
         <%= f.label :name, class: "mb-2" do %>
           アイテム名<span class="text-xs text-error">*必須</span>
         <% end %>
-        <%= f.text_field :name, placeholder: "必須(40文字まで)", class: "input input-bordered" %>
+        <%= f.text_field :name, placeholder: "40文字まで", class: "input input-bordered" %>
       </div>
       <div class="form-control">
         <%= f.collection_select :category_id, @categories, :id, :title, { include_blank: "カテゴリーを選択(必須)", selected: @parent_category }, { class: "select select-bordered", id: "item_category_id" } %>
@@ -27,29 +27,29 @@
         <span>カラー</span>
         <div class="flex items-center overflow-x-scroll h-[45px]">
           <%= f.collection_radio_buttons :color, Item.colors_i18n, :first, :last do |b| %>
-            <div class="shrink-0">
-              <%= b.radio_button %>
-              <%= b.label(class: "custom-radio") %>
+            <div class="btn rounded-full">
+              <%= b.radio_button(class: "radio") %>
+              <%= b.label %>
             </div>
           <% end %>
         </div>
       </div>
       <div>アイテムの状態<span class="text-xs text-error">*必須</span></div>
       <div class="flex justify-center">
-        <div>
-          <%= f.radio_button :listing_status, true %>
-          <%= f.label :listing_status, "出品中", value: true, class: "custom-radio" %>
+        <div class="btn rounded-full">
+          <%= f.radio_button :listing_status, true, class: "radio" %>
+          <%= f.label :listing_status, "出品中", value: true %>
         </div>
-        <div>
-          <%= f.radio_button :listing_status, false %>
-          <%= f.label :listing_status, "未出品", value: false, class: "custom-radio" %>
+        <div class="btn rounded-full">
+          <%= f.radio_button :listing_status, false, class: "radio" %>
+          <%= f.label :listing_status, "未出品", value: false %>
         </div>
       </div>
       <div class="flex justify-center">
         <%= f.collection_radio_buttons :disposal_method, Item.disposal_methods_i18n, :first, :last do |b| %>
-          <div>
-            <%= b.radio_button %>
-            <%= b.label(class: "custom-radio") %>
+          <div class="btn rounded-full">
+            <%= b.radio_button(class: "radio") %>
+            <%= b.label %>
           </div>
         <% end %>
       </div>
