@@ -30,9 +30,8 @@
   </head>
 
   <body>
-    <div class="drawer drawer-end flex flex-col min-h-screen">
-      <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
-      <header class="drawer-content">
+    <div class="flex flex-col min-h-screen">
+      <header>
         <% if logged_in? %>
           <%= render 'shared/header' %>
         <% else %>
@@ -54,8 +53,6 @@
           <%= render 'shared/bottom_nav' %>
         <% end %>
       <% end %>
-
-      <%= render 'shared/sidebar' %>
     </div>
   </body>
 </html>
