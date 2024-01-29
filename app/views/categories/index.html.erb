@@ -2,7 +2,7 @@
 <main class="md:mx-auto">
   <div class="md:flex md:justify-center">
     <div class="flex overflow-x-scroll space-x-2 p-2">
-      <%= link_to "ALL", categories_path, class: "btn btn-sm md:btn-md rounded-full" %>
+      <%= link_to "ALL", categories_path, class: "btn btn-sm md:btn-md rounded-full button", data: { active_class: "btn-primary" } %>
       <%= render @categories %>
     </div>
   </div>
