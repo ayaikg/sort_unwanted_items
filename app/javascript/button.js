@@ -6,13 +6,13 @@ document.addEventListener('turbo:load', () => {
   document.querySelectorAll('.button').forEach(link => {
     // リンクのhref属性からパス部分だけを取り出す
     const linkPath = new URL(link.href).pathname;
-    const activeClass = link.dataset.activeClass;
+    const activeClass = link.dataset.activeClass.split(' ');
     const CategoryItemPath = currentPath.startsWith('/categories/') && currentPath.includes('/items');
     // 現在のパスとリンクのパスが一致していれば、色を変える
     if (linkPath === currentPath || (CategoryItemPath && linkPath === categoriesPath)) {
-      link.classList.add(activeClass);
+      link.classList.add(...activeClass);
     } else {
-      link.classList.remove(activeClass);
+      link.classList.remove(...activeClass);
     }
   });
 });

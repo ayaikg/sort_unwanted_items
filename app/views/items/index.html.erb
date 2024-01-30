@@ -1,8 +1,10 @@
 <% content_for(:title, t('.title')) %>
-<main class="md:mx-auto">
-  <div class="flex overflow-x-scroll space-x-2 p-2">
-    <%= link_to "ALL", categories_path, class: "btn btn-sm md:btn-md rounded-full" %>
-    <%= render partial: "categories/category", collection: @categories %>
+<main>
+  <div class="md:flex md:justify-center">
+    <div class="tabs flex flex-nowrap overflow-x-scroll hidden-scrollbar">
+      <%= link_to "ALL", categories_path, class: "tab tab-bordered tab-lg" %>
+      <%= render partial: "categories/category", collection: @categories %>
+    </div>
   </div>
   <%= render 'search_form', url: category_items_path(@category), set_value: search_items_path(view: 'index') %>
   <%= turbo_frame_tag "items_list" do %>
