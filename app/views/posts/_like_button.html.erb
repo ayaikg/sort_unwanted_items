@@ -1,7 +1,9 @@
-<%= turbo_frame_tag dom_id(post, :like_button) do %>
-  <% if current_user.like?(post) %>
-    <%= render 'posts/unlike', post: post %>
-  <% else %>
-    <%= render 'posts/like', post: post %>
+<% if logged_in? %>
+  <%= turbo_frame_tag dom_id(post, :like_button) do %>
+    <% if current_user&.like?(post) %>
+      <%= render 'posts/unlike', post: post %>
+    <% else %>
+      <%= render 'posts/like', post: post %>
+    <% end %>
   <% end %>
 <% end %>
