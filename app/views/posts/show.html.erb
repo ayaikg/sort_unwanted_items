@@ -1,6 +1,6 @@
 <% content_for(:title, t('.title')) %>
-<main class="my-auto md:m-auto">
-  <div class="p-5 md:w-[700px]">
+<main class="my-auto">
+  <div class="p-5 lg:p-10">
     <div class="p-3 border-b border-secondary flex items-center p-2" data-controller="link" data-link-target="toLink" data-action="click->link#toLink" data-href="<%= user_path(@post.user) %>">
       <div class="avatar mr-2">
         <div class="w-12 rounded-full border border-2 bg-base-100">
@@ -13,7 +13,7 @@
     </div>
     <div class="flex justify-end items-center space-x-5 mt-2">
       <p class="text-sm text-neutral-400">更新日: <%= @post.updated_at.strftime("%Y-%m-%d") %></p>
-      <% if current_user.own?(@post) %>
+      <% if logged_in? && current_user&.own?(@post) %>
         <%= link_to "https://twitter.com/share?url=#{ request.url }&text=#{ @post.item.name }%0a%0a#{ @post.content }", target: '_blank', class: "btn btn-sm" do %>
           <%= image_tag "logo-black.png", class: "w-3" %>シェア
         <% end %>
@@ -33,23 +33,30 @@
 
     <!-- 投稿内容 -->
     <article class="space-y-4">
-      <p><%= simple_format(h(@post.content), {}, sanitize: false) %></p>
-      <% if @post.post_image.present? %>
-        <div class="flex justify-center"><%= image_tag @post.post_image.url, class: "w-[150px] md:w-[300px]" %></div>
-      <% end %>
-      <div>
-        <h2 class="bg-base-100 p-1 border-l-[3px] border-solid border-secondary">断捨離したモノ</h2>
+      <div class="md:flex md:justify-around">
+        <p><%= simple_format(h(@post.content), {}, sanitize: false) %></p>
+        <% if @post.post_image.present? %>
+          <div class="flex justify-center"><%= image_tag @post.post_image.url, class: "w-[150px] md:w-[300px]" %></div>
+        <% end %>
+      </div>
+      <h2 class="p-1 border-b border-secondary flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 md:w-8 md:h-8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+        </svg>
+        <span class="font-bold ml-2">断捨離したモノ</span>
+      </h2>
+      <div class="md:flex md:justify-around">
         <% if @post.item.image.present? %>
           <div class="flex justify-center mt-2"><%= image_tag @post.item.image.url, class: "w-[150px] md:w-[300px]" %></div>
         <% end %>
-        <table class="table">
+        <table class="table md:w-1/2">
           <tr>
             <th><%= Item.human_attribute_name(:name) %></th>
             <td><%= @post.item.name %></td>
           </tr>
           <tr>
             <th><%= Category.human_attribute_name(:title) %></th>
-            <td><%= @post.item.category.title %></p>
+            <td><%= @post.item.category.parent.title %> / <%= @post.item.category.title %></p>
           </tr>
           <tr>
             <th><%= Item.human_attribute_name(:price) %></th>
