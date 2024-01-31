@@ -12,7 +12,12 @@
       </div> 
     </div>
     <div class="flex justify-end items-center space-x-5 mt-2">
-      <p class="text-sm text-neutral-400">更新日: <%= @post.updated_at.strftime("%Y-%m-%d") %></p>
+      <p class="text-sm text-neutral-400 flex">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
+        <%= @post.updated_at.strftime("%Y-%m-%d") %>
+      </p>
       <% if logged_in? && current_user&.own?(@post) %>
         <%= link_to "https://twitter.com/share?url=#{ request.url }&text=#{ @post.item.name }%0a%0a#{ @post.content }", target: '_blank', class: "btn btn-sm" do %>
           <%= image_tag "logo-black.png", class: "w-3" %>シェア
