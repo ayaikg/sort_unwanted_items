@@ -16,6 +16,9 @@ application.register("link", LinkController)
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
 
+import SelectController from "./select_controller"
+application.register("select", SelectController)
+
 import SearchController from "./search_controller"
 application.register("search", SearchController)
 

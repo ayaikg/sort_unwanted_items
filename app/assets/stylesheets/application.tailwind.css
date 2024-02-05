@@ -15,6 +15,10 @@
   }
 }
 
+input[name="post[item_id]"]:checked + label {
+  @apply bg-base-200
+}
+
 @layer utilities {
   .hidden-scrollbar {
     -ms-overflow-style: none; /* IE, Edge 対応 */

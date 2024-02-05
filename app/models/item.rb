@@ -38,7 +38,7 @@ class Item < ApplicationRecord
   scope :random_order, ->(ids) { where(id: ids).order("RANDOM()") }
 
   def name_with_image
-    ActionController::Base.helpers.image_tag(image.url) + "" + name
+    ActionController::Base.helpers.image_tag(image.url, class: "w-[100px] p-1") + "" + name
   end
 
   private
