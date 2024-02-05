@@ -1,5 +1,5 @@
 <% content_for(:title, t('.title')) %>
-<main>
+<main class="lg:flex-grow">
   <%= render 'search_form', url: posts_path %>
   <%= turbo_frame_tag "posts_list" do %>
     <div role="tablist" class="tabs tabs-boxed justify-around bg-base-100">

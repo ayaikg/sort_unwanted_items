@@ -1,5 +1,5 @@
 <% content_for(:title, t('.title')) %>
-<main>
+<main class="lg:flex-grow">
   <%= render 'search_form', url: likes_posts_path %>
   <%= turbo_frame_tag "posts_list" do %>
     <div class="flex flex-wrap items-center justify-center px-10">
