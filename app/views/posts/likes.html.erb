@@ -1,8 +1,8 @@
 <% content_for(:title, t('.title')) %>
-<main class="lg:flex-grow">
+<main class="lg:flex-grow lg:flex lg:bg-slate-50">
   <%= render 'search_form', url: likes_posts_path %>
-  <%= turbo_frame_tag "posts_list" do %>
-    <div class="flex flex-wrap items-center justify-center px-10">
+  <%= turbo_frame_tag "posts_list", class: "lg:w-full lg:my-8 lg:mx-2 lg:p-2 lg:bg-base-100 lg:rounded-md" do %>
+    <div class="flex flex-wrap items-center justify-center px-5 lg:px-0">
       <% if @like_posts.present? %>
         <%= render @like_posts %>
       <% else %>
