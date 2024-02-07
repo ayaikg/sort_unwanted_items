@@ -8,6 +8,7 @@ ja:
     delete: 削除
     search_word: 検索ワード
     unspecified: 選択してください
+    goal_setting: 設定する
     message:
       require_login: ログインしてください
       forbidden_access: こちらのページはアクセスできません
