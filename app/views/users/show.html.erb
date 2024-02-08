@@ -4,7 +4,7 @@
     <div class="m-5 md:mx-0">
       <div class="flex justify-end">
         <% if current_user == @user %>
-          <%= link_to '編集', edit_user_path(@user), class: "btn btn-sm btn-secondary btn-outline" %>
+          <%= link_to '編集', edit_user_path(@user), class: "btn btn-sm md:btn-md btn-primary btn-outline" %>
         <% end %>
       </div>
       <div class="flex flex-col justify-center items-center pb-5 border-b-2 border-secondary">
