@@ -33,14 +33,16 @@
 
   <dialog id="modal_select" class="modal" data-select-target="modal">
     <div class="modal-box">
-      <%= collection_radio_buttons(:post, :item_id, disposal_item, :id, :name_with_image) do |b| %>
-        <div class="hover:bg-base-200 p-1">
-          <%= b.radio_button(class: "hidden") %>
-          <%= b.label(class: "flex items-center") %>
-        </div>
-      <% end %>
-      <div>
-        <%= button_tag '決定', type: 'button', class: 'btn', data: { action: "click->select#closeModal", turbo_frame: "modal_result" } %>
+      <div class="overflow-y-scroll h-[430px]">
+        <%= collection_radio_buttons(:post, :item_id, disposal_item, :id, :name_with_image) do |b| %>
+          <div class="hover:bg-base-200 p-1">
+            <%= b.radio_button(class: "hidden") %>
+            <%= b.label(class: "flex items-center") %>
+          </div>
+        <% end %>
+      </div>
+      <div class="flex justify-center">
+        <%= button_tag '決定', type: 'button', class: 'btn btn-wide btn-primary', data: { action: "click->select#closeModal", turbo_frame: "modal_result" } %>
       </div>
     </div>
     <form method="dialog" class="modal-backdrop">
