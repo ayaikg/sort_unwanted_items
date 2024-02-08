@@ -3,6 +3,7 @@ ja:
     login: ログイン
     logout: ログアウト
     create: 作成する
+    post: 投稿する
     show: 詳細
     edit: 編集
     delete: 削除
@@ -24,7 +25,7 @@ ja:
         short: "%m/%d %H:%M"
     helpers:
       submit:
-        create: 登録する
+        create: 作成する
         submit: 保存する
         update: 更新する
   users:
