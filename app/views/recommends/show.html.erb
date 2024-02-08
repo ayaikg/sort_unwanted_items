@@ -1,9 +1,17 @@
 <%= render "shared/modal" do %>
   <% if @recommend_item.present? %>
     <h3 class="font-bold text-lg text-center">似ているアイテム</h3>
-    <table class="table">
-      <%= render 'items/item_show', item: @recommend_item %>
-    </table>
+    <p class="font-bold">アイテム画像</p>
+    <div class="flex justify-center items-center">
+      <%= image_tag @recommend_item.image.url, class: "w-[180px] md:w-[200px]" %>
+    </div>
+    <div class="overflow-x-auto">
+      <p class="font-bold text-xl my-2"><%= @recommend_item.name %></p>
+      <p class="font-bold text-lg border-b p-2 text-slate-400">アイテムの詳細</p>
+      <table class="table">
+        <%= render 'items/item_show', item: @recommend_item %>
+      </table>
+    </div>
   <% elsif @nearest_item.present? %>
     <div class="text-center">
       <h3 class="font-bold text-lg">類似アイテムはありませんでした</h3>
