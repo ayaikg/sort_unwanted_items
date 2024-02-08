@@ -4,4 +4,8 @@ module ApplicationHelper
 
     page_title.empty? ? base_title : "#{page_title} | #{base_title}"
   end
+
+  def login_class
+    logged_in? ? "hidden lg:block" : ""
+  end
 end
