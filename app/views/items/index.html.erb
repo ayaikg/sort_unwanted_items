@@ -7,16 +7,16 @@
   </div>
 </div>
 
-<main class="lg:flex-grow lg:flex lg:bg-slate-50">
+<main class="flex-grow lg:flex">
   <%= render 'search_form', url: category_items_path(@category), set_value: search_items_path(view: 'index') %>
-  <%= turbo_frame_tag "items_list", class: "lg:w-full lg:my-8 lg:mx-2 lg:p-2 lg:bg-base-100 lg:rounded-md" do %>
-    <div role="tablist" class="tabs tabs-boxed justify-around bg-base-100">
+  <%= turbo_frame_tag "items_list", class: "lg:w-full lg:my-8 lg:mx-2 lg:p-2 bg-base-100 lg:rounded-md" do %>
+    <div role="tablist" class="tabs justify-around border-b-2 border-primary py-2">
       <%= sort_link(@q, :name, '名前順', default_order: :desc, class: "tab", role: "tab") %>
       <%= sort_link(@q, :updated_at, '新着順', default_order: :desc, class: "tab", role: "tab") %>
       <%= sort_link(@q, :created_at, '作成日順', { class: "tab", role: "tab"}) %>
       <%= sort_link(@q, :notification_notify_date, '通知日順', default_order: :desc, class: "tab", role: "tab") %>
     </div>
-    <h2 class="text-center font-bold border-b-2 border-primary py-2 mb-2"><%= @category.title %></h2>
+    <h2 class="text-center font-bold my-2"><%= @category.title %></h2>
     <div data-controller="tab">
       <div class="tabs tabs-boxed bg-base-100">
         <a class="tab w-1/2 tab-active" data-tab-target="status" data-action="click->tab#status">出品中</a> 
