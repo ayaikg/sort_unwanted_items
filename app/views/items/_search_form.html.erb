@@ -9,13 +9,11 @@
       </div>
     </div>
 
-    <div>
-      <div class="flex justify-center items-center">
-        <label class="label"><span class="label-text">通知日で検索</span></label>
-        <%= f.date_field :notification_notify_date_gteq, class: "md:p-2.5 border" %>
-          <span>~</span>
-        <%= f.date_field :notification_notify_date_lteq_end_of_day, class: "md:p-2.5 border" %>
-      </div>
+    <div class="flex justify-center items-center">
+      <label class="label"><span class="label-text">通知日で検索</span></label>
+      <%= f.date_field :notification_notify_date_gteq, class: "md:p-2.5 border" %>
+        <span>~</span>
+      <%= f.date_field :notification_notify_date_lteq_end_of_day, class: "md:p-2.5 border" %>
     </div>
   
     <% if current_page?(history_items_path) %>
