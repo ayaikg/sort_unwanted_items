@@ -1,14 +1,38 @@
 <!-- Navbar -->
-<div class="navbar bg-primary border-b">
+<div class="navbar bg-neutral border-b">
   <div class="navbar-start">
     <%= link_to "steteco", root_path, class: "btn btn-ghost normal-case text-xl" %>
   </div>
+
+  <div class="navbar-center hidden lg:block">
+    <ul class="menu menu-horizontal px-1">
+      <li><%= link_to "アイテム管理", categories_path %></li>
+      <li><%= link_to '投稿一覧', posts_path %></li>
+      <li><%= link_to 'いいね!一覧', likes_posts_path %></li>
+    </ul>
+  </div>
   
   <div class="navbar-end">
-    <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-ghost btn-circle avatar">
-      <div class="w-10 rounded-full border border-2 bg-base-100">
-        <%= image_tag current_user.avatar.url %>
+    <div class="hidden lg:block">
+      <%= link_to "アイテム投稿", new_post_path, class: "btn btn-outline btn-secondary" %>
+      <%= link_to "アイテム追加", new_item_path, class: "btn btn-outline btn-secondary" %>
+    </div>
+    <div tabindex="0" class="dropdown dropdown-hover dropdown-end">
+      <div class="btn btn-ghost btn-circle avatar">
+        <div class="w-10 rounded-full border border-2 bg-base-100">
+          <%= image_tag current_user.avatar.url %>
+        </div>
       </div>
-    </label>
+      <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+        <% if logged_in? %>
+          <li><%= button_to 'ログアウト', logout_path, method: :delete %></li>
+          <li><%= link_to 'マイページ', user_path(current_user.id) %></li>
+          <li class="hidden lg:block"><%= link_to "グラフ", decluttering_path(current_user), data: { "turbo" => false } %></li>
+          <li class="hidden lg:block"><%= link_to "履歴", history_items_path %></li>
+          <li class="lg:hidden"><%= link_to '投稿一覧', posts_path %></li>
+          <li class="lg:hidden"><%= link_to 'お気に入り一覧', likes_posts_path %></a></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>

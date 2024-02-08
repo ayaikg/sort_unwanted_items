@@ -3,11 +3,11 @@
     <%= form_with model: @decluttering, data: { action: "turbo:submit-end->modal#close" }, local: true do |f| %>
       <%= render 'shared/error_message', object: f.object %>
       <div class="form-control my-5">
-        <%= f.label :goal_amount %>
+        <%= f.label :goal_amount, class:"card-title mb-2" %>
         <%= f.text_field :goal_amount, inputmode: "numeric", class: "input input-bordered" %>
       </div>
-      <div class="card-actions justify-end">
-        <%= f.submit "設定する", class: "btn" %>
+      <div class="card-actions justify-center">
+        <%= f.submit t('defaults.goal_setting'), class: "btn btn-secondary rounded-full md:btn-wide" %>
       </div>
     <% end %>
   </div>

@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_action :require_login, only: :index
+  skip_before_action :require_login, only: [:index, :show]
   before_action :set_post, only: [:edit, :update, :destroy]
   before_action :set_disposal, only: [:new, :create, :edit, :update]
   before_action :set_categories_collection, only: [:index, :likes]
@@ -8,7 +8,6 @@ class PostsController < ApplicationController
     @q = Post.preload(:likes).with_item.ransack(params[:q])
     @q.sorts = 'likes_count desc' if @q.sorts.empty?
     @posts = @q.result(distinct: true).page(params[:page])
-    @before_login_posts = Post.with_item.order(likes_count: :desc).limit(10)
   end
 
   def show

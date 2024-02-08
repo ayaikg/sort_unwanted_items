@@ -14,3 +14,18 @@
     @apply before:content-[counter(rank)"位"] before:font-bold before:text-red-600 relative before:absolute before:top-[15px] before:left-[15px];
   }
 }
+
+input[name="post[item_id]"]:checked + label {
+  @apply bg-base-200
+}
+
+@layer utilities {
+  .hidden-scrollbar {
+    -ms-overflow-style: none; /* IE, Edge 対応 */
+    scrollbar-width: none; /* Firefox 対応 */
+  }
+  .hidden-scrollbar::-webkit-scrollbar {
+    /* Chrome, Safari 対応 */
+    display: none;
+  }
+}

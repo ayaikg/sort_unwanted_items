@@ -1,17 +1,19 @@
 <% content_for(:title, t('.title')) %>
-<main lg:mx-auto>
+<main class="flex-grow lg:flex">
   <%= render 'search_form', url: history_items_path, set_value: search_items_path(view: 'history') %>
-  <%= turbo_frame_tag "items_list" do %>
-    <div role="tablist" class="tabs tabs-boxed justify-around bg-base-100">
-      <%= sort_link(@q, :name, '名前順', default_order: :desc, class: "tab", role: "tab") %>
-      <%= sort_link(@q, :updated_at, '新着順', default_order: :desc, class: "tab", role: "tab") %>
-      <%= sort_link(@q, :disposed_at, '断捨離日順', default_order: :desc, class: "tab", role: "tab") %>
-    </div>
-    <h2 class="text-center font-bold border-b-2 border-primary py-2 mb-4">断捨離済みのアイテム</h2>
-    <div class="flex flex-wrap items-center justify-center">
-      <% if @disposal_items.present? %>
-        <%= render partial: 'item', collection: @disposal_items %>
-      <% end %>
+  <%= turbo_frame_tag "items_list", class: "lg:my-8 lg:mx-2 lg:p-2 lg:w-full bg-base-100 lg:rounded-md" do %>
+    <div>
+      <div role="tablist" class="tabs justify-around border-b-2 border-primary pb-2">
+        <%= sort_link(@q, :name, '名前順', default_order: :desc, class: "tab", role: "tab") %>
+        <%= sort_link(@q, :updated_at, '新着順', default_order: :desc, class: "tab", role: "tab") %>
+        <%= sort_link(@q, :disposed_at, '断捨離日順', default_order: :desc, class: "tab", role: "tab") %>
+      </div>
+      <h2 class="text-center font-bold my-2">断捨離済みのアイテム</h2>
+      <div class="flex flex-wrap items-center justify-center">
+        <% if @disposal_items.present? %>
+          <%= render partial: 'item', collection: @disposal_items %>
+        <% end %>
+      </div>
     </div>
     <%= paginate @disposal_items %>
   <% end %>
