@@ -1,13 +1,5 @@
 <tbody>
   <tr>
-    <th><%= Item.human_attribute_name(:image) %></th>
-    <td><%= image_tag item.image.url, class: "w-[180px] md:w-[250px]" %></td>
-  </tr>
-  <tr>
-    <th><%= Item.human_attribute_name(:name) %></th>
-    <td><%= item.name %></td>
-  </tr>
-  <tr>
     <th><%= Category.human_attribute_name(:title) %></th>
     <td><%= item.category.parent.title %> / <%= item.category.title %></td>
   </tr>
