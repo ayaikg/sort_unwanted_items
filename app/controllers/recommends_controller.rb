@@ -1,8 +1,5 @@
 class RecommendsController < ApplicationController
   before_action :set_recommend
-  require 'net/https'
-  require 'uri'
-  require 'json'
   include TextpairApi
 
   SIMILARITY_THRESHOLD = 0.6

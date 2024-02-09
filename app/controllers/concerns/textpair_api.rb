@@ -1,5 +1,8 @@
 module TextpairApi
   extend ActiveSupport::Concern
+  require 'net/https'
+  require 'uri'
+  require 'json'
 
   def calculate_similarity(user_items, grouped_items)
     similarity_hash = {}
