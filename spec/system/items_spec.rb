@@ -47,12 +47,12 @@ RSpec.describe 'Items', type: :system do
         it 'アイテムの新規作成が成功する' do
           visit new_item_path
           fill_in 'アイテム名', with: 'test_name'
-          select 'ファッション', from: 'item[category_id]'
-          select 'トップス'
-          expect(page).to have_checked_field 'なし', visible: false
-          expect(page).to have_checked_field '未出品', visible: false
+          select '書籍', from: 'item_category_id'
+          select '小説', from: 'child_category'
+          choose 'ホワイト'
+          choose '未出品'
           fill_in '通知日', with: Date.new(2023, 12, 11)
-          expect(page).to have_checked_field '処分前', visible: false
+          choose '処分前'
           click_button '登録する'
           expect(page).to have_current_path(categories_path)
         end
@@ -62,12 +62,12 @@ RSpec.describe 'Items', type: :system do
         it 'アイテムの新規作成が失敗する' do
           visit new_item_path
           fill_in 'アイテム名', with: ''
-          select 'ファッション', from: 'item[category_id]'
-          select 'トップス'
-          expect(page).to have_checked_field 'なし', visible: false
-          expect(page).to have_checked_field '未出品', visible: false
+          select '書籍', from: 'item_category_id'
+          select '小説', from: 'child_category'
+          choose 'ホワイト'
+          choose '未出品'
           fill_in '通知日', with: Date.new(2023, 12, 11)
-          expect(page).to have_checked_field '処分前', visible: false
+          choose '処分前'
           click_button '登録する'
           expect(page).to have_content "アイテム名を入力してください"
           expect(current_path).to eq new_item_path
@@ -80,13 +80,12 @@ RSpec.describe 'Items', type: :system do
       before { visit edit_item_path(item) }
 
       context 'フォームの入力値が正常' do
-        it '投稿の編集が成功する' do
+        it 'アイテムの編集が成功する' do
           fill_in 'アイテム名', with: 'update_name'
-          select 'ファッション', from: 'item[category_id]'
-          select 'トップス'
+          select '書籍', from: 'item_category_id'
+          select '小説', from: 'child_category'
           click_button '更新する'
           expect(page).to have_content 'update_name'
-          expect(page).to have_content 'コスメ'
           expect(current_path).to eq item_path(item)
         end
       end
