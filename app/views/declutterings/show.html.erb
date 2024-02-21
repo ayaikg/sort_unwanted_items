@@ -30,7 +30,7 @@
             </div>
           </div>
         </div>
-        <%= link_to "アドバイスをみる", recommend_path, data: { turbo_frame: "modal" }, class: "btn btn-sm btn-secondary md:btn-wide" %>
+        <%= link_to "アドバイスをみる", recommend_path, data: { turbo_frame: "modal" }, class: "btn btn-sm btn-primary md:btn-wide" %>
       </div>
       <div data-controller="chart" class="relative h-[400px] md:h-[450px] bg-base-100">
         <canvas data-chart-target="canvas"></canvas>
@@ -41,7 +41,7 @@
       <h2 class="text-center font-bold md:text-xl mb-5">今月の達成度</h2>
       <%= render @decluttering %>
       <div class="flex justify-center items-center mt-3">
-        <%= link_to "目標を設定する", edit_decluttering_path(current_user), data: { turbo_frame: "modal" }, class: "btn btn-secondary rounded-full md:btn-wide" %>
+        <%= link_to "目標を設定する", edit_decluttering_path(current_user), data: { turbo_frame: "modal" }, class: "btn btn-primary rounded-full md:btn-wide" %>
       </div>
     </div>
   </div>

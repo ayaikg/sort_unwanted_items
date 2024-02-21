@@ -1,13 +1,13 @@
 <%= turbo_frame_tag decluttering, class: "w-full" do %>
   <div class="md:flex">
     <div class="lg:hidden flex justify-center items-center md:w-1/2">
-      <div class="radial-progress bg-base-200 text-secondary border-4 border-base-300" style="--value:<%= set_rate(decluttering, current_user) %>; --size:10rem;" role="progressbar">
+      <div class="radial-progress bg-base-200 text-primary border-4 border-base-300" style="--value:<%= set_rate(decluttering, current_user) %>; --size:10rem;" role="progressbar">
         <%= set_rate(decluttering, current_user) %>%
       </div>
     </div>
 
     <div class="hidden lg:block relative flex justify-center items-center md:w-1/2">
-      <div class="absolute left-[150px] radial-progress bg-base-200 text-secondary border-4 border-base-300" style="--value:<%= set_rate(decluttering, current_user) %>; --size:16rem;" role="progressbar">
+      <div class="absolute left-[150px] radial-progress bg-base-200 text-primary border-4 border-base-300" style="--value:<%= set_rate(decluttering, current_user) %>; --size:16rem;" role="progressbar">
         <%= set_rate(decluttering, current_user) %>%
       </div>
     </div>
