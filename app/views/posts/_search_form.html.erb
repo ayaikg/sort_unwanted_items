@@ -1,97 +1,53 @@
-<!-- スマホ版のレイアウト -->
-<div class="p-4 lg:hidden">
-  <%= search_form_for @q, url: url, data: { turbo_frame: "posts_list", controller: "search", action: "input->search#submit" } do |f| %>
-    <div class="flex justify-center items-center">
-      <%= f.search_field :content_or_item_name_cont, class: "input input-bordered", placeholder: "キーワード検索" %>
-    </div>
-    
-    <details>
-      <summary class="btn btn-ghost flex justify-center">
-        詳細検索
-      </summary>
-      <div class="space-y-4">
-        <p class="border-b pb-1">カテゴリーで検索</p>
-        <div class="flex justify-center">
-          <%= f.select :item_category_id_eq, grouped_options_for_select(@categories_collection), { include_blank: 'カテゴリーを選択してください' }, class: "select select-bordered" %>
-        </div>
-          
-        <p class="border-b pb-1">出品状態で検索</p>
-        <div class="flex justify-center items-center space-x-2">
-          <div class="flex">
-            <%= f.radio_button :item_listing_status_eq, "", class: "radio checked:bg-primary" %>
-            <%= f.label :item_listing_status_eq, "すべて", value: "" %>
-          </div>
-
-          <div class="flex">
-            <%= f.radio_button :item_listing_status_eq, true, class: "radio checked:bg-primary" %>
-            <%= f.label :item_listing_status_eq, "出品中", value: true %>
-          </div>
-
-          <div class="flex">
-            <%= f.radio_button :item_listing_status_eq, false, class: "radio checked:bg-primary" %>
-            <%= f.label :item_listing_status_eq, "未出品", value: false %>
-          </div>
-        </div>
-
-        <p class="border-b pb-1">処分方法で検索</p>
-        <div class="flex justify-center items-center space-x-2">
-          <div class="flex">
-            <%= f.radio_button :item_disposal_method_eq, "", class: "radio checked:bg-primary" %>
-            <%= f.label :item_disposal_method_eq, "すべて", value: "" %>
-          </div>
-          <%= f.collection_radio_buttons :item_disposal_method_eq, Item.disposal_methods_i18n.except(:before).invert.map { |key, value| [key, Item.disposal_methods[value]] }, :last, :first do |b| %>
-            <div class="flex">
-              <%= b.radio_button(class: "radio checked:bg-primary") %>
-              <%= b.label %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </details>
-  <% end %>
-</div>
-
-<!-- pc画面のレイアウト -->
-<div class="hidden lg:block my-8 mx-2">
-  <div class="bg-base-100 border-2 rounded-md p-5">
-    <p class="text-center font-bold mb-5">詳細検索</p>
+<div class="lg:my-8 lg:mx-2">
+  <div class="p-4 lg:bg-base-100 lg:border-2 lg:rounded-md lg:p-5">
+    <p class="hidden lg:block lg:text-center lg:font-bold lg:mb-5">詳細検索</p>
     <%= search_form_for @q, url: url, data: { turbo_frame: "posts_list", controller: "search", action: "input->search#submit" } do |f| %>
-      <div class="space-y-4">
+      <div class="flex justify-center items-center lg:mb-4">
         <%= f.search_field :content_or_item_name_cont, class: "input input-bordered lg:w-[260px]", placeholder: "キーワード検索" %>
-
-        <p class="border-b pb-1">カテゴリーで検索</p>
-        <%= f.select :item_category_id_eq, grouped_options_for_select(@categories_collection), { include_blank: 'カテゴリーを選択してください' }, class: "select select-bordered" %>
-          
-        <p class="border-b pb-1">出品状態で検索</p>
-        <div class="space-y-2">
-          <div class="flex">
-            <%= f.radio_button :item_listing_status_eq, "", class: "radio checked:bg-primary" %>
-            <%= f.label :item_listing_status_eq, "すべて", value: "" %>
-          </div>
-
-          <div class="flex">
-            <%= f.radio_button :item_listing_status_eq, true, class: "radio checked:bg-primary" %>
-            <%= f.label :item_listing_status_eq, "出品中", value: true %>
-          </div>
-
-          <div class="flex">
-            <%= f.radio_button :item_listing_status_eq, false, class: "radio checked:bg-primary" %>
-            <%= f.label :item_listing_status_eq, "未出品", value: false %>
-          </div>
+      </div>
+      
+      <div class="collapse lg:collapse-open">
+        <input type="checkbox" class="lg:hidden" /> 
+        <div class="collapse-title text-center lg:hidden">
+          詳細検索
         </div>
-
-        <p class="border-b pb-1">処分方法で検索</p>
-        <div class="space-y-2">
-          <div class="flex">
-            <%= f.radio_button :item_disposal_method_eq, "", class: "radio checked:bg-primary" %>
-            <%= f.label :item_disposal_method_eq, "すべて", value: "" %>
+        <div class="space-y-4 collapse-content">
+          <p class="border-b pb-1">カテゴリーで検索</p>
+          <div class="flex justify-center">
+            <%= f.select :item_category_id_eq, grouped_options_for_select(@categories_collection), { include_blank: 'カテゴリーを選択してください' }, class: "select select-bordered" %>
           </div>
-          <%= f.collection_radio_buttons :item_disposal_method_eq, Item.disposal_methods_i18n.except(:before).invert.map { |key, value| [key, Item.disposal_methods[value]] }, :last, :first do |b| %>
+            
+          <p class="border-b pb-1">出品状態で検索</p>
+          <div class="flex justify-center items-center space-x-2 lg:space-x-0 lg:space-y-2 lg:block">
             <div class="flex">
-              <%= b.radio_button(class: "radio checked:bg-primary") %>
-              <%= b.label %>
+              <%= f.radio_button :item_listing_status_eq, "", class: "radio checked:bg-primary" %>
+              <%= f.label :item_listing_status_eq, "すべて", value: "" %>
             </div>
-          <% end %>
+
+            <div class="flex">
+              <%= f.radio_button :item_listing_status_eq, true, class: "radio checked:bg-primary" %>
+              <%= f.label :item_listing_status_eq, "出品中", value: true %>
+            </div>
+
+            <div class="flex">
+              <%= f.radio_button :item_listing_status_eq, false, class: "radio checked:bg-primary" %>
+              <%= f.label :item_listing_status_eq, "未出品", value: false %>
+            </div>
+          </div>
+
+          <p class="border-b pb-1">処分方法で検索</p>
+          <div class="flex justify-center items-center space-x-2 lg:space-x-0 lg:space-y-2 lg:block">
+            <div class="flex">
+              <%= f.radio_button :item_disposal_method_eq, "", class: "radio checked:bg-primary" %>
+              <%= f.label :item_disposal_method_eq, "すべて", value: "" %>
+            </div>
+            <%= f.collection_radio_buttons :item_disposal_method_eq, Item.disposal_methods_i18n.except(:before).invert.map { |key, value| [key, Item.disposal_methods[value]] }, :last, :first do |b| %>
+              <div class="flex">
+                <%= b.radio_button(class: "radio checked:bg-primary") %>
+                <%= b.label %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     <% end %>
