@@ -1,124 +1,104 @@
 <% content_for(:title, t('.title')) %>
-<main class="flex-grow bg-base-100">
-  <div class="hero h-[300px] md:h-[500px]" style="background-image: url(<%= asset_path 'top.jpg' %>);">
-    <div class="hero-overlay bg-opacity-60"></div>
-      <div class="hero-content text-center text-neutral-content">
-        <div class="max-w-md">
-          <h1 class="mb-5 text-2xl font-bold md:text-3xl">売れると思うと捨てられない</h1>
-          <p class="mb-5">そんな経験、ありませんか？</p>
-          <p class="mb-5">ここは、そんな悩みを解決する場所です。<p>
+<main class="flex-grow">
+  <div class="hero h-[230px] md:h-[450px] lg:h-[750px]" style="background-image: url(<%= asset_path 'top_page.png' %>);">
+    <div class="hero-content flex flex-col text-center text-white drop-shadow">
+      <h1 class="md:mb-5 font-bold text-lg md:text-3xl lg:text-5xl">売れると思うと捨てられない</h1>
+      <p class="md:mb-5 text-sm md:text-lg">そんな経験、ありませんか？</p>
+      <p class="text-sm md:text-lg md:mb-10">ここは、そんな悩みを解決する場所です。</p>
+      <div class="hidden md:block md:flex">
+        <div class="p-2">
+          <p>※お試しで使ってみたい</p>
+          <%= link_to 'ゲストログイン', guest_login_path, data: { "turbo-method": :post }, class: "btn btn-neutral" %>
+        </div>
+        <div class="p-2">
+          <p>データを引き継いで使いたい</p>
+          <%= link_to 'LINEでログイン', auth_at_provider_path(provider: :line), class: "btn btn-neutral" %>
+        </div>
+      </div>
+      <div class="text-xs">
+        <p>※ゲストログインは、ログアウト後にデータが削除されます。</p>
+        <p>※LINE通知は、LINEログインと友だち追加でご利用できます。</p>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="p-5">
+      stetecoは、お家に溜まっている不用品を管理して、断捨離がしやすい生活をサポートをするアプリです。</br>
+      フリマアプリを使っていると、「売れるかもしれないから...」と考えてしまい、結局モノが溜まってしまうことはありませんか?</br>
+      なかなか捨てる決断ができない、そんな方におすすめのアプリです!
+    </div>
+    <div class="flex flex-wrap items-center justify-around">
+      <div class="card bg-base-100 shadow-xl w-full md:w-[450px] md:h-[220px] m-1">
+        <div class="card-body">
+          <h2 class="card-title">アイテム管理</h2>
+          <p>「アイテム追加」ボタンから、不用品を追加します。</p>
+          <p>以下のように分けて管理できます。</p>
+          <ul class="list-disc ml-8">
+            <li>カテゴリー別</li>
+            <li>出品中</li>
+            <li>未出品</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card bg-base-100 shadow-xl w-full md:w-[450px] md:h-[220px] m-1">
+        <div class="card-body">
+          <h2 class="card-title">LINE通知</h2>
+          <p>アイテム追加時に指定した通知日にLINEメッセージが届きます!</p>
+          <ul class="list-disc ml-8">
+            <li>通知は10時と17時</li>
+            <li>毎週土曜日に未断捨離アイテムを通知</li>
+            <li>断捨離後は、編集ページで処分方法を変更</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card bg-base-100 shadow-xl w-full md:w-[450px] md:h-[220px] m-1">
+        <div class="card-body">
+          <h2 class="card-title">履歴ページで確認</h2>
+          <ul>
+            <li>断捨離したアイテムは履歴ページで確認できます。</li>
+            <li>次回の購入の参考にしましょう!</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card bg-base-100 shadow-xl w-full md:w-[450px] md:h-[220px] m-1">
+        <div class="card-body">
+          <h2 class="card-title">グラフ・目標設定</h2>
+          <ul>
+            <li>直近1週間の断捨離数をグラフで確認できます。</li>
+            <li>月ごとの断捨離目標数を設定できます。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card bg-base-100 shadow-xl w-full md:w-[450px] md:h-[220px] m-1">
+        <div class="card-body">
+          <h2 class="card-title">アドバイス機能</h2>
+          <ul>
+            <li>グラフページにある「アドバイスをみる」を押すと、登録アイテムの中から、みんなが捨てたアイテムと似ているものを探します。</li>
+            <li>断捨離の際の参考にしてください。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card bg-base-100 shadow-xl w-full md:w-[450px] md:h-[220px] m-1">
+        <div class="card-body">
+          <h2 class="card-title">断捨離したモノを投稿</h2>
+          <ul>
+            <li>アイテムを断捨離できたら投稿してみましょう!</li>
+            <li>投稿ボタンから投稿フォームにアクセスできます。</li>
+            <li>あなたの投稿がみんなの助けになります!</li>
+          </ul>
+          <%= link_to 'みんなの投稿をみる', posts_path, class: "btn btn-neutral" %>
         </div>
       </div>
     </div>
-  <div class="px-10 lg:flex lg:justify-around">
-    <div class="lg:w-3/5">
-      <h2 class="my-5 text-2xl border-b pb-2">stetecoってなに?</h2>
-      <div>
-        stetecoは、お家に溜まっている不用品を管理して、断捨離がしやすい生活をサポートをするアプリです。</br>
-        フリマアプリを使っていると、「売れるかもしれないから...」と考えてしまい、結局モノが溜まってしまうことはありませんか?</br>
-        なかなか捨てる決断ができない、そんな方におすすめのアプリです!
-      </div>
-      <h2 class="my-5 text-2xl border-b pb-2">stetecoの使い方</h2>
-      <ul class="space-y-5 p-5">
-        <li>
-          <div class="collapse collapse-plus bg-base-200">
-            <input type="checkbox" /> 
-            <div class="collapse-title text-lg font-medium">
-              アイテム登録
-            </div>
-            <div class="collapse-content"> 
-              <ul class="leading-relaxed p-5">
-                <li>下部ツールバーにある「アイテム追加」ボタンをタップして、不用品を追加します。</li>
-                <li>登録したアイテムは、カテゴリー別に仕分けます。また、出品中・未出品別に分けて管理できます。</li>
-                <li><div class="flex justify-center"><%= image_tag "top_nav.png", class: "md:w-[500px]" %></div></li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="collapse collapse-plus bg-base-200">
-            <input type="checkbox" /> 
-            <div class="collapse-title text-lg font-medium">
-              LINE通知
-            </div>
-            <div class="collapse-content"> 
-              <ul class="leading-relaxed p-5">
-                <li>アイテム登録時に指定した通知日が来たらLINEメッセージが届きます!</li>
-                <li>通知は10時と17時の2回届きます。</li>
-                <li>断捨離ができたら、アイテム編集ページで処分方法を変更しましょう。</li>
-                <li>売れたアイテムは「売れた」、捨てたアイテムは「捨てた」を選び、状態を更新してください。</li>
-                <li>毎週土曜12時には、通知日を過ぎても状態が変わっていないアイテムをリマインドします!</li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="collapse collapse-plus bg-base-200">
-            <input type="checkbox" /> 
-            <div class="collapse-title text-lg font-medium">
-              履歴ページで確認
-            </div>
-            <div class="collapse-content"> 
-              <ul class="leading-relaxed p-5">
-                <li>断捨離したアイテムは履歴ページで確認できます。</li>
-                <li>次回の購入の参考にしましょう!</li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="collapse collapse-plus bg-base-200">
-            <input type="checkbox" /> 
-            <div class="collapse-title text-lg font-medium">
-              グラフ・目標設定
-            </div>
-            <div class="collapse-content"> 
-              <ul class="leading-relaxed p-5">
-                <li>直近1週間の断捨離した数をグラフで確認できます。</li>
-                <li>また、目標設定ページでは、月ごとに断捨離の目標数を設定できます。</li>
-                <li>皆さんの成果をわかりやすい形で可視化できるので、ぜひ活用してみてください!</li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="collapse collapse-plus bg-base-200">
-            <input type="checkbox" /> 
-            <div class="collapse-title text-lg font-medium">
-              おすすめ機能
-            </div>
-            <div class="collapse-content"> 
-              <ul class="leading-relaxed p-5">
-                <li>目標設定ページにある「アドバイスをみる」ボタンを押すと、ご自身が登録したアイテムの中から、みんなが捨てたアイテムと似ているものをご提案します。</li>
-                <li>断捨離の際の参考にしてください。</li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="collapse collapse-plus bg-base-200">
-            <input type="checkbox" /> 
-            <div class="collapse-title text-lg font-medium">
-              捨てたモノを投稿
-            </div>
-            <div class="collapse-content"> 
-              <ul class="leading-relaxed p-5">
-                <li>アイテムを断捨離できたら投稿してみましょう!投稿フォームには、2パターンの方法でアクセスできます。</li>
-                <li>パターン1<span class="badge badge-primary ml-2">おすすめ</span></li>
-                <li>履歴ページの「・・・」ボタンから投稿するボタンを押す。該当のアイテムが選択された状態で表示されます。</li>
-                <li>パターン2</li>
-                <li>下部ツールバーの「投稿作成」を押す。こちらは、自分でアイテムを選択する必要があります。</li>
-                <li><div class="flex justify-center"><%= image_tag "top_nav.png", class: "md:w-[500px]" %></div></li>
-                <li>あなたの投稿が誰かの助けになります。</li>
-              </ul>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="flex flex-col justify-center items-center space-y-2 my-10 lg:my-0">
-      <div class="w-[200px] tooltip tooltip-open tooltip-success z-0" data-tip="LINE通知には、友だち登録が必要です!"><img src="https://qr-official.line.me/gs/M_305zhajm_GW.png?oat_content=qr"></div>
-      <a href="https://lin.ee/Vit5Ykr"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0" class="w-28"></a>
-    </div>
+  </div>
+  <div class="flex flex-col justify-center items-center space-y-2 my-10">
+    <h2 class="font-bold text-lg">公式LINEアカウントはこちら</h2>
+    <div class="w-[200px]"><img src="https://qr-official.line.me/gs/M_305zhajm_GW.png?oat_content=qr"></div>
+    <a href="https://lin.ee/Vit5Ykr"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0" class="w-28"></a>
   </div>
 </main>
