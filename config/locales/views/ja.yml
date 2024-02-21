@@ -2,8 +2,6 @@ ja:
   defaults:
     login: ログイン
     logout: ログアウト
-    create: 作成する
-    post: 投稿する
     show: 詳細
     edit: 編集
     delete: 削除
@@ -23,11 +21,11 @@ ja:
         defaults: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
         long: "%Y/%m/%d %H:%M"
         short: "%m/%d %H:%M"
-    helpers:
-      submit:
-        create: 作成する
-        submit: 保存する
-        update: 更新する
+  helpers:
+    submit:
+      create: 作成する
+      submit: 保存する
+      update: 更新する
   users:
     edit:
       title: ユーザー編集
