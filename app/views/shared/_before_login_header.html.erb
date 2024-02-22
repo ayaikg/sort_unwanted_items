@@ -3,8 +3,8 @@
   <div class="flex-1">
     <%= link_to "steteco", root_path, class: "btn btn-ghost normal-case text-xl" %>
   </div>
-  <div class="flex-none">
-    <%= link_to '投稿一覧', posts_path, class: "btn btn-ghost" %>
-    <%= link_to 'LINEでログイン', auth_at_provider_path(provider: :line), class: "btn text-white btn-ghost" %>
+  <div class="flex-none md:hidden">
+    <%= link_to 'ゲストログイン', guest_login_path, data: { "turbo-method": :post }, class: "btn btn-sm btn-ghost" %>
+    <%= link_to 'LINEでログイン', auth_at_provider_path(provider: :line), class: "btn btn-sm btn-ghost" %>
   </div>
 </div>

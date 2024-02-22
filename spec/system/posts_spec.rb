@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Posts', type: :system do
   let(:user) { create(:user) }
   let(:item) { create(:item, user: user) }
-  let(:post) { create(:post, item: item) }
+  let!(:post) { create(:post, item: item, user: user) }
 
   describe 'ログイン前' do
     describe 'ページ遷移確認' do
@@ -24,9 +24,11 @@ RSpec.describe 'Posts', type: :system do
       end
 
       context '投稿の一覧ページにアクセス' do
-        it '一覧ページへのアクセスが失敗する' do
+        fit 'ユーザーリンクをクリックすると画面遷移に失敗する' do
           visit posts_path
-          expect(page).to have_content('今日のランキングTOP10')
+          click_on "#{user.name}"
+          expect(page).to have_content('ログインしてください')
+          expect(current_path).to eq root_path
         end
       end
     end
@@ -41,20 +43,22 @@ RSpec.describe 'Posts', type: :system do
       context 'フォームの入力値が正常' do
         it '投稿の新規作成が成功する' do
           visit new_post_path
-          expect(page).to have_checked_field item.name
+          click_on 'アイテムを選択してください'
+          sleep(5)
+          expect(page).to have_checked_field item.name, visible: false
+          click_on '決定'
           fill_in '投稿内容', with: 'テスト投稿'
-          click_button '登録する'
+          click_button '投稿する'
           expect(page).to have_current_path(posts_path)
         end
       end
 
       context 'アイテムが未選択' do
-        it '投稿の新規作成が失敗する' do
+        fit '投稿の新規作成が失敗する' do
           visit new_post_path
-          expect(page).to have_checked_field item.name
           fill_in '投稿内容', with: 'テスト投稿'
-          click_button '登録する'
-          expect(page).to have_content "itemを入力してください"
+          click_button '投稿する'
+          expect(page).to have_content('itemを入力してください')
           expect(current_path).to eq new_item_path
         end
       end
@@ -67,7 +71,7 @@ RSpec.describe 'Posts', type: :system do
       context 'フォームの入力値が正常' do
         it '投稿の編集が成功する' do
           fill_in '投稿内容', with: 'テスト投稿更新'
-          expect(page).to have_checked_field item.name
+          expect(page).to have_checked_field item.name, visible: false
           click_button '更新する'
           expect(page).to have_content 'テスト投稿更新'
           expect(current_path).to eq post_path(post)
@@ -77,7 +81,7 @@ RSpec.describe 'Posts', type: :system do
       context '他ユーザーの投稿編集ページにアクセス' do
         let!(:other_user) { create(:user, email: "other_user@example.com") }
         let!(:other_item) { create(:item, user: other_user) }
-        let!(other_post) { create(:post, item: other_item)}
+        let!(:other_post) { create(:post, item: other_item, user: other_user)}
 
         it '編集ページへのアクセスが失敗する' do
           visit edit_post_path(other_post)
@@ -92,8 +96,7 @@ RSpec.describe 'Posts', type: :system do
 
       it 'アイテムの削除が成功する' do
         visit post_path(post)
-        find(".dropdown").click
-        click_button '投稿を削除'
+        click_button '削除'
         expect(page.accept_confirm).to eq '本当に削除しますか？'
         expect(page).to have_current_path(posts_path)
       end

@@ -33,8 +33,9 @@ Rails.application.routes.draw do
     end
   end
 
-  #get 'login', to: 'user_sessions#new'
-  #post 'login', to: 'user_sessions#create'
+  # get 'login', to: 'user_sessions#new'
+  # post 'login', to: 'user_sessions#create'
+  post 'guest_login', to: 'user_sessions#guest_login'
   delete 'logout', to: 'user_sessions#destroy'
 
   post "oauth/callback", to: "oauths#callback"
