@@ -2,7 +2,7 @@
 <main class="my-auto">
   <% if logged_in? && current_user&.own?(@post) %>
     <div class="flex justify-end items-center px-5 lg:px-10">
-      <%= link_to "https://twitter.com/share?url=#{ request.url }&text=#{ @post.item.name }%0a%0a#{ @post.content }", target: '_blank', class: "btn rounded-full mr-2 btn-primary" do %>
+      <%= link_to "https://twitter.com/share?url=#{ request.url }&text=#{ @post.item.name }%0a%0a#{ @post.content }", target: '_blank', class: "btn btn-outline rounded-full mr-2 btn-primary" do %>
         <%= image_tag "logo-black.png", class: "w-3" %>
       <% end %>
       <ul>
