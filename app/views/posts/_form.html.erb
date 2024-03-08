@@ -2,12 +2,16 @@
   <%= form_with model: post, local: true do |f| %>
     <%= render 'shared/error_message', object: f.object %>
     <div class="space-y-5">
-      <p class="mb-5 md:mr-8">投稿するアイテム</p>
-      <%= turbo_frame_tag "modal_result" do %>
-        <div class="flex justify-center">
-          <%= button_tag 'アイテムを選択してください', type: 'button', class: 'select select-bordered items-center md:w-[350px]', onclick: 'modal_select.showModal()', data: { "select-target": "link" } %>
-          <%= f.collection_select :item_id, disposal_item, :id, :name, { include_blank: "アイテムを選択してください" }, { class: "hidden", data: { "select-target": "hiddenSelect" } } %>
-        </div>
+      <p class="mb-5 md:mr-8">断捨離済みアイテム<span class="text-xs text-error">*必須</span></p>
+      <% if disposal_item.present? %>
+        <%= turbo_frame_tag "modal_result" do %>
+          <div class="flex justify-center">
+            <%= button_tag 'アイテムを選択してください', type: 'button', class: 'select select-bordered items-center md:w-[350px]', onclick: 'modal_select.showModal()', data: { "select-target": "link" } %>
+            <%= f.collection_select :item_id, disposal_item, :id, :name, { include_blank: "アイテムを選択してください" }, { class: "hidden", data: { "select-target": "hiddenSelect" } } %>
+          </div>
+        <% end %>
+      <% else %>
+          <div class="text-center">断捨離済みのアイテムがありません。</br><span class="text-sm">※履歴ページに表示されているアイテムしか投稿できません。</span></div>
       <% end %>
       <div class="space-y-3 md:flex md:space-x-8 md:items-center">
         <%= f.label :post_image %>

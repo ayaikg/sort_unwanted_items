@@ -28,9 +28,11 @@ export default class extends Controller {
   }
 
   updateLinkTextFromSelected() {
-    const selectedOption = this.hiddenSelectTarget.querySelector('option:checked');
-    if (selectedOption) {
-      this.linkTarget.textContent = selectedOption.textContent;
+    if (this.hasHiddenSelectTarget) {
+      const selectedOption = this.hiddenSelectTarget.querySelector('option:checked');
+      if (selectedOption) {
+        this.linkTarget.textContent = selectedOption.textContent;
+      }
     }
   }
 }
