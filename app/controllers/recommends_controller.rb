@@ -8,8 +8,8 @@ class RecommendsController < ApplicationController
     return unless @user_items.present? && @grouped_items.present?
 
     result_hash = calculate_similarity(@user_items, @grouped_items)
-    count_hash = change_count_hash(result_hash)
-    @recommend_item = fetch_recommend_item(count_hash) if count_hash
+    average_hash = change_count_hash(result_hash)
+    @recommend_item = fetch_recommend_item(average_hash) if average_hash
   end
 
   private
@@ -26,20 +26,25 @@ class RecommendsController < ApplicationController
 
   def change_count_hash(result_hash)
     change_hash = result_hash.transform_values do |values|
-      values.count { |value| value >= SIMILARITY_THRESHOLD }
+      values.filter { |value| value >= SIMILARITY_THRESHOLD }
     end
-    return nil if change_hash.values.all?(&:zero?)
+    return nil if change_hash.values.all?(&:empty?)
 
     # デバッグ時にreturnがないと値が返らない
     return change_hash
   end
 
-  def fetch_recommend_item(count_hash)
-    max_count = count_hash.values.max
-    items_with_max_count = count_hash.select { |_key, value| value == max_count }
-    return if items_with_max_count.blank?
+  def fetch_recommend_item(average_hash)
+    average_hash = average_hash.transform_values do |values|
+      values.empty? ? 0 : values.sum.to_f / values.size
+    end
+    max_average = average_hash.values.reject { |v| v == 0 }.max
+    return if max_average.nil?
 
-    item_ids = items_with_max_count.keys
+    items_with_max_average = average_hash.select { |_key, value| value == max_average }
+    return if items_with_max_average.empty?
+    
+    item_ids = items_with_max_average.keys
     return current_user.items.random_order(item_ids).first
   end
 end

@@ -18,7 +18,7 @@ module TextpairApi
       # ハッシュオブジェクト[キー] = 値で新しい要素を追加
       similarity_hash[user_item_id] = similarities
     end
-    similarity_hash
+    return similarity_hash
   end
 
   def post_text(text1, text2)
@@ -34,7 +34,7 @@ module TextpairApi
     begin
       res = http.request(req)
       req_result = JSON.parse(res.body)
-      req_result["score"]
+      return req_result["score"]
     rescue Net::ReadTimeout, Net::OpenTimeout
       nil
     end
